@@ -1,15 +1,20 @@
 from django.db import models
+from django.utils import timezone
 import uuid
 
 
 class Publisher(models.Model):
     alias = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     invited_by = models.ForeignKey('self', on_delete=models.CASCADE)
+    date_of_birth = models.DateTimeField('date of birth')
+    zip_code = models.IntegerField('zip code')
+    is_active = models.BooleanField(default=True)
+    active_time = models.DurationField()
 
     GENDER_MALE = 0
     GENDER_FEMALE = 1
     GENDER_CHOICES = [(GENDER_MALE, 'Male'), (GENDER_FEMALE, 'Female')]
-    gender = models.IntegerField(choices=GENDER_CHOICES)
+    gender = models.IntegerField(choices=GENDER_CHOICES, default=GENDER_MALE)
 
     OCCUPATION_CHOICES = [
         (0, 'Management'),
@@ -38,12 +43,7 @@ class Publisher(models.Model):
         (23, 'Sales'),
         (24, 'Production/Manufacturing'),
     ]
-    occupation = models.IntegerField(choices=OCCUPATION_CHOICES)
-
-    date_of_birth = models.DateTimeField('date published')
-    zip_code = models.IntegerField('zip code')
-    is_active = models.BooleanField(default=True)
-    active_time = models.DurationField()
+    occupation = models.IntegerField(choices=OCCUPATION_CHOICES, default=0)
 
 
 class Image(models.Model):
