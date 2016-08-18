@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'gallery.apps.GalleryConfig'    #added gallery app
+    'gallery.apps.GalleryConfig',    #added gallery app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
