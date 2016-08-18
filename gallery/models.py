@@ -13,8 +13,8 @@ class Post(models.Model):
 
 class Image(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    url = models.URLField(max_length=200)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     year = models.DateTimeField('year published')
     location = models.CharField(max_length=50)
-    url = models.URLField(max_length=200)
