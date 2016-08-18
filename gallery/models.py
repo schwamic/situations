@@ -38,7 +38,7 @@ class Publisher(models.Model):
         (23, 'Sales'),
         (24, 'Production/Manufacturing'),
     ]
-    occupation = models.ImageField(choices=OCCUPATION_CHOICES)
+    occupation = models.IntegerField(choices=OCCUPATION_CHOICES)
 
     date_of_birth = models.DateTimeField('date published')
     zip_code = models.IntegerField('zip code')
