@@ -4,4 +4,4 @@ class Publisher(models.Model):
 
 class Post(models.Model):
 
-class Image(models.Model):
+class Image(models.Model): abc test
