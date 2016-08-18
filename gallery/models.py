@@ -3,8 +3,9 @@ import uuid
 
 
 class Publisher(models.Model):
+    alias = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     invited_by = models.ForeignKey('self', on_delete=models.CASCADE)
-    
+
     GENDER_MALE = 0
     GENDER_FEMALE = 1
     GENDER_CHOICES = [(GENDER_MALE, 'Male'), (GENDER_FEMALE, 'Female')]
@@ -46,7 +47,6 @@ class Publisher(models.Model):
 
 
 class Image(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     url = models.URLField(max_length=200)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
@@ -55,7 +55,6 @@ class Image(models.Model):
 
 
 class Post(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     pub_date = models.DateTimeField('date published')
