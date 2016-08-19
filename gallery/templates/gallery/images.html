@@ -11,7 +11,7 @@
 <ul>
 {% for image in object_list %}
     <li>
-        <p>{{ image.year|date }} - {{ image.title }}</p>
+        <p>{{ image.year|date }} - {{ image.title }} - {{image.url}}</p>
         <img src="{{MEDIA_URL}}" alt="{{image.title}}" style="width:304px;height:228px;">
     </li>
 {% empty %}
