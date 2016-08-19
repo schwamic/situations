@@ -3,5 +3,7 @@
 .idea/situations.iml
 .idea/vcs.xml
 .idea/workspace.xml
-situations/__pycache__/settings.cpython-35.pyc
-situations/__pycache__/urls.cpython-35.pyc
+.DS_Store
+__pycache__
+gallery\__pycache__
+gallery\migrations\__pycache__
