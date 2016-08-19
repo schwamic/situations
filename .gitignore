@@ -4,3 +4,4 @@
 .idea/situations.iml
 .idea/vcs.xml
 .idea/.name
+*.pyc
