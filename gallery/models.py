@@ -46,8 +46,8 @@ class Publisher(models.Model):
 
 
 class Image(models.Model):
-    #url = models.URLField(max_length=200)
-    image = models.ImageField(null=True, blank=True) #test images
+    url = models.URLField(max_length=200)
+    #image = models.ImageField(null=True, blank=True) #test images
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     year = models.DateTimeField('year published')
