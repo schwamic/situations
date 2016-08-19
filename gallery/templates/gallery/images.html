@@ -1,8 +1,11 @@
-<h1>Images</h1>
-<ul>
-{% for image in object_list %}
-    <li>{{ image.pub_date|date }} - {{ image.headline }}</li>
-{% empty %}
-    <li>No images yet.</li>
-{% endfor %}
-</ul>
+{% extends "base.html" %}
+
+{% block title %}Situations - Images{% endblock %}
+
+{% block content %}
+<p>
+    All images will be displayed here in random order.<br>
+    Accessing this page will only be possible with an active publishers link.
+</p>
+{% endblock %}
+
