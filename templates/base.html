@@ -10,8 +10,14 @@
 
 <body>
 
-<div id="content">
+{% include 'nav.html' %}
+
+<div id="content" class="container-fluid">
     {% block content %}{% endblock %}
+</div>
+
+<div id="footer" class="panel-footer">
+    <p>this is a footer</p>
 </div>
 
 </body>
