@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.views import generic
+from .models import Publisher, Image, Post
 
-# Create your views here.
+class Posts(generic.ListView):
+    model = Post
+    template_name = 'gallery/posts.html'
