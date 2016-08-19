@@ -6,7 +6,7 @@ from .models import Publisher, Image, Post
 
 
 # Create your views here.
-class imagesView(generic.ListView):
+class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
 
