@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATIC_URL = '/static/'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -121,6 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR)+'/static/', 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'templates/static'),
+    os.path.join(BASE_DIR, 'gallery/static/gallery/'),
+]
 
 # Media files
 MEDIA_URL = '/media/'
