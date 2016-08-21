@@ -11,7 +11,7 @@
 <ul>
 {% for image in object_list %}
     <li>
-        <p>{{ image.year|date }} - {{ image.title }} - {{image.url}}</p>
+        <p>{{ image.year|date }} - {{ image.title }}</p>
         <img class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}" style="height:300px;">
     </li>
 {% empty %}
