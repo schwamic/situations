@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-    <script src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <title>{% block title %}Situations{% endblock %}</title>
-</head>
+    <head>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+        <script src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <title>{% block title %}Situations{% endblock %}</title>
+    </head>
+    <body>
 
-<body>
+        {% include 'nav.html' %}
 
-{% include 'nav.html' %}
+        <div id="content" class="container-fluid">
+            {% block content %}{% endblock %}
+        </div>
 
-<div id="content" class="container-fluid">
-    {% block content %}{% endblock %}
-</div>
+        <div id="footer" class="panel-footer">
+            <p>this is a footer</p>
+        </div>
 
-<div id="footer" class="panel-footer">
-    <p>this is a footer</p>
-</div>
-
-</body>
+        <script src="{% static 'js/components/modal.js' %}"></script>
+        <script src="{% static 'js/components/thumbnail.js' %}"></script>
+    </body>
 </html>

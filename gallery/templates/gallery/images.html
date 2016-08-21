@@ -3,19 +3,72 @@
 {% block title %}Situations - Images{% endblock %}
 
 {% block content %}
-<p>
-    All images will be displayed here in random order.<br>
-    Accessing this page will only be possible with an active publishers link.
-</p>
-<h1>Images</h1>
-<ul>
-{% for image in object_list %}
-    <li>
-        <p>{{ image.year|date }} - {{ image.title }}</p>
-        <img class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}" style="height:300px;">
-    </li>
-{% empty %}
-    <li>No images yet.</li>
-{% endfor %}
-</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Welcome!</h4>
+            </div>
+            <div class="modal-body">
+                <h4>The project #nofilter is an exploration and wants to visualize the process of editing, the filters
+                    and
+                    invisible structures that are at work in the process of choosing images.
+                    Please feel free to take as much time as you need...</h4>
+
+                <p>
+                    three forms of “narratives” will be presented:<br>
+                    1. online: the presentation of the selected images on DER GREIF platform<br>
+                    2. visual: presentation of the filters (structural elements) in the exhibition space<br>
+                    3. audio (text-to-speech): presentation of the personal narratives of why images are chosen in the
+                    exhibition space<br>
+                </p>
+                <h4>About SITUATIONS Fotomuseum Winterthur</h4>
+
+                <p>As every citizen with a smartphone, laptop or tablet knows, photography is becoming increasingly
+                    ‘distributed’.
+                    Driven by the vast replicative power of digital algorithms, photographs now move with tremendous
+                    speed across
+                    a wide variety of devices and platforms. The distinction between the still and the moving image is
+                    becoming
+                    increasingly blurred. At the same time, digital vision is now profoundly social, implicated in many
+                    areas
+                    of human activity. Certainly, this is having an impact on practice as younger artists in particular
+                    work
+                    with a range of media and no longer easily describe themselves as photographers.</p>
+
+                <p>In our daily work we find ourselves speaking more of the photographic than photography, of
+                    photographic
+                    media, rather than the medium. This poses a challenge for a photography museum with a distinctive,
+                    but
+                    significantly analogue</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Start Selecting</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Images -->
+<div class="row">
+    {% for image in object_list %}
+    <div class="col-sm-2 col-md-2 thumbscope">
+        <div class="thumbnail">
+            <img class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}">
+            <div class="caption">
+                <h3>{{ image.title }}</h3>
+
+                <p>{{ image.year|date }} ...</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="thumbnail"><p>No images yet.</p></div>
+    {% endfor %}
+</div>
 {% endblock %}
