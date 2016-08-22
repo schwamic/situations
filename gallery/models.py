@@ -3,12 +3,12 @@ import uuid
 
 
 class Publisher(models.Model):
-    alias = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    invited_by = models.ForeignKey('self', on_delete=models.CASCADE)
+    alias = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    invited_by = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     date_of_birth = models.DateTimeField('date of birth')
     zip_code = models.IntegerField('zip code')
     is_active = models.BooleanField(default=True)
-    active_time = models.DurationField()
+    active_time = models.DurationField('time spent to publish', null=True, blank=True)
 
     GENDER_MALE = 0
     GENDER_FEMALE = 1
@@ -43,7 +43,6 @@ class Publisher(models.Model):
         (24, 'Production/Manufacturing'),
     ]
     occupation = models.IntegerField(choices=OCCUPATION_CHOICES, default=0)
-
 
 class Image(models.Model):
     filename = models.CharField(max_length=200, null=True, blank=True)
