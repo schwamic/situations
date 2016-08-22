@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Publisherublisher, Image, Post
+from .models import Publisher, Image, Post
 from itertools import chain
 
 class ImagesView(generic.ListView):
@@ -53,6 +53,7 @@ class PostsView(generic.ListView):
     model = Post
     template_name = 'gallery/posts.html'
     paginate_by = 25
+
 
 
 # note:
