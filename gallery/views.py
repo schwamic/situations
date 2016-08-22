@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Image, Post
+from .models import Publisherublisher, Image, Post
 from itertools import chain
 
 class ImagesView(generic.ListView):
@@ -7,29 +7,43 @@ class ImagesView(generic.ListView):
     template_name = 'gallery/images.html'
     paginate_by = 25
 
-    def get_start_position(uuid, max_value):
+    def get_uuid(self):
+        """
+        takes GET parm and checks correctness.
+        returns a uuid if an associated user can be found.
+        :return:
+        """
+        self.uuid = self.request.GET.get('id')
+
+        return self.uuid
+
+    def get_start_position(self, uuid, max_value):
         """
         generates a value 0 <= x < max_value using a uuid
         :return:
         """
-        start_position = 0
-        for letter in uuid[:9]:
-            start_position += ord(letter)
+        start_position = 1
+        for count, letter in enumerate(uuid[:8]):  # only the first block of numbers is actually used
+            if count % 2 is 0:
+                start_position *= ord(letter)
+            else:
+                start_position += ord(letter)
         else:
-            start_position *= ord(uuid[10])
             start_position %= max_value
+        print(start_position)
         return start_position
 
     def get_queryset(self):
-        slice_pos = self.get_start_position('28a505e3-c094-4ec6-8085-cced5dcb04cb', Image.objects.count())
+        slice_pos = self.get_start_position(self.get_uuid(), Image.objects.count())
+        print(slice_pos)
 
-        #split queryset with the slice-operation
+        # split queryset with the slice operation
         first_list = Image.objects.all()[:slice_pos]
         second_list = Image.objects.all()[slice_pos:]
 
-        #merge the two querysets with itertools/chain
-        merge_queryset = list(chain(second_list, first_list))
-        return merge_queryset
+        # merge the two sets with itertools/chain
+        merged_queryset = list(chain(second_list, first_list))
+        return merged_queryset
 
 class MapView(generic.ListView):
     model = Post

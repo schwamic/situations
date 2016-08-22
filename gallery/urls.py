@@ -7,5 +7,4 @@ urlpatterns = [
     url(r'^images/', views.ImagesView.as_view(), name='images'),
     url(r'^posts/', views.PostsView.as_view(), name='posts'),
     url(r'^map/', views.MapView.as_view(), name='map'),
-    #url(r'^test/(?P<user_id>)$', views.test, name='test'),
 ]
