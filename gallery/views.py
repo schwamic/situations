@@ -28,8 +28,6 @@ class PostsView(generic.ListView):
     paginate_by = 25
 
 
-
-
 # note:
 # a[start:end] # items start through end-1
 # a[start:]    # items start through the rest of the array
