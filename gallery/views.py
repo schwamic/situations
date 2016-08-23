@@ -1,6 +1,14 @@
 from django.views import generic
 from .models import Publisher, Image, Post
 from itertools import chain
+from django.shortcuts import get_object_or_404
+
+"""
+use this url to access images (for now):
+http://127.0.0.1:8000/gallery/images/?id=a576a3f6-411a-4ac0-83b3-e174103cdf3a
+
+its a working uuid in the current db
+"""
 
 class ImagesView(generic.ListView):
     model = Image
@@ -9,39 +17,39 @@ class ImagesView(generic.ListView):
 
     def get_uuid(self):
         """
-        takes GET parm and checks correctness.
+        collects request parm and checks correctness.
         returns a uuid if an associated user can be found.
         :return:
         """
-        self.uuid = self.request.GET.get('id')
+        uuid = self.request.GET.get('id')
+        self.publisher = get_object_or_404(Publisher, alias=uuid)
+        if not self.publisher.is_active:
+            pass  # raise exception (expired link)
 
-        return self.uuid
+        return uuid
 
-    def get_start_position(self, uuid, max_value):
+
+    def get_slice_position(self, uuid, max_value):
         """
-        generates a value 0 <= x < max_value using a uuid
+        generates a user specific value 0 <= x < max_value using
         :return:
         """
-        start_position = 1
-        for count, letter in enumerate(uuid[:8]):  # only the first block of numbers is actually used
+        uuid_generated_number = 1
+        for count, letter in enumerate(uuid[:8]):  # first 8 numbers should be sufficient
             if count % 2 is 0:
-                start_position *= ord(letter)
+                uuid_generated_number *= ord(letter)
             else:
-                start_position += ord(letter)
-        else:
-            start_position %= max_value
-        print(start_position)
-        return start_position
+                uuid_generated_number += ord(letter)
+        return uuid_generated_number % max_value
 
     def get_queryset(self):
-        slice_pos = self.get_start_position(self.get_uuid(), Image.objects.count())
-        print(slice_pos)
+        slice_pos = self.get_slice_position(self.get_uuid(), Image.objects.count())
 
-        # split queryset with the slice operation
+        # split queryset using the slice operation
         first_list = Image.objects.all()[:slice_pos]
         second_list = Image.objects.all()[slice_pos:]
 
-        # merge the two sets with itertools/chain
+        # merge the two sets using itertools/chain
         merged_queryset = list(chain(second_list, first_list))
         return merged_queryset
 
