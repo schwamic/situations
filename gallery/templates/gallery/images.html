@@ -5,13 +5,11 @@
 {% block content %}
 {% load staticfiles %}
 <!-- Modal -->
-<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <img src="{% static 'img/close.svg' %}" alt="close">
-                </button>
                 <h3 class="modal-title" id="myModalLabel">Welcome!</h3>
             </div>
             <div class="modal-body">
@@ -57,7 +55,7 @@
 <div class="row">
     {% for image in object_list %}
     <div class="col-sm-2 col-md-2 thumbscope">
-        <a href="#{{image.id}}" class="lightbox" id="lightbox_{{image.id}}">
+        <a href="#{{image.id}}" class="lightbox_detail" id="lightbox_{{image.id}}">
             <div class="thumbnail">
                 <img id="img{{image.id}}" class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}">
 
@@ -75,13 +73,121 @@
 {% endfor %}
 
 </div> <!-- fix, check later-->
-<!-- lightbox -->
+<!-- lightbox detailview -->
 <div class="row">
-    <div class="col-sm-12 col-md-12 backdrop">
-        <div class="box">
-            <div class="close lightclose"><img src="{% static 'img/close.svg' %}" alt="close"></div>
-            <img id="lightbox_img_id" class="img-fluid" src="#" alt="#"> <!-- HIER MUSS MAN DYNAMISCH EIN BILD LADEN -->
-            <button type="button" class="btn btn-primary">Publish Image</button>
+    <div class="backdrop_detail">
+        <div class="box_detail">
+            <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+            <img id="lightbox_img_id_detail" class="img-fluid" src="#" alt="#">
+            <button type="button" class="btn btn-primary btn_publishview" id="#">Publish Image</button>
+        </div>
+    </div>
+</div>
+<!-- lightbox publishview -->
+<div class="row">
+    <div class="backdrop_pubview">
+        <div class="box_pubview">
+            <div class="close lightclose close_all"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+            <img id="lightbox_img_id_pubview" class="img-fluid" src="#" alt="#">
+
+            <!-- formfields -->
+            <form>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-2 col-form-label">Gender</label>
+
+                    <div class="col-xs-10">
+                        <fieldset class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+                                           checked>
+                                    Woman
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    Male
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-2 col-form-label">Occupation</label>
+
+                    <div class="col-xs-10">
+                        <select class="custom-select">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-2 col-form-label">Age</label>
+
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" id="example-text-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-2 col-form-label">ZIP code</label>
+
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" id="example-text-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleTextarea" class="col-xs-2 col-form-label">Describe the image</label>
+
+                    <div class="col-xs-10">
+                        <textarea class="form-control" type="text" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleTextarea" class="col-xs-2 col-form-label">Why did I choose this image?</label>
+
+                    <div class="col-xs-10">
+                        <textarea class="form-control" type="text" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-xs-2 col-form-label">First email address</label>
+
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-xs-2 col-form-label">Second email address</label>
+
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-xs-2 col-form-label">Third email address</label>
+
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn_publish">Submit</button>
+            </form>
         </div>
     </div>
 </div>
