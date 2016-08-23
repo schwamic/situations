@@ -4,6 +4,8 @@ import uuid
 
 class Publisher(models.Model):
     alias = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    name = models.CharField('some name, only for identification purpose while testing', max_length=20, blank=True)
+    email = models.CharField('e-mail', max_length=50, blank=True)
     invited_by = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     date_of_birth = models.DateTimeField('date of birth')
     zip_code = models.IntegerField('zip code')
@@ -44,12 +46,18 @@ class Publisher(models.Model):
     ]
     occupation = models.IntegerField(choices=OCCUPATION_CHOICES, default=0)
 
+    def __unicode__(self):
+        return self.alias
+
 class Image(models.Model):
     filename = models.CharField(max_length=200, null=True, blank=True)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     year = models.DateTimeField('year published')
     location = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.title
 
 
 class Post(models.Model):
@@ -58,3 +66,6 @@ class Post(models.Model):
     pub_date = models.DateTimeField('date published')
     description = models.CharField(max_length=500)
     reason = models.CharField(max_length=500)
+
+    def __unicode__(self):
+        return self.image
