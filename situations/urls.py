@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^gallery/', include('gallery.urls')),
+    url(r'^', include('gallery.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

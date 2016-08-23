@@ -1,11 +1,13 @@
-from django.views import generic
-from .models import Publisher, Image, Post
-from itertools import chain
 from django.shortcuts import get_object_or_404
+from django.http import Http404
+from django.views import generic
+
+from itertools import chain
+from .models import Publisher, Image, Post
 
 """
 use this url to access images (for now):
-http://127.0.0.1:8000/gallery/images/?id=a576a3f6-411a-4ac0-83b3-e174103cdf3a
+http://127.0.0.1:8000/images/?id=a576a3f6-411a-4ac0-83b3-e174103cdf3a
 
 its a working uuid in the current db
 """
@@ -22,9 +24,11 @@ class ImagesView(generic.ListView):
         :return:
         """
         uuid = self.request.GET.get('id')
+
         self.publisher = get_object_or_404(Publisher, alias=uuid)
+
         if not self.publisher.is_active:
-            pass  # raise exception (expired link)
+            raise Http404("Link already used or expired.")
 
         return uuid
 
