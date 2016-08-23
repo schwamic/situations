@@ -46,8 +46,8 @@ class Publisher(models.Model):
     ]
     occupation = models.IntegerField(choices=OCCUPATION_CHOICES, default=0)
 
-    def __unicode__(self):
-        return self.alias
+    def __str__(self):
+        return self.email
 
 class Image(models.Model):
     filename = models.CharField(max_length=200, null=True, blank=True)
@@ -56,7 +56,7 @@ class Image(models.Model):
     year = models.DateTimeField('year published')
     location = models.CharField(max_length=50)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -67,5 +67,5 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     reason = models.CharField(max_length=500)
 
-    def __unicode__(self):
-        return self.image
+    def __str__(self):
+        return u'posted by %s on %s' % (self.publisher, self.pub_date)

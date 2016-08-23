@@ -32,7 +32,6 @@ class ImagesView(generic.ListView):
 
         return uuid
 
-
     def get_slice_position(self, uuid, max_value):
         """
         generates a user specific value 0 <= x < max_value using
