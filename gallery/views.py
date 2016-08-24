@@ -13,6 +13,7 @@ http://127.0.0.1:8000/images/?id=a576a3f6-411a-4ac0-83b3-e174103cdf3a
 its a working uuid in the current db
 """
 
+
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
@@ -57,26 +58,29 @@ class ImagesView(generic.ListView):
         # merge the two sets using itertools/chain
         merged_queryset = list(chain(second_list, first_list))
         return merged_queryset
-
+    """
     def get_context_data(self, **kwargs):
         print(self.publisher.alias)
         context = {"publisher_id", self.publisher}
         return context
+    """
 
 
 class MapView(generic.ListView):
     model = Post
     template_name = 'gallery/map.html'
 
+
 class PostsView(generic.ListView):
     model = Post
     template_name = 'gallery/posts.html'
-    paginate_by = 30
+    paginate_by = 15
 
 
 class ThankYouView(generic.DetailView):
     model = Publisher
     template_name = 'gallery/thankyou.html'
+
 
 def publish(request):
     print("publisher start")
@@ -84,7 +88,7 @@ def publish(request):
     return HttpResponseRedirect(reverse('gallery:thankyou', args=("")))
 
     #get session
-   # publisher_id=request.session['current_publisher']
+    #publisher_id=request.session['current_publisher']
     #print(publisher.id)
 
     #publisher = get_object_or_404(Publisher, alias=id)
