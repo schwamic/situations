@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.http import Http404
+from django.template import Context
 from django.views import generic
 from itertools import chain
 from .models import Publisher, Image, Post
@@ -8,8 +9,7 @@ from django.urls import reverse
 
 """
 use this url to access images (for now):
-http://127.0.0.1:8000/images/?id=a576a3f6-411a-4ac0-83b3-e174103cdf3a
-
+http://127.0.0.1:8000/images/?id=50719aab-a33b-441e-979d-a8a2533984a5
 its a working uuid in the current db
 """
 
@@ -60,8 +60,9 @@ class ImagesView(generic.ListView):
         return merged_queryset
 
     def get_context_data(self, **kwargs):
-        print(self.publisher.alias)
-        context = {"publisher_id", self.publisher}
+        context = super(ImagesView, self).get_context_data(**kwargs)
+        context['my_publisher'] = self.publisher
+        print(context);
         return context
 
 
@@ -81,10 +82,11 @@ class ThankYouView(generic.DetailView):
     template_name = 'gallery/thankyou.html'
 
 
-def publish(request):
-    print("publisher start")
+def publish(request, publisher_id):
 
-    return HttpResponseRedirect(reverse('gallery:thankyou', args=("")))
+    print("publisher start")
+    publisher = get_object_or_404(Publisher, pk=publisher_id)
+    print(publisher.email)
 
     #get session
     #publisher_id=request.session['current_publisher']
@@ -93,7 +95,7 @@ def publish(request):
     #publisher = get_object_or_404(Publisher, alias=id)
     #gender = publisher.GENDER_CHOICES(int(request.POST['gender']))
     #print(gender)
-
+    return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
 
 # note:
 # a[start:end] # items start through end-1
