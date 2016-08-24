@@ -131,4 +131,4 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR)+'/situations', 'media')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media') ist das gleiche
 
 # GeoIP files
-GEOIP_PATH = '/geoip/'
+GEOIP_PATH = BASE_DIR + '/geoip'
