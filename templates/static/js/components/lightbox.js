@@ -30,7 +30,7 @@ $(document).ready(function(){
 		/*LOG*/
 		console.log("id: "+thumb_id);
 		console.log("url: "+url);
-		console.log($("#lightbox_img_id").attr("src"));
+		console.log($("#lightbox_img_id_pubview").attr("src"));
 	});
 
 /*CLOSE*/

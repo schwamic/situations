@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.views import generic
-
 from itertools import chain
 from .models import Publisher, Image, Post
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 """
 use this url to access images (for now):
@@ -26,6 +27,7 @@ class ImagesView(generic.ListView):
         uuid = self.request.GET.get('id')
 
         self.publisher = get_object_or_404(Publisher, alias=uuid)
+
 
         if not self.publisher.is_active:
             raise Http404("Link already used or expired.")
@@ -56,6 +58,12 @@ class ImagesView(generic.ListView):
         merged_queryset = list(chain(second_list, first_list))
         return merged_queryset
 
+    def get_context_data(self, **kwargs):
+        print(self.publisher.alias)
+        context = {"publisher_id", self.publisher}
+        return context
+
+
 class MapView(generic.ListView):
     model = Post
     template_name = 'gallery/map.html'
@@ -66,8 +74,29 @@ class PostsView(generic.ListView):
     paginate_by = 25
 
 
+class ThankYouView(generic.DetailView):
+    model = Publisher
+    template_name = 'gallery/thankyou.html'
+
+def publish(request):
+    print("publisher start")
+
+    return HttpResponseRedirect(reverse('gallery:thankyou', args=("")))
+
+    #get session
+   # publisher_id=request.session['current_publisher']
+    #print(publisher.id)
+
+    #publisher = get_object_or_404(Publisher, alias=id)
+    #gender = publisher.GENDER_CHOICES(int(request.POST['gender']))
+    #print(gender)
+
+
 # note:
 # a[start:end] # items start through end-1
 # a[start:]    # items start through the rest of the array
 # a[:end]      # items from the beginning through end-1
 # a[:]         # a copy of the whole array
+
+#add session
+# #self.request.session['current_publisher_id'] = uuid
