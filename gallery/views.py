@@ -1,5 +1,5 @@
-from django.shortcuts import get_object_or_404
 from django.contrib.gis.geoip2 import GeoIP2
+from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.views import generic
 from django.http import HttpResponseRedirect
