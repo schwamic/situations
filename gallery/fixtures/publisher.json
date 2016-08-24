@@ -4,8 +4,6 @@
     "pk": 1,
     "fields": {
       "email"			: "dikembe@googlemail.com",
-      "date_of_birth"   : "1955-11-04",
-      "zip_code"        : "86152",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "18"
@@ -16,8 +14,6 @@
     "pk": 2,
     "fields": {
       "email"			: "evgenija@gmx.com",
-      "date_of_birth"   : "1988-04-23",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "1",
       "occupation"      : "2"
@@ -29,8 +25,6 @@
     "fields": {
       "email"			: "hakan@yahoo.com",
       "invited_by"      : 1,
-      "date_of_birth"   : "1979-11-01",
-      "zip_code"        : "86158",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "10"
@@ -42,8 +36,6 @@
     "fields": {
       "email"			: "sebastian@me.com",
       "invited_by"      : 1,
-      "date_of_birth"   : "1990-09-18",
-      "zip_code"        : "86152",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "14"
@@ -55,8 +47,6 @@
     "fields": {
       "email"			: "ngoc@web.com",
       "invited_by"      : 1,
-      "date_of_birth"   : "1993-06-02",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "1",
       "occupation"      : "3"
@@ -68,8 +58,6 @@
     "fields": {
       "email"			: "ping@icloud.com",
       "invited_by"      : 2,
-      "date_of_birth"   : "1973-03-25",
-      "zip_code"        : "86158",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "23"
@@ -81,8 +69,6 @@
     "fields": {
       "email"			: "matthias@web.de",
       "invited_by"      : 2,
-      "date_of_birth"   : "1966-12-29",
-      "zip_code"        : "86863",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "12"
@@ -94,8 +80,6 @@
     "fields": {
       "email"			: "renate@googlemail.com",
       "invited_by"      : 2,
-      "date_of_birth"   : "1964-11-27",
-      "zip_code"        : "86159",
       "is_active"		: "False",
       "gender"          : "1",
       "occupation"      : "14"
@@ -107,8 +91,6 @@
     "fields": {
       "email"			: "some_publisher_1@some_email.com",
       "invited_by"      : 3,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -120,8 +102,6 @@
     "fields": {
       "email"			: "some_publisher_2@some_email.com",
       "invited_by"      : 3,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -133,8 +113,6 @@
     "fields": {
       "email"			: "some_publisher_3@some_email.com",
       "invited_by"      : 3,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -146,8 +124,6 @@
     "fields": {
       "email"			: "some_publisher_4@some_email.com",
       "invited_by"      : 4,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -159,8 +135,6 @@
     "fields": {
       "email"			: "some_publisher_5@some_email.com",
       "invited_by"      : 4,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -172,8 +146,6 @@
     "fields": {
       "email"			: "some_publisher_6@some_email.com",
       "invited_by"      : 4,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -185,8 +157,6 @@
     "fields": {
       "email"			: "some_publisher_7@some_email.com",
       "invited_by"      : 5,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -198,8 +168,6 @@
     "fields": {
       "email"			: "some_publisher_8@some_email.com",
       "invited_by"      : 5,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -211,8 +179,6 @@
     "fields": {
       "email"			: "some_publisher_9@some_email.com",
       "invited_by"      : 5,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -224,8 +190,6 @@
     "fields": {
       "email"			: "some_publisher_10@some_email.com",
       "invited_by"      : 7,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -237,8 +201,6 @@
     "fields": {
       "email"			: "some_publisher_11@some_email.com",
       "invited_by"      : 7,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -250,8 +212,6 @@
     "fields": {
       "email"			: "some_publisher_12@some_email.com",
       "invited_by"      : 7,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "False",
       "gender"          : "0",
       "occupation"      : "1"
@@ -263,8 +223,6 @@
     "fields": {
       "email"			: "some_publisher_13@some_email.com",
       "invited_by"      : 8,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -276,8 +234,6 @@
     "fields": {
       "email"			: "some_publisher_14@some_email.com",
       "invited_by"      : 8,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -289,8 +245,6 @@
     "fields": {
       "email"			: "some_publisher_15@some_email.com",
       "invited_by"      : 8,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -302,8 +256,6 @@
     "fields": {
       "email"			: "some_publisher_16@some_email.com",
       "invited_by"      : 9,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -315,8 +267,6 @@
     "fields": {
       "email"			: "some_publisher_17@some_email.com",
       "invited_by"      : 9,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -328,8 +278,6 @@
     "fields": {
       "email"			: "some_publisher_18@some_email.com",
       "invited_by"      : 9,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -341,8 +289,6 @@
     "fields": {
       "email"			: "some_publisher_19@some_email.com",
       "invited_by"      : 12,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -354,8 +300,6 @@
     "fields": {
       "email"			: "some_publisher_20@some_email.com",
       "invited_by"      : 12,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -367,8 +311,6 @@
     "fields": {
       "email"			: "some_publisher_21@some_email.com",
       "invited_by"      : 12,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -380,8 +322,6 @@
     "fields": {
       "email"			: "some_publisher_22@some_email.com",
       "invited_by"      : 13,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -393,8 +333,6 @@
     "fields": {
       "email"			: "some_publisher_23@some_email.com",
       "invited_by"      : 13,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -406,8 +344,6 @@
     "fields": {
       "email"			: "some_publisher_24@some_email.com",
       "invited_by"      : 13,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -419,8 +355,6 @@
     "fields": {
       "email"			: "some_publisher_25@some_email.com",
       "invited_by"      : 16,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -432,8 +366,6 @@
     "fields": {
       "email"			: "some_publisher_26@some_email.com",
       "invited_by"      : 16,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -445,8 +377,6 @@
     "fields": {
       "email"			: "some_publisher_27@some_email.com",
       "invited_by"      : 16,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -458,8 +388,6 @@
     "fields": {
       "email"			: "some_publisher_28@some_email.com",
       "invited_by"      : 18,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -471,8 +399,6 @@
     "fields": {
       "email"			: "some_publisher_29@some_email.com",
       "invited_by"      : 18,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -484,8 +410,6 @@
     "fields": {
       "email"			: "some_publisher_30@some_email.com",
       "invited_by"      : 18,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -497,8 +421,6 @@
     "fields": {
       "email"			: "some_publisher_31@some_email.com",
       "invited_by"      : 19,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -510,8 +432,6 @@
     "fields": {
       "email"			: "some_publisher_32@some_email.com",
       "invited_by"      : 19,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -523,8 +443,6 @@
     "fields": {
       "email"			: "some_publisher_33@some_email.com",
       "invited_by"      : 19,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -536,8 +454,6 @@
     "fields": {
       "email"			: "some_publisher_34@some_email.com",
       "invited_by"      : 20,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -549,8 +465,6 @@
     "fields": {
       "email"			: "some_publisher_35@some_email.com",
       "invited_by"      : 20,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"
@@ -562,8 +476,6 @@
     "fields": {
       "email"			: "some_publisher_36@some_email.com",
       "invited_by"      : 20,
-      "date_of_birth"   : "1990-01-01",
-      "zip_code"        : "86150",
       "is_active"		: "True",
       "gender"          : "0",
       "occupation"      : "1"

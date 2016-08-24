@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404
+from django.contrib.gis.geoip2 import GeoIP2
 from django.http import Http404
 from django.views import generic
-from itertools import chain
-from .models import Publisher, Image, Post
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from gallery import choices
+
+from itertools import chain
+from .models import Publisher, Image, Post
 
 """
 use this url to access images (for now):
@@ -28,7 +30,6 @@ class ImagesView(generic.ListView):
         uuid = self.request.GET.get('id')
 
         self.publisher = get_object_or_404(Publisher, verbose_id=uuid)
-
 
         if not self.publisher.is_active:
             raise Http404("Link already used or expired.")
@@ -86,27 +87,43 @@ class ThankYouView(generic.DetailView):
 
 
 def publish(request, publisher_id):
+
     #get current publisher object
     publisher = get_object_or_404(Publisher, pk=publisher_id)
     #add all attr
     publisher.gender = int(request.POST['gender'])
     publisher.occupation = int(request.POST['occupation'])
-    #publisher.year_of_birth = int(request.POST['year_of_birth'])
-
+    publisher.year_of_birth = int(request.POST['year_of_birth'])
 
     #post
     description = request.POST['describtion']
     reason = request.POST['reason']
-
-
     #image_id = ?
 
     post_object = Post()
+
+    # geo locating
+    user_ip = get_client_ip(request)
+    location = GeoIP2.city(request, user_ip)
+    publisher.city = location.city
+    publisher.country = location.country_name
+    publisher.region = location.region
+    publisher.longitude = location.longitude
+    publisher.latitude = location.latitude
 
     #push to db
     publisher.save()
 
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 # note:
 # a[start:end] # items start through end-1

@@ -32,3 +32,22 @@ OCCUPATION_CHOICES = [
     (23, 'Sales'),
     (24, 'Production/Manufacturing'),
 ]
+
+YEAR_BORN = [
+    (1990, 'so ein quatsch'),
+    (1991, 'so ein quatsch'),
+    (1992, 'so ein quatsch'),
+    (1993, 'so ein quatsch'),
+    (1994, 'so ein quatsch'),
+    (1995, 'so ein quatsch'),
+    (1996, 'so ein quatsch'),
+    (1997, 'so ein quatsch'),
+    (1998, 'so ein quatsch'),
+    (1999, 'so ein quatsch')
+]
+"""
+MAX_AGE = 110
+YEAR_BORN = []
+for x in range(110):
+    YEAR_BORN[x] = (x, 1900 + x)
+"""
