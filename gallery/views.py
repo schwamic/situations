@@ -66,7 +66,7 @@ class ImagesView(generic.ListView):
         context['gender_choices'] = choices.GENDER_CHOICES
         context['occupation_choices'] = choices.OCCUPATION_CHOICES
 
-        print(context);
+        print(context)
         return context
 
 
