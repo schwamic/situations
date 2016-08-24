@@ -5,6 +5,7 @@ from itertools import chain
 from .models import Publisher, Image, Post
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from gallery import choices
 
 """
 use this url to access images (for now):
@@ -60,7 +61,10 @@ class ImagesView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ImagesView, self).get_context_data(**kwargs)
-        context['my_publisher'] = self.publisher
+        context['my_publisher_id'] = self.publisher.id
+        context['gender_choices'] = choices.GENDER_CHOICES
+        context['occupation_choices'] = choices.OCCUPATION_CHOICES
+
         print(context);
         return context
 
@@ -82,18 +86,26 @@ class ThankYouView(generic.DetailView):
 
 
 def publish(request, publisher_id):
-
-    print("publisher start")
+    #get current publisher object
     publisher = get_object_or_404(Publisher, pk=publisher_id)
-    print(publisher.email)
+    #add all attr
+    publisher.gender = int(request.POST['gender'])
+    publisher.occupation = int(request.POST['occupation'])
+    #publisher.year_of_birth = int(request.POST['year_of_birth'])
 
-    #get session
-    #publisher_id=request.session['current_publisher']
-    #print(publisher.id)
 
-    #publisher = get_object_or_404(Publisher, alias=id)
-    #gender = publisher.GENDER_CHOICES(int(request.POST['gender']))
-    #print(gender)
+    #post
+    description = request.POST['describtion']
+    reason = request.POST['reason']
+
+
+    #image_id = ?
+
+    post_object = Post()
+
+    #push to db
+    publisher.save()
+
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
 
 # note:
@@ -104,3 +116,6 @@ def publish(request, publisher_id):
 
 #add session
 # #self.request.session['current_publisher_id'] = uuid
+#get session
+# #publisher_id=request.session['current_publisher']
+#print(publisher.id)

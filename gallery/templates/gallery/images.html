@@ -91,67 +91,59 @@
             <img id="lightbox_img_id_pubview" class="img-fluid" src="#" alt="#">
 
             <!-- formfields -->
-            <form action="{% url 'gallery:publish' my_publisher.id %}" method="post">
+            <form action="{% url 'gallery:publish' my_publisher_id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Gender</label>
+                    <label class="col-xs-2 col-form-label">Gender</label>
 
                     <div class="col-xs-10">
                         <fieldset class="form-group">
+                            {% for object in gender_choices %}
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="gender" id="optionsRadios1" value="1"
+                                    <input type="radio" name="gender" id="optionsRadios1" value="{{ object.0 }}"
                                            checked>
-                                    Woman
+                                    {{object.1}}
                                 </label>
                             </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="gender" id="optionsRadios2" value="0">
-                                    Male
-                                </label>
-                            </div>
+                            {% endfor %}
                         </fieldset>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Occupation</label>
+                    <label class="col-xs-2 col-form-label">Occupation</label>
 
                     <div class="col-xs-10">
                         <select class="custom-select" name="occupation">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {% for object in occupation_choices %}
+                            <option value="{{object.0}}">{{object.1}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Age</label>
+                    <label class="col-xs-2 col-form-label">Age group</label>
 
                     <div class="col-xs-10">
-                        <input class="form-control" name="age" type="text" id="example-text-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">ZIP code</label>
-
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" id="example-text-input">
+                        <select class="custom-select" name="year_of_birth">
+                            {% for object in year_choices %}
+                            <option value="{{object.0}}">{{object.1}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="exampleTextarea" class="col-xs-2 col-form-label">Describe the image</label>
 
                     <div class="col-xs-10">
-                        <textarea class="form-control" type="text" id="exampleTextarea" rows="3"></textarea>
+                        <textarea class="form-control" type="text" name="describtion" id="exampleTextarea" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="exampleTextarea" class="col-xs-2 col-form-label">Why did I choose this image?</label>
 
                     <div class="col-xs-10">
-                        <textarea class="form-control" type="text" id="exampleTextarea" rows="3"></textarea>
+                        <textarea class="form-control" type="text" name="reason" id="exampleTextarea" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
