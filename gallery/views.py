@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.template import Context
 from django.views import generic
 from itertools import chain
 from .models import Publisher, Image, Post
@@ -58,13 +57,12 @@ class ImagesView(generic.ListView):
         # merge the two sets using itertools/chain
         merged_queryset = list(chain(second_list, first_list))
         return merged_queryset
-    """
+
     def get_context_data(self, **kwargs):
         context = super(ImagesView, self).get_context_data(**kwargs)
         context['my_publisher'] = self.publisher
         print(context);
         return context
-    """
 
 
 class MapView(generic.ListView):
