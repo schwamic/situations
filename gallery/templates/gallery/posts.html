@@ -6,26 +6,27 @@
 <div class="row">
     {% for post in object_list %}
     <div class="col-sm-4 col-md-4 thumbscope">
-        <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
-            <div class="thumbnail">
-                <img id="img{{post.id}}"
-                     class="img-fluid"
-                     src="/media/{{post.image.filename}}"
-                     alt="{{post.image.title}}"
-                >
+        <div class="thumbnail">
+            <img id="img{{post.id}}"
+                 class="img-fluid"
+                 src="/media/{{post.image.filename}}"
+                 alt="{{post.image.title}}">
 
-                <div class="caption">
-                    <p>{{ post.publishing_date|date }}</p>
-                    <p>{{ post.publisher.get_gender_display }}</p>
-                    <p>{{ post.publisher.zip_code }}</p>
-                    <hr>
-                    <p>Image-Title:</p>
-                    <p>{{ post.image.title }}</p>
-                    <p>Image-Author:</p>
-                    <p>{{ post.image.author }}</p>
-                </div>
+            <div class="caption">
+                <p>{{ post.publishing_date|date }}</p>
+                <p>{{ post.publisher.get_gender_display }}</p>
+                <p>{{ post.publisher.zip_code }}</p>
+
+                <hr>
+
+                <p>Image-Title:</p>
+                <p>{{ post.image.title }}</p>
+                <p>Image-Author:</p>
+                <p>{{ post.image.author }}</p>
+
+                <button id="lightbox_{{image.id}}">Show More Data</button>
             </div>
-        </a>
+        </div>
     </div>
     {% empty %}
     <div class="thumbnail"><p>No images yet.</p></div>

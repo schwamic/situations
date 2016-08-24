@@ -58,12 +58,11 @@ class ImagesView(generic.ListView):
         # merge the two sets using itertools/chain
         merged_queryset = list(chain(second_list, first_list))
         return merged_queryset
-    """
+
     def get_context_data(self, **kwargs):
         print(self.publisher.alias)
         context = {"publisher_id", self.publisher}
         return context
-    """
 
 
 class MapView(generic.ListView):
