@@ -5,13 +5,22 @@ import uuid
 
 
 class Publisher(models.Model):
+    # values generated on object creation
     verbose_id = models.UUIDField(default=uuid.uuid4)
     email = models.CharField('e-mail', max_length=50)
     invited_by = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
-    date_of_birth = models.DateTimeField('date of birth', blank=True, null=True)
-    zip_code = models.IntegerField('zip code', blank=True, null=True)
+
+    # values generated on runtime
+    city = models.CharField(max_length=50, blank=True, null=True)
+    country = models.CharField(max_length=50, blank=True, null=True)
+    region = models.CharField(max_length=50, blank=True, null=True)
+    longitude = models.IntegerField(blank=True, null=True)
+    latitude = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     active_time = models.DurationField('time spent to publish', blank=True, null=True)
+
+    # user input, defaults needed?
+    year_of_birth = models.IntegerField(choices=choices.YEAR_BORN, blank=True, null=True)
     gender = models.IntegerField(choices=choices.GENDER_CHOICES, default=choices.GENDER_MALE)
     occupation = models.IntegerField(choices=choices.OCCUPATION_CHOICES, default=0)
 

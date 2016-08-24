@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404
+from django.contrib.gis.geoip2 import GeoIP2
 from django.http import Http404
-from django.template import Context
 from django.views import generic
-from itertools import chain
-from .models import Publisher, Image, Post
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+
+from itertools import chain
+from .models import Publisher, Image, Post
 
 """
 use this url to access images (for now):
@@ -28,7 +29,6 @@ class ImagesView(generic.ListView):
         uuid = self.request.GET.get('id')
 
         self.publisher = get_object_or_404(Publisher, verbose_id=uuid)
-
 
         if not self.publisher.is_active:
             raise Http404("Link already used or expired.")
@@ -83,10 +83,19 @@ class ThankYouView(generic.DetailView):
 
 
 def publish(request, publisher_id):
-
     print("publisher start")
     publisher = get_object_or_404(Publisher, pk=publisher_id)
     print(publisher.email)
+
+    # geo locating
+    user_ip = get_client_ip(request)
+    location = GeoIP2.city(request, user_ip)
+    publisher.city = location.city
+    publisher.country = location.country_name
+    publisher.region = location.region
+    publisher.longitude = location.longitude
+    publisher.latitude = location.latitude
+    publisher.save()
 
     #get session
     #publisher_id=request.session['current_publisher']
@@ -96,6 +105,15 @@ def publish(request, publisher_id):
     #gender = publisher.GENDER_CHOICES(int(request.POST['gender']))
     #print(gender)
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 # note:
 # a[start:end] # items start through end-1
