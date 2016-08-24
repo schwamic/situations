@@ -16,7 +16,7 @@ its a working uuid in the current db
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
-    paginate_by = 25
+    paginate_by = 30
 
     def get_uuid(self):
         """
@@ -26,7 +26,7 @@ class ImagesView(generic.ListView):
         """
         uuid = self.request.GET.get('id')
 
-        self.publisher = get_object_or_404(Publisher, alias=uuid)
+        self.publisher = get_object_or_404(Publisher, verbose_id=uuid)
 
 
         if not self.publisher.is_active:
@@ -71,7 +71,7 @@ class MapView(generic.ListView):
 class PostsView(generic.ListView):
     model = Post
     template_name = 'gallery/posts.html'
-    paginate_by = 25
+    paginate_by = 30
 
 
 class ThankYouView(generic.DetailView):
