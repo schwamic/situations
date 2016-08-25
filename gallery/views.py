@@ -1,20 +1,19 @@
 from django.contrib.gis.geoip2 import GeoIP2
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from gallery import choices
-#from django_ajax.decorators import ajax
 from itertools import chain
 from .models import Publisher, Image, Post
+import json
 
 """
 use this url to access images (for now):
 http://127.0.0.1:8000/images/?id=940e6d98-9f30-42a8-8c9a-c37b4e514c62
 its a working uuid in the current db
 """
-
 
 class ImagesView(generic.ListView):
     model = Image
@@ -127,6 +126,26 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
+
+def detail_image(request):
+    if request.method == 'POST':
+        image_id = request.POST.get('image_id')
+        image = get_object_or_404(Image, pk=image_id)
+        print(image_id)
+
+        response_data = {}
+        response_data['image_title'] = image.title
+        response_data['image_author'] = image.author
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
 
 # note:
 # a[start:end] # items start through end-1

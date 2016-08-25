@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^map/$', views.MapView.as_view(), name='map'),
     url(r'^images/(?P<publisher_id>[0-9]+)/publish/$', views.publish, name='publish'),
     url(r'^images/(?P<pk>[[0-9]+)/thankyou/$', views.ThankYouView.as_view(), name='thankyou'),
+    url(r'^images/detail_image/$', views.detail_image, name='detail_image'),
 ]
 # note
 # uuid: (?P<something>[^/]+)

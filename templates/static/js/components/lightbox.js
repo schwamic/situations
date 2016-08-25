@@ -1,6 +1,6 @@
 $(document).ready(function(){
-/*DETAILVIEW*/
 
+/*DETAILVIEW*/
 	$('.lightbox_detail').click(function(event){
 		$('.backdrop_detail, .box_detail').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.box_detail').animate({'opacity':'1.00'}, 300, 'linear');
@@ -9,6 +9,7 @@ $(document).ready(function(){
 		url = $("#img"+thumb_id).attr("src")
 		$("#lightbox_img_id_detail").attr("src",url);
 		$(".btn_publishview").attr("id", "btn_"+thumb_id);
+		detail_image(thumb_id);
 	});
 
 /*PUBLISHVIEW*/
@@ -33,21 +34,52 @@ $(document).ready(function(){
 		close_box();
 	});
 
-});
 
 /*FUNCTIONS*/
-function close_box(state)
-{
-	if(state){
-		$('.backdrop_detail, .box_detail').animate({'opacity':'0'}, 0, 'linear', function(){
-			$('.backdrop_detail, .box_detail').css('display', 'none');
-		});
-		$('.backdrop_pubview, .box_pubview').animate({'opacity':'0'}, 300, 'linear', function(){
-			$('.backdrop_pubview, .box_pubview').css('display', 'none');
-		});
-	}else{
-		$('.backdrop_detail, .box_detail').animate({'opacity':'0'}, 300, 'linear', function(){
-			$('.backdrop_detail, .box_detail').css('display', 'none');
-		});
+	function close_box(state)
+	{
+		if(state){
+			$('.backdrop_detail, .box_detail').animate({'opacity':'0'}, 0, 'linear', function(){
+				$('.backdrop_detail, .box_detail').css('display', 'none');
+			});
+			$('.backdrop_pubview, .box_pubview').animate({'opacity':'0'}, 300, 'linear', function(){
+				$('.backdrop_pubview, .box_pubview').css('display', 'none');
+			});
+		}else{
+			$('.backdrop_detail, .box_detail').animate({'opacity':'0'}, 300, 'linear', function(){
+				$('.backdrop_detail, .box_detail').css('display', 'none');
+			});
+		}
 	}
-}
+
+/*AJAX for posting*/
+	function detail_image(thumb_id) {
+		$.ajax({
+			url : "detail_image/", // the endpoint
+			type : "POST", // http method
+			data : { image_id : thumb_id }, // data sent with the post request
+			// handle a successful response
+			success : function(json) {
+				$('#detail_image_title').html(""+json.image_title);
+				$('#detail_image_author').html(""+json.image_author);
+			},
+			// handle a non-successful response
+			error : function(xhr,errmsg,err) {
+				console.log(xhr.status + ": " + xhr.responseText);
+			}
+		});
+	};
+
+/*AJAX_Setuo for django csrf*/
+		function csrfSafeMethod(method) {
+		// these HTTP methods do not require CSRF protection
+		return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+	}
+	$.ajaxSetup({
+		beforeSend: function(xhr, settings) {
+			if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+				xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			}
+		}
+	});
+});

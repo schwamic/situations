@@ -3,203 +3,212 @@
 {% block title %}Situations - Images{% endblock %}
 
 {% block content %}
-    {% load staticfiles %}
-    <!-- modal -->
-    <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true"
-         data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel">Welcome!</h3>
-                </div>
-                <div class="modal-body">
-                    <h4>The project #nofilter is an exploration and wants to visualize the process of editing, the
-                        filters
-                        and
-                        invisible structures that are at work in the process of choosing images.
-                        Please feel free to take as much time as you need...</h4>
+{% load staticfiles %}
+<!-- modal -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true"
+     data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Welcome!</h3>
+            </div>
+            <div class="modal-body">
+                <h4>The project #nofilter is an exploration and wants to visualize the process of editing, the
+                    filters
+                    and
+                    invisible structures that are at work in the process of choosing images.
+                    Please feel free to take as much time as you need...</h4>
 
-                    <p>
-                        three forms of “narratives” will be presented:<br>
-                        1. online: the presentation of the selected images on DER GREIF platform<br>
-                        2. visual: presentation of the filters (structural elements) in the exhibition space<br>
-                        3. audio (text-to-speech): presentation of the personal narratives of why images are chosen in
-                        the
-                        exhibition space<br>
-                    </p>
-                    <h4>About SITUATIONS Fotomuseum Winterthur</h4>
+                <p>
+                    three forms of “narratives” will be presented:<br>
+                    1. online: the presentation of the selected images on DER GREIF platform<br>
+                    2. visual: presentation of the filters (structural elements) in the exhibition space<br>
+                    3. audio (text-to-speech): presentation of the personal narratives of why images are chosen in
+                    the
+                    exhibition space<br>
+                </p>
+                <h4>About SITUATIONS Fotomuseum Winterthur</h4>
 
-                    <p>As every citizen with a smartphone, laptop or tablet knows, photography is becoming increasingly
-                        ‘distributed’.
-                        Driven by the vast replicative power of digital algorithms, photographs now move with tremendous
-                        speed across
-                        a wide variety of devices and platforms. The distinction between the still and the moving image
-                        is
-                        becoming
-                        increasingly blurred. At the same time, digital vision is now profoundly social, implicated in
-                        many
-                        areas
-                        of human activity. Certainly, this is having an impact on practice as younger artists in
-                        particular
-                        work
-                        with a range of media and no longer easily describe themselves as photographers.</p>
+                <p>As every citizen with a smartphone, laptop or tablet knows, photography is becoming increasingly
+                    ‘distributed’.
+                    Driven by the vast replicative power of digital algorithms, photographs now move with tremendous
+                    speed across
+                    a wide variety of devices and platforms. The distinction between the still and the moving image
+                    is
+                    becoming
+                    increasingly blurred. At the same time, digital vision is now profoundly social, implicated in
+                    many
+                    areas
+                    of human activity. Certainly, this is having an impact on practice as younger artists in
+                    particular
+                    work
+                    with a range of media and no longer easily describe themselves as photographers.</p>
 
-                    <p>In our daily work we find ourselves speaking more of the photographic than photography, of
-                        photographic
-                        media, rather than the medium. This poses a challenge for a photography museum with a
-                        distinctive,
-                        but
-                        significantly analogue</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Start Selecting</button>
-                </div>
+                <p>In our daily work we find ourselves speaking more of the photographic than photography, of
+                    photographic
+                    media, rather than the medium. This poses a challenge for a photography museum with a
+                    distinctive,
+                    but
+                    significantly analogue</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Start Selecting</button>
             </div>
         </div>
     </div>
-    <!-- thumbnail -->
-    <div class="row">
-        {% for image in object_list %}
-        <div class="col-sm-2 col-md-2 thumbscope">
-            <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
-                <div class="thumbnail">
-                    <img id="img{{image.id}}" class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}">
+</div>
+<!-- thumbnail -->
+<div class="row">
+    {% for image in object_list %}
+    <div class="col-sm-2 col-md-2 thumbscope">
+        <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
+            <div class="thumbnail">
+                <img id="img{{image.id}}" class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}">
 
-                    <div class="caption">
+                <div class="caption">
+                    <p>Image-Title:</p>
+                    <h4>{{ image.title }}</h4>
+
+                    <p>Image-Author:</p>
+                    <h4>{{ image.author }}</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% empty %}
+    <div class="thumbnail"><p>No images yet.</p></div>
+</div>
+{% endfor %}
+<!-- lightbox detailview -->
+<div class="row lightbox_detailview">
+    <div class="backdrop_detail">
+        <div class="box_detail">
+            <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+            <img id="lightbox_img_id_detail" class="img-fluid" src="#" alt="#">
+
+            <div class="detail_caption">
                 <p>Image-Title:</p>
-                <h4>{{ image.title }}</h4>
+                <h4 id="detail_image_title">{{ image.title }}</h4>
+
                 <p>Image-Author:</p>
-                <h4>{{ image.author }}</h4>
+                <h4 id="detail_image_author">{{ image.author }}</h4>
+            </div>
+            <button type="button" class="btn btn-primary btn_publishview" id="#">Publish Image</button>
+        </div>
+    </div>
+</div>
+<!-- lightbox publishview -->
+<div class="row lightbox_publishview">
+    <div class="backdrop_pubview">
+        <div class="box_pubview">
+            <div class="close lightclose close_all"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+            <img id="lightbox_img_id_pubview" class="img-fluid" src="#" alt="#">
+
+            <!-- formfields -->
+            <form action="{% url 'gallery:publish' my_publisher_id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label class="col-xs-2 col-form-label">Gender</label>
+
+                    <div class="col-xs-10">
+                        <fieldset class="form-group">
+                            {% for object in gender_choices %}
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender" id="optionsRadios1" value="{{ object.0 }}"
+                                           checked>
+                                    {{object.1}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </fieldset>
                     </div>
                 </div>
-            </a>
-        </div>
-        {% empty %}
-        <div class="thumbnail"><p>No images yet.</p></div>
-    </div>
-    {% endfor %}
-    <!-- lightbox detailview -->
-    <div class="row lightbox_detailview">
-        <div class="backdrop_detail">
-            <div class="box_detail">
-                <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
-                <img id="lightbox_img_id_detail" class="img-fluid" src="#" alt="#">
-                <button type="button" class="btn btn-primary btn_publishview" id="#">Publish Image</button>
-            </div>
-        </div>
-    </div>
-    <!-- lightbox publishview -->
-    <div class="row lightbox_publishview">
-        <div class="backdrop_pubview">
-            <div class="box_pubview">
-                <div class="close lightclose close_all"><img src="{% static 'img/close.svg' %}" alt="close"></div>
-                <img id="lightbox_img_id_pubview" class="img-fluid" src="#" alt="#">
+                <div class="form-group row">
+                    <label class="col-xs-2 col-form-label">Occupation</label>
 
-                <!-- formfields -->
-                <form action="{% url 'gallery:publish' my_publisher_id %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group row">
-                        <label class="col-xs-2 col-form-label">Gender</label>
-
-                        <div class="col-xs-10">
-                            <fieldset class="form-group">
-                                {% for object in gender_choices %}
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="gender" id="optionsRadios1" value="{{ object.0 }}"
-                                               checked>
-                                        {{object.1}}
-                                    </label>
-                                </div>
-                                {% endfor %}
-                            </fieldset>
-                        </div>
+                    <div class="col-xs-10">
+                        <select class="custom-select" name="occupation">
+                            {% for object in occupation_choices %}
+                            <option value="{{object.0}}">{{object.1}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-xs-2 col-form-label">Occupation</label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xs-2 col-form-label">Age group</label>
 
-                        <div class="col-xs-10">
-                            <select class="custom-select" name="occupation">
-                                {% for object in occupation_choices %}
-                                <option value="{{object.0}}">{{object.1}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                    <div class="col-xs-10">
+                        <select class="custom-select" name="year_of_birth">
+                            {% for object in year_choices %}
+                            <option value="{{object.0}}">{{object.1}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-xs-2 col-form-label">Age group</label>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleTextarea" class="col-xs-2 col-form-label">Describe the image</label>
 
-                        <div class="col-xs-10">
-                            <select class="custom-select" name="year_of_birth">
-                                {% for object in year_choices %}
-                                <option value="{{object.0}}">{{object.1}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="exampleTextarea" class="col-xs-2 col-form-label">Describe the image</label>
-
-                        <div class="col-xs-10">
+                    <div class="col-xs-10">
                         <textarea class="form-control" type="text" name="describtion" id="exampleTextarea"
                                   rows="3"></textarea>
-                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="exampleTextarea" class="col-xs-2 col-form-label">Why did I choose this
-                            image?</label>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleTextarea" class="col-xs-2 col-form-label">Why did I choose this
+                        image?</label>
 
-                        <div class="col-xs-10">
+                    <div class="col-xs-10">
                         <textarea class="form-control" type="text" name="reason" id="exampleTextarea"
                                   rows="3"></textarea>
-                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="exampleInputEmail1" class="col-xs-2 col-form-label">First email address</label>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-xs-2 col-form-label">First email address</label>
 
-                        <div class="col-xs-10">
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp"
-                                   placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.
-                            </small>
-                        </div>
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
                     </div>
-                    <div class="form-group row">
-                        <label for="exampleInputEmail1" class="col-xs-2 col-form-label">Second email address</label>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-xs-2 col-form-label">Second email address</label>
 
-                        <div class="col-xs-10">
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp"
-                                   placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.
-                            </small>
-                        </div>
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
                     </div>
-                    <div class="form-group row">
-                        <label for="exampleInputEmail1" class="col-xs-2 col-form-label">Third email address</label>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-xs-2 col-form-label">Third email address</label>
 
-                        <div class="col-xs-10">
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp"
-                                   placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.
-                            </small>
-                        </div>
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
                     </div>
-                    <div class="form-group row" style="display: none">
-                        <div class="col-xs-10">
-                            <input id="detail_image" type="text" name="image" value="#">
-                        </div>
+                </div>
+                <div class="form-group row" style="display: none">
+                    <div class="col-xs-10">
+                        <input id="detail_image" type="text" name="image" value="#">
                     </div>
-                    <button type="submit" class="btn btn-primary btn_publish">Submit</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn_publish">Submit</button>
+            </form>
         </div>
     </div>
+</div>
 </div> <!-- fix clear later -->
 {% endblock %}
