@@ -9,12 +9,6 @@ $(document).ready(function(){
 		url = $("#img"+thumb_id).attr("src")
 		$("#lightbox_img_id_detail").attr("src",url);
 		$(".btn_publishview").attr("id", "btn_"+thumb_id);
-
-		/*LOG*/
-		console.log("id: "+thumb_id);
-		console.log("url: "+url);
-		console.log($("#lightbox_img_id_detail").attr("src"));
-		console.log($(".btn_publishview").attr("id"));
 	});
 
 /*PUBLISHVIEW*/
@@ -23,14 +17,11 @@ $(document).ready(function(){
 		$('.box_pubview').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.backdrop_pubview, .box_pubview').css('display', 'block');
 		//close_box();
-		btn_id = (""+$(this).attr("id")).split("_")[1];
-		url = $("#img"+btn_id).attr("src")
+		thumb_id = (""+$(this).attr("id")).split("_")[1];
+		url = $("#img"+thumb_id).attr("src")
 		$("#lightbox_img_id_pubview").attr("src",url);
-
-		/*LOG*/
-		console.log("id: "+thumb_id);
-		console.log("url: "+url);
-		console.log($("#lightbox_img_id_pubview").attr("src"));
+		$("#lightbox_img_id_pubview").attr("value",thumb_id);
+		$("#detail_image").attr("value",thumb_id);
 	});
 
 /*CLOSE*/

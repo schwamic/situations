@@ -5,13 +5,13 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from gallery import choices
-
+#from django_ajax.decorators import ajax
 from itertools import chain
 from .models import Publisher, Image, Post
 
 """
 use this url to access images (for now):
-http://127.0.0.1:8000/images/?id=50719aab-a33b-441e-979d-a8a2533984a5
+http://127.0.0.1:8000/images/?id=940e6d98-9f30-42a8-8c9a-c37b4e514c62
 its a working uuid in the current db
 """
 
@@ -93,16 +93,17 @@ def publish(request, publisher_id):
     #add all attr
     publisher.gender = int(request.POST['gender'])
     publisher.occupation = int(request.POST['occupation'])
-    publisher.year_of_birth = int(request.POST['year_of_birth'])
+    #publisher.year_of_birth = int(request.POST['year_of_birth'])
 
     #post
     description = request.POST['describtion']
     reason = request.POST['reason']
-    #image_id = ?
-
-    post_object = Post()
+    image_id = request.POST.get('image')
+    image = get_object_or_404(Image, pk=image_id)
+    new_post = Post(image=image, publisher=publisher, description=description, reason=reason)
 
     # geo locating
+    """
     user_ip = get_client_ip(request)
     location = GeoIP2.city(request, user_ip)
     publisher.city = location.city
@@ -110,8 +111,9 @@ def publish(request, publisher_id):
     publisher.region = location.region
     publisher.longitude = location.longitude
     publisher.latitude = location.latitude
-
+    """
     #push to db
+    new_post.save()
     publisher.save()
 
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
@@ -124,6 +126,7 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
 
 # note:
 # a[start:end] # items start through end-1
