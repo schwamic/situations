@@ -7,7 +7,6 @@
         <title>{% block title %}Situations{% endblock %}</title>
     </head>
     <body>
-
         {% include 'nav.html' %}
 
         <div id="content" class="container-fluid">
@@ -16,15 +15,16 @@
         </div>
 
         <div id="footer" class="panel-footer">
-            <ul class="nav navbar-nav">
-                <li class=""><a href="{% url 'gallery:impressum' %}">Impressum</a></li>
-            </ul>
+            <div class="footer_container">
+                <p><a href="{% url 'gallery:impressum' %}">Impressum</a></p>
+            </div>
         </div>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
         <script src="{% static 'js/components/lightbox.js' %}"></script>
         <script src="{% static 'js/components/modal.js' %}"></script>
         <script src="{% static 'js/components/thumbnail.js' %}"></script>

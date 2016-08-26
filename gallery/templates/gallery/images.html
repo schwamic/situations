@@ -5,7 +5,7 @@
 {% block content %}
 {% load staticfiles %}
 <!-- modal -->
-<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true"
      data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
@@ -59,7 +59,7 @@
     </div>
 </div>
 <!-- thumbnail -->
-<div class="row, thumbgallery">
+<div class="row thumbgallery" id="abd">
     {% for image in object_list %}
     <div class="col-sm-2 col-md-2 thumbscope">
         <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
@@ -211,4 +211,5 @@
         </div>
     </div>
 </div>
+<div class="prefix"></div>
 {% endblock %}
