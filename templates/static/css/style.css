@@ -7319,13 +7319,16 @@ body {
   /* line 11, ../sass/components/_base.scss */
   body a {
     cursor: pointer; }
+  /* line 15, ../sass/components/_base.scss */
+  body .btn_new {
+    border-radius: 0px; }
 
-/* line 16, ../sass/components/_base.scss */
+/* line 20, ../sass/components/_base.scss */
 #content {
   min-height: 100%;
   height: 100%; }
 
-/* line 21, ../sass/components/_base.scss */
+/* line 25, ../sass/components/_base.scss */
 .prefix {
   height: 50px;
   width: 100%; }
@@ -7412,7 +7415,10 @@ body {
 
 /* MIXIN */
 /* SASS */
-/* line 24, ../sass/components/_lightbox.scss */
+/*#############################################################################*/
+/*############################ DETAIL LIGHTBOX ################################*/
+/*#############################################################################*/
+/* line 27, ../sass/components/_lightbox.scss */
 .lightbox_detailview {
   margin-left: 0px;
   margin-right: 0px;
@@ -7423,14 +7429,138 @@ body {
   top: 0px;
   left: 0px;
   display: none;
-  overflow: scroll; }
+  overflow: scroll;
+  z-index: 500; }
 
-/* line 36, ../sass/components/_lightbox.scss */
+/* line 40, ../sass/components/_lightbox.scss */
+.box_detail {
+  display: none; }
+  /* line 43, ../sass/components/_lightbox.scss */
+  .box_detail img {
+    margin: 0 auto; }
+  /* line 46, ../sass/components/_lightbox.scss */
+  .box_detail p {
+    text-align: center; }
+  /* line 50, ../sass/components/_lightbox.scss */
+  .box_detail h4 {
+    text-align: center; }
+  /* line 53, ../sass/components/_lightbox.scss */
+  .box_detail button {
+    display: block;
+    margin: 0 auto; }
+
+/* line 59, ../sass/components/_lightbox.scss */
+.close {
+  float: right;
+  cursor: pointer; }
+  /* line 62, ../sass/components/_lightbox.scss */
+  .close img {
+    height: 40px;
+    width: 40px; }
+
+/* line 68, ../sass/components/_lightbox.scss */
+.lightclose {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: 15px;
+  left: -15px; }
+  /* line 74, ../sass/components/_lightbox.scss */
+  .lightclose img {
+    float: right; }
+
+/* line 79, ../sass/components/_lightbox.scss */
+.backdrop_pubview {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: .0;
+  filter: alpha(opacity=0);
+  z-index: 600;
+  display: none; }
+
+/* line 92, ../sass/components/_lightbox.scss */
+#lightbox_img_id_detail {
+  display: block;
+  width: auto;
+  height: 60vw;
+  max-height: 550px;
+  margin-top: 9vh;
+  z-index: 600; }
+
+/*#############################################################################*/
+/*########################### PUBLISH LIGHTBOX ################################*/
+/*#############################################################################*/
+/* line 106, ../sass/components/_lightbox.scss */
+.publish_form {
+  margin-top: 63px; }
+  /* line 110, ../sass/components/_lightbox.scss */
+  .publish_form .custom-select {
+    width: 100px; }
+  /* line 116, ../sass/components/_lightbox.scss */
+  .publish_form .form-control {
+    font-size: 12px; }
+  /* line 120, ../sass/components/_lightbox.scss */
+  .publish_form label {
+    width: 150px;
+    font-size: 12px; }
+  /* line 124, ../sass/components/_lightbox.scss */
+  .publish_form img {
+    max-height: 400px; }
+  /* line 128, ../sass/components/_lightbox.scss */
+  .publish_form .btn_form {
+    position: absolute;
+    left: 0px;
+    margin: 0 auto;
+    right: 0px;
+    top: 560px;
+    border: 0px;
+    width: 200%;
+    margin-top: 50px;
+    margin-bottom: 50px; }
+
+/* line 141, ../sass/components/_lightbox.scss */
+.btn_publish {
+  display: block;
+  margin: 0 auto; }
+
+/* line 146, ../sass/components/_lightbox.scss */
+.box_pubview {
+  overflow-x: scroll;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  background: white;
+  z-index: 51;
+  padding: 60px;
+  display: none; }
+  /* line 157, ../sass/components/_lightbox.scss */
+  .box_pubview .col_img {
+    height: 100%; }
+  /* line 161, ../sass/components/_lightbox.scss */
+  .box_pubview .publish_img {
+    margin-top: 9vh;
+    max-width: 100%;
+    max-height: 400px;
+    position: absolute;
+    padding: 5px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 150px; }
+
+/* line 178, ../sass/components/_lightbox.scss */
 .lightbox_publishview {
   margin-left: 0px;
   margin-right: 0px; }
 
-/* line 40, ../sass/components/_lightbox.scss */
+/* line 182, ../sass/components/_lightbox.scss */
 .backdrop_detail {
   position: absolute;
   top: 0px;
@@ -7441,66 +7571,8 @@ body {
   background: white;
   opacity: .0;
   filter: alpha(opacity=0);
-  z-index: 50;
-  display: none; }
-
-/* line 45, ../sass/components/_lightbox.scss */
-.box_detail {
-  display: none; }
-
-/* line 49, ../sass/components/_lightbox.scss */
-.close {
-  float: right;
-  cursor: pointer; }
-  /* line 52, ../sass/components/_lightbox.scss */
-  .close img {
-    height: 40px;
-    width: 40px; }
-
-/* line 58, ../sass/components/_lightbox.scss */
-.lightclose {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  left: 7px; }
-
-/* line 65, ../sass/components/_lightbox.scss */
-.backdrop_pubview {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background: white;
-  opacity: .0;
-  filter: alpha(opacity=0);
-  z-index: 50;
-  display: none; }
-
-/* line 79, ../sass/components/_lightbox.scss */
-.box_pubview {
-  overflow-x: scroll;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background: white;
-  z-index: 51;
-  padding: 10px;
-  display: none; }
-  /* line 91, ../sass/components/_lightbox.scss */
-  .box_pubview img {
-    max-width: 80%;
-    max-height: 80%; }
-
-/* line 97, ../sass/components/_lightbox.scss */
-#lightbox_img_id_detail {
-  display: block;
-  width: auto;
-  height: 60vw;
-  max-height: 550px;
-  padding-top: 5vh; }
+  display: none;
+  z-index: 500; }
 
 /* line 1, ../sass/components/_footer.scss */
 .panel-footer {
@@ -7515,3 +7587,17 @@ body {
     /* line 11, ../sass/components/_footer.scss */
     .panel-footer .footer_container p a {
       color: black; }
+
+/* line 1, ../sass/components/modal.scss */
+.modal-body {
+  padding-top: 0px; }
+
+/* line 5, ../sass/components/modal.scss */
+.modal-header {
+  border-bottom: none;
+  padding-bottom: 0px; }
+
+/* line 10, ../sass/components/modal.scss */
+.modal-dialog {
+  margin: 52px auto;
+  max-width: 650px; }
