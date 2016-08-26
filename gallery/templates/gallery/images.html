@@ -59,7 +59,7 @@
     </div>
 </div>
 <!-- thumbnail -->
-<div class="row">
+<div class="row, thumbgallery">
     {% for image in object_list %}
     <div class="col-sm-2 col-md-2 thumbscope">
         <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
@@ -80,6 +80,7 @@
     <div class="thumbnail"><p>No images yet.</p></div>
 </div>
 {% endfor %}
+</div> <!-- fix clear later -->
 <!-- lightbox detailview -->
 <div class="row lightbox_detailview">
     <div class="backdrop_detail">
@@ -210,5 +211,4 @@
         </div>
     </div>
 </div>
-</div> <!-- fix clear later -->
 {% endblock %}

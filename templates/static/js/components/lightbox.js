@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 /*DETAILVIEW*/
 	$('.lightbox_detail').click(function(event){
+		$("body").css("overflow", "hidden");
+		$(".lightbox_detailview").css("display", "block")
 		$('.backdrop_detail, .box_detail').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.box_detail').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.backdrop_detail, .box_detail').css('display', 'block');
@@ -38,9 +40,11 @@ $(document).ready(function(){
 /*FUNCTIONS*/
 	function close_box(state)
 	{
+		$("body").css("overflow", "");
 		if(state){
 			$('.backdrop_detail, .box_detail').animate({'opacity':'0'}, 0, 'linear', function(){
 				$('.backdrop_detail, .box_detail').css('display', 'none');
+				$(".lightbox_detailview").css("display", "none")
 			});
 			$('.backdrop_pubview, .box_pubview').animate({'opacity':'0'}, 300, 'linear', function(){
 				$('.backdrop_pubview, .box_pubview').css('display', 'none');
@@ -48,6 +52,7 @@ $(document).ready(function(){
 		}else{
 			$('.backdrop_detail, .box_detail').animate({'opacity':'0'}, 300, 'linear', function(){
 				$('.backdrop_detail, .box_detail').css('display', 'none');
+				$(".lightbox_detailview").css("display", "none")
 			});
 		}
 	}
