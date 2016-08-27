@@ -100,105 +100,122 @@
     </div>
 </div>
 <!-- lightbox publishview -->
-<div class="row lightbox_publishview">
-    <div class="backdrop_pubview">
-        <div class="col-sm-9 col-md-8 col-centerd col-sm-offset-1 col-md-offset-2 box_pubview">
-            <div class="row close lightclose close_all"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+<div class="lightbox_publishview">
+    <div class="row backdrop_pubview">
+        <div class="col-sm-12 col-md-12 box_pubview">
+            <div class="close lightclose close_all"><img src="{% static 'img/close.svg' %}" alt="close"></div>
             <!-- formfields -->
-            <form class="col-sm-6 col-md-6 publish_form" action="{% url 'gallery:publish' my_publisher_id %}"
-                  method="post">
-                {% csrf_token %}
-                <div class="form-group row">
-                    <label class="col-xs-4 col-form-label">Gender</label>
+            <div class="row form_wrapper">
+                <div class="col-sm-6 col-md-6">
+                    <form class=" publish_form" action="{% url 'gallery:publish' my_publisher_id %}"
+                          method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">Gender</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <select class="custom-select" name="gender">
+                                    {% for object in gender_choices %}
+                                    <option value="{{object.0}}">{{object.1}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">Occupation</label>
+                            </div>
 
-                    <div class="col-xs-9">
-                        <select class="custom-select" name="gender">
-                            {% for object in gender_choices %}
-                            <option value="{{object.0}}">{{object.1}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-xs-4 col-form-label">Occupation</label>
+                            <div class="col-xs-6">
+                                <select class="custom-select" name="occupation">
+                                    {% for object in occupation_choices %}
+                                    <option value="{{object.0}}">{{object.1}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
 
-                    <div class="col-xs-6">
-                        <select class="custom-select" name="occupation">
-                            {% for object in occupation_choices %}
-                            <option value="{{object.0}}">{{object.1}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-xs-4 col-form-label">Age group</label>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">Occupation</label>
+                            </div>
 
-                    <div class="col-xs-6">
-                        <select class="custom-select" name="year_of_birth">
-                            {% for object in year_choices %}
-                            <option value="{{object.0}}">{{object.1}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="exampleTextarea" class="col-xs-4 col-form-label">Describe the image</label>
-
-                    <div class="col-xs-6">
+                            <div class="col-xs-6">
+                                <select class="custom-select" name="year_of_birth">
+                                    {% for object in year_choices %}
+                                    <option value="{{object.0}}">{{object.1}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">Describe the image</label>
+                            </div>
+                            <div class="col-xs-6">
                         <textarea class="form-control" type="text" name="describtion" id="exampleTextarea"
                                   rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="exampleTextarea" class="col-xs-4 col-form-label">Why did I choose this
-                        image?</label>
-
-                    <div class="col-xs-6">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">Why did I choose this
+                                    image?</label>
+                            </div>
+                            <div class="col-xs-6">
                         <textarea class="form-control" type="text" name="reason" id="exampleTextarea"
                                   rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="exampleInputEmail1" class="col-xs-4 col-form-label">First email address</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">1. email adrdess</label>
+                            </div>
 
-                    <div class="col-xs-6">
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                               aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
+                            <div class="col-xs-6">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp"
+                                       placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">2. email adrdess</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp"
+                                       placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-4 pull-left">
+                                <label class=" col-form-label">3. email adrdess</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp"
+                                       placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="form-group row" style="display: none">
+                            <div class="col-xs-10">
+                                <input id="detail_image" type="text" name="image" value="#">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 btn_form">
+                            <button type="submit" class="btn btn-default btn_publish btn_new">Submit</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group row">
-                    <label for="exampleInputEmail1" class="col-xs-4 col-form-label">Second email address</label>
-
-                    <div class="col-xs-6">
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                               aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
+                <div class="col-sm-6 col-md-6 col_img">
+                    <img id="lightbox_img_id_pubview" class="img-fluid publish_img" src="#" alt="#">
                 </div>
-                <div class="form-group row">
-                    <label for="exampleInputEmail1" class="col-xs-4 col-form-label">Third email address</label>
-
-                    <div class="col-xs-6">
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                               aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
-                </div>
-                <div class="form-group row" style="display: none">
-                    <div class="col-xs-10">
-                        <input id="detail_image" type="text" name="image" value="#">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 btn_form">
-                    <button type="submit" class="btn btn-default btn_publish btn_new">Submit</button>
-                </div>
-            </form>
-            <div class="col-sm-6 col-md-6 col_img">
-                <img id="lightbox_img_id_pubview" class="img-fluid publish_img" src="#" alt="#">
             </div>
         </div>
     </div>
+</div>
 </div>
 <div class="prefix"></div>
 {% endblock %}
