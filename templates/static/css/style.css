@@ -7492,7 +7492,7 @@ body {
   width: auto;
   height: 60vw;
   max-height: 550px;
-  margin-top: 9vh;
+  margin-top: 90px;
   z-index: 600; }
 
 /*#############################################################################*/
@@ -7523,7 +7523,7 @@ body {
     left: 0px;
     margin: 0 auto;
     right: 0px;
-    top: 560px;
+    top: 480px;
     border: 0px;
     width: 200%;
     margin-top: 50px;
