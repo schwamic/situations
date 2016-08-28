@@ -23,6 +23,41 @@ $xs: 768px;
 
 /* SASS */
 
+.img_caption{
+	text-align: center;
+	margin-top: 18px;
+	p{
+		font-size: 0.7em;
+		margin-bottom: 0px;
+	}
+	h6{
+		font-size: 10px;
+		margin: 0px;
+		margin-bottom: 10px;
+		margin-top: 2px;
+	}
+}
+
+input{
+	border-radius: 0px !important;
+}
+
+textarea{
+	border-radius: 0px !important;
+}
+
+.form-control-sm{
+    border-radius: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+  	-moz-appearance: none;
+  	border-radius: 0px;
+  	background-image: url(../img/arrow.svg);
+  	background-position: right 50%;
+    background-repeat: no-repeat;
+}
+
+
 /*#############################################################################*/
 /*############################ DETAIL LIGHTBOX ################################*/
 /*#############################################################################*/
@@ -50,12 +85,14 @@ $xs: 768px;
 		text-align: center;
 	}
 
-	h4{
+	h6{
 		text-align: center;
 	}
 	button{
 		display: block;
 		margin: 0 auto;
+		margin-top: 18px;
+
 	}
 }
 
@@ -96,9 +133,9 @@ $xs: 768px;
 	display: block;
     width: auto;
     height: 60vw;
-    max-height: 550px;
+    max-height: 480px;
     //padding-top: 5vh;
-    margin-top: 90px;
+    margin-top: 110px;
     z-index: 600;
 }
 
@@ -136,9 +173,16 @@ $xs: 768px;
 		font-size: 12px;
 		text-align: right;
 		float: right;
+		margin-top: 0px;
+    	margin-bottom: 0px;
+    	padding-top: 8px;
 	}
 
 	.btn_form{
+
+		.btn{
+			margin-top: 40px;
+		}
 		position: absolute;
 		left: 0px;
 		margin: 0 auto;
@@ -202,3 +246,4 @@ $xs: 768px;
 	display:none;
 	z-index: 501;
 }
+

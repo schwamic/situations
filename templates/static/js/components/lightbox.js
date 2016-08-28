@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+console.log(window.location.href );
+
 /*DETAILVIEW*/
 	$('.lightbox_detail').click(function(event){
 		$("body").css("overflow", "hidden");
@@ -25,6 +27,8 @@ $(document).ready(function(){
 		$("#lightbox_img_id_pubview").attr("src",url);
 		$("#lightbox_img_id_pubview").attr("value",thumb_id);
 		$("#detail_image").attr("value",thumb_id);
+		img_width = $('#lightbox_img_id_pubview').width();
+		$('#publish_caption').css('width',img_width);
 	});
 
 /*CLOSE*/
@@ -67,6 +71,8 @@ $(document).ready(function(){
 			success : function(json) {
 				$('#detail_image_title').html(""+json.image_title);
 				$('#detail_image_author').html(""+json.image_author);
+				$('#publish_image_title').html(""+json.image_title);
+				$('#publish_image_author').html(""+json.image_author);
 			},
 			// handle a non-successful response
 			error : function(xhr,errmsg,err) {
@@ -87,4 +93,9 @@ $(document).ready(function(){
 			}
 		}
 	});
+});
+
+$(window).resize(function(){
+    img_width = $('#lightbox_img_id_pubview').width();
+	$('#publish_caption').css('width',img_width);
 });

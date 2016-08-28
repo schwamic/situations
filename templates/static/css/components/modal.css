@@ -11,3 +11,7 @@
 .modal-dialog {
   margin: 52px auto;
   max-width: 650px; }
+
+/* line 15, ../../sass/components/modal.scss */
+.modal-content {
+  border-radius: 0px; }

@@ -9,7 +9,12 @@
         text-align: right;
 
         a{
-            color: black;
+            color: #888;
+        }
+
+        a:hover{
+            color: #000;
+            text-decoration: none;
         }
     }
 }
