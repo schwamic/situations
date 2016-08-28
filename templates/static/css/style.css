@@ -7400,7 +7400,7 @@ body {
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out; }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
       /* line 11, ../sass/components/_thumbnails.scss */
       .thumbscope .thumbnail {
         height: 50vw; } }
@@ -7423,18 +7423,36 @@ body {
     padding: 5px;
     opacity: 0;
     -moz-opacity: 0.5;
-    display: block;
+    display: table;
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background-color: rgba(244, 244, 244, 0.9);
     width: 100%;
     height: 100%;
-    color: #fff !important;
+    color: #000 !important;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     -o-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out; }
+    /* line 52, ../sass/components/_thumbnails.scss */
+    .thumbscope .caption .caption_text {
+      width: 100%;
+      height: 100%;
+      display: table-cell;
+      vertical-align: middle; }
+    /* line 75, ../sass/components/_thumbnails.scss */
+    .thumbscope .caption p {
+      font-size: 10px;
+      text-align: center;
+      margin-bottom: 0px; }
+    /* line 80, ../sass/components/_thumbnails.scss */
+    .thumbscope .caption h6 {
+      font-size: 10px;
+      text-align: center;
+      margin: 0px;
+      margin-bottom: 10px;
+      margin-top: 2px; }
 
 /* MIXIN and VARIABLES */
 /* SASS */
@@ -7505,29 +7523,30 @@ textarea {
   .box_detail button {
     display: block;
     margin: 0 auto;
-    margin-top: 18px; }
+    margin-top: 18px;
+    margin-bottom: 76px; }
 
-/* line 99, ../sass/components/_lightbox.scss */
+/* line 100, ../sass/components/_lightbox.scss */
 .close {
   float: right;
   cursor: pointer; }
-  /* line 102, ../sass/components/_lightbox.scss */
+  /* line 103, ../sass/components/_lightbox.scss */
   .close img {
     height: 40px;
     width: 40px; }
 
-/* line 108, ../sass/components/_lightbox.scss */
+/* line 109, ../sass/components/_lightbox.scss */
 .lightclose {
   position: absolute;
   width: 100%;
   height: 50px;
   top: 15px;
   left: -15px; }
-  /* line 114, ../sass/components/_lightbox.scss */
+  /* line 115, ../sass/components/_lightbox.scss */
   .lightclose img {
     float: right; }
 
-/* line 119, ../sass/components/_lightbox.scss */
+/* line 120, ../sass/components/_lightbox.scss */
 .backdrop_pubview {
   position: absolute;
   top: 0px;
@@ -7540,7 +7559,7 @@ textarea {
   z-index: 600;
   display: none; }
 
-/* line 132, ../sass/components/_lightbox.scss */
+/* line 133, ../sass/components/_lightbox.scss */
 #lightbox_img_id_detail {
   display: block;
   width: auto;
@@ -7552,35 +7571,35 @@ textarea {
 /*#############################################################################*/
 /*########################### PUBLISH LIGHTBOX ################################*/
 /*#############################################################################*/
-/* line 145, ../sass/components/_lightbox.scss */
+/* line 146, ../sass/components/_lightbox.scss */
 .form_wrapper {
   padding-top: 110px; }
-  @media screen and (max-width: 768px) {
-    /* line 145, ../sass/components/_lightbox.scss */
+  @media screen and (max-width: 767px) {
+    /* line 146, ../sass/components/_lightbox.scss */
     .form_wrapper {
       padding-top: 150px; } }
-  /* line 150, ../sass/components/_lightbox.scss */
+  /* line 151, ../sass/components/_lightbox.scss */
   .form_wrapper .col_form {
-    height: 427px; }
+    height: 508px; }
 
-/* line 154, ../sass/components/_lightbox.scss */
+/* line 155, ../sass/components/_lightbox.scss */
 .publish_form {
   float: right;
   width: 80%;
   max-width: 500px; }
-  @media screen and (max-width: 768px) {
-    /* line 154, ../sass/components/_lightbox.scss */
+  @media screen and (max-width: 767px) {
+    /* line 155, ../sass/components/_lightbox.scss */
     .publish_form {
       float: none;
       width: 100%;
       margin: 0 auto; } }
-  /* line 164, ../sass/components/_lightbox.scss */
+  /* line 165, ../sass/components/_lightbox.scss */
   .publish_form .custom-select {
     width: 100px; }
-  /* line 167, ../sass/components/_lightbox.scss */
+  /* line 168, ../sass/components/_lightbox.scss */
   .publish_form .form-control {
     font-size: 12px; }
-  /* line 171, ../sass/components/_lightbox.scss */
+  /* line 172, ../sass/components/_lightbox.scss */
   .publish_form label {
     width: 150px;
     font-size: 12px;
@@ -7589,7 +7608,7 @@ textarea {
     margin-top: 0px;
     margin-bottom: 0px;
     padding-top: 8px; }
-  /* line 181, ../sass/components/_lightbox.scss */
+  /* line 182, ../sass/components/_lightbox.scss */
   .publish_form .btn_form {
     position: absolute;
     left: 0px;
@@ -7600,20 +7619,20 @@ textarea {
     width: 200%;
     margin-top: 50px;
     margin-bottom: 50px; }
-    /* line 183, ../sass/components/_lightbox.scss */
+    /* line 184, ../sass/components/_lightbox.scss */
     .publish_form .btn_form .btn {
       margin-top: 40px; }
-    @media screen and (max-width: 768px) {
-      /* line 181, ../sass/components/_lightbox.scss */
+    @media screen and (max-width: 767px) {
+      /* line 182, ../sass/components/_lightbox.scss */
       .publish_form .btn_form {
         width: 100%; } }
 
-/* line 201, ../sass/components/_lightbox.scss */
+/* line 202, ../sass/components/_lightbox.scss */
 .btn_publish {
   display: block;
   margin: 0 auto; }
 
-/* line 206, ../sass/components/_lightbox.scss */
+/* line 207, ../sass/components/_lightbox.scss */
 .box_pubview {
   overflow-x: scroll;
   position: fixed;
@@ -7623,14 +7642,20 @@ textarea {
   width: 100%;
   z-index: 51;
   display: none; }
-  /* line 216, ../sass/components/_lightbox.scss */
+  /* line 217, ../sass/components/_lightbox.scss */
   .box_pubview .col_img {
-    height: 427px; }
-    @media screen and (max-width: 768px) {
-      /* line 216, ../sass/components/_lightbox.scss */
+    height: 508px;
+    max-width: 660px;
+    display: table; }
+    @media screen and (max-width: 767px) {
+      /* line 217, ../sass/components/_lightbox.scss */
       .box_pubview .col_img {
         display: none; } }
-  /* line 224, ../sass/components/_lightbox.scss */
+    /* line 225, ../sass/components/_lightbox.scss */
+    .box_pubview .col_img .col_img_center {
+      display: table-cell;
+      vertical-align: middle; }
+  /* line 231, ../sass/components/_lightbox.scss */
   .box_pubview .col_img:before {
     /* create a full-height inline block pseudo=element */
     content: ' ';
@@ -7638,20 +7663,18 @@ textarea {
     vertical-align: middle;
     /* vertical alignment of the inline element */
     height: 100%; }
-  /* line 231, ../sass/components/_lightbox.scss */
+  /* line 238, ../sass/components/_lightbox.scss */
   .box_pubview .publish_img {
-    display: inline-block;
     max-width: 75%;
-    max-height: 427px;
-    vertical-align: middle; }
+    max-height: 427px; }
 
-/* line 239, ../sass/components/_lightbox.scss */
+/* line 244, ../sass/components/_lightbox.scss */
 .lightbox_publishview {
   margin-left: 0px;
   margin-right: 0px;
   z-index: 500; }
 
-/* line 244, ../sass/components/_lightbox.scss */
+/* line 249, ../sass/components/_lightbox.scss */
 .backdrop_detail {
   position: absolute;
   top: 0px;
@@ -7664,6 +7687,10 @@ textarea {
   filter: alpha(opacity=0);
   display: none;
   z-index: 501; }
+
+/* line 255, ../sass/components/_lightbox.scss */
+.no_margin_bottom {
+  margin-bottom: 0px !important; }
 
 /* line 1, ../sass/components/_footer.scss */
 .panel-footer {
