@@ -1,4 +1,4 @@
-/* MIXIN */
+/* MIXIN and VARIABLES */
 
 @mixin backdrop(){
 	position:absolute;
@@ -16,6 +16,8 @@
 	margin-left: $pixel;
     margin-right: $pixel;
 }
+
+$publish_col_height: 427px;
 
 
 /* SASS */
@@ -105,9 +107,15 @@
 .form_wrapper{
 
 	padding-top: 110px;
+
+	.col_form{
+		height: $publish_col_height;
+	}
 }
 .publish_form{
 	float: right;
+	width: 80%;
+    max-width: 500px;
 	.custom-select{
 		width: 100px;
 	}
@@ -151,12 +159,22 @@
 	display:none;
 
 	.col_img{
-		height: 100%;
+		height: $publish_col_height;
+
 	}
 
+	.col_img:before {    /* create a full-height inline block pseudo=element */
+		content: ' ';
+		display: inline-block;
+		vertical-align: middle;  /* vertical alignment of the inline element */
+		height: 100%;
+}
+
 	.publish_img{
-		max-width: 100%;
-		max-height: 427px;
+		display: inline-block;
+		max-width: 75%;
+    	max-height: $publish_col_height;
+		vertical-align: middle;
 	}
 }
 
