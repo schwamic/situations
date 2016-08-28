@@ -7630,9 +7630,10 @@ textarea {
 /* line 202, ../sass/components/_lightbox.scss */
 .btn_publish {
   display: block;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-bottom: 26px; }
 
-/* line 207, ../sass/components/_lightbox.scss */
+/* line 208, ../sass/components/_lightbox.scss */
 .box_pubview {
   overflow-x: scroll;
   position: fixed;
@@ -7642,20 +7643,20 @@ textarea {
   width: 100%;
   z-index: 51;
   display: none; }
-  /* line 217, ../sass/components/_lightbox.scss */
+  /* line 218, ../sass/components/_lightbox.scss */
   .box_pubview .col_img {
     height: 508px;
     max-width: 660px;
     display: table; }
     @media screen and (max-width: 767px) {
-      /* line 217, ../sass/components/_lightbox.scss */
+      /* line 218, ../sass/components/_lightbox.scss */
       .box_pubview .col_img {
         display: none; } }
-    /* line 225, ../sass/components/_lightbox.scss */
+    /* line 226, ../sass/components/_lightbox.scss */
     .box_pubview .col_img .col_img_center {
       display: table-cell;
       vertical-align: middle; }
-  /* line 231, ../sass/components/_lightbox.scss */
+  /* line 232, ../sass/components/_lightbox.scss */
   .box_pubview .col_img:before {
     /* create a full-height inline block pseudo=element */
     content: ' ';
@@ -7663,18 +7664,18 @@ textarea {
     vertical-align: middle;
     /* vertical alignment of the inline element */
     height: 100%; }
-  /* line 238, ../sass/components/_lightbox.scss */
+  /* line 239, ../sass/components/_lightbox.scss */
   .box_pubview .publish_img {
     max-width: 75%;
     max-height: 427px; }
 
-/* line 244, ../sass/components/_lightbox.scss */
+/* line 245, ../sass/components/_lightbox.scss */
 .lightbox_publishview {
   margin-left: 0px;
   margin-right: 0px;
   z-index: 500; }
 
-/* line 249, ../sass/components/_lightbox.scss */
+/* line 250, ../sass/components/_lightbox.scss */
 .backdrop_detail {
   position: absolute;
   top: 0px;
@@ -7688,7 +7689,7 @@ textarea {
   display: none;
   z-index: 501; }
 
-/* line 255, ../sass/components/_lightbox.scss */
+/* line 256, ../sass/components/_lightbox.scss */
 .no_margin_bottom {
   margin-bottom: 0px !important; }
 
