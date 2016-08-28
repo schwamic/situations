@@ -106,7 +106,7 @@
             <div class="close lightclose close_all"><img src="{% static 'img/close.svg' %}" alt="close"></div>
             <!-- formfields -->
             <div class="row form_wrapper">
-                <div class="col-sm-6 col-md-6 col_form">
+                <div class="col-sx-12 col-sm-6 col-md-6 col_form">
                     <form class=" publish_form" action="{% url 'gallery:publish' my_publisher_id %}"
                           method="post">
                         {% csrf_token %}
@@ -209,7 +209,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-6 col-md-6 col_img">
+                <div class="col-xs-12 col-sm-6 col-md-6 col_img">
                     <img id="lightbox_img_id_pubview" class="img-fluid publish_img" src="#" alt="#">
                 </div>
             </div>
