@@ -8,8 +8,7 @@
 	height: auto;
 	min-height: 100vh;
 	background:white;
-	opacity: .0;
-	filter:alpha(opacity=0);
+
 }
 
 @mixin lightbox($pixel){
@@ -100,16 +99,9 @@ textarea{
 	}
 }
 
-.close{
-	float:right;
-	cursor:pointer;
-	img{
-		height: 40px;
-		width: 40px;
-	}
-}
-
 .lightclose{
+	cursor:pointer;
+	float:right;
 	position: absolute;
 	width: 100%;
 	height: 50px;
@@ -117,24 +109,26 @@ textarea{
     left: -15px;
 	z-index: 500;
 	img{
+		height: 40px;
+		width: 40px;
 		float: right;
 	}
 }
 
 .backdrop_detail{
 	@include backdrop();
+	display:none;
 	margin-right: 0px;
     margin-left: 0px;
-	display:none;
 	z-index: 501;
+
 }
 
-#lightbox_img_id_detail{
+#lightbox_img_detail{
 	display: block;
     width: auto;
     max-width: 60vw;
     max-height: 480px;
-    //padding-top: 5vh;
     margin-top: 110px;
     z-index: 600;
 }
@@ -143,6 +137,12 @@ textarea{
 	display: table;
 	padding: 0;
 	height: 100vh;
+	opacity: 0.3;
+
+	&:hover,
+	&:focus {
+		opacity: 0.6;
+	}
 }
 
 .next_wrap{
@@ -302,8 +302,6 @@ textarea{
 	width:100%;
 	height:100%;
 	background: white;
-	opacity: .0;
-	filter:alpha(opacity=0);
 	z-index:600;
 	display:none;
 }
