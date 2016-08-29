@@ -14,6 +14,8 @@ console.log(window.location.href );
 		$("#lightbox_img_id_detail").attr("src",url);
 		$(".btn_publishview").attr("id", "btn_"+thumb_id);
 		detail_image(thumb_id);
+		//col_height = $('.box_detail').height();
+		//$('.col_wrap').css('height', col_height);
 	});
 
 /*PUBLISHVIEW*/
@@ -98,4 +100,7 @@ console.log(window.location.href );
 $(window).resize(function(){
     img_width = $('#lightbox_img_id_pubview').width();
 	$('#publish_caption').css('width',img_width);
+
+	//col_height = $('.box_detail').height();
+	//$('.col_wrap').css('height', col_height);
 });

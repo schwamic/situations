@@ -84,10 +84,22 @@
 {% endfor %}
 </div> <!-- fix clear later -->
 <!-- lightbox detailview -->
-<div class="row lightbox_detailview">
-    <div class="backdrop_detail">
-        <div class="box_detail">
+<div class="lightbox_detailview">
+    <div class="row backdrop_detail">
+        <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
+            <div id="show_pref" class="col-xs-2 col-sm-1 col-md-1 col_wrap">
+                <div class="col_pref">
+                    <img id="pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
+                </div>
+            </div>
             <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+            <div id="show_next" class="col-xs-2 col-sm-1 col-md-1 col_wrap next_wrap">
+                <div class="col_next">
+                    <img id="next_img" src="{% static 'img/next.svg' %}" alt="next">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-sm-10 col-md-10 col-xs-push-2 col-sm-push-1 col-md-push-1 box_detail">
             <img id="lightbox_img_id_detail" class="img-fluid" src="#" alt="#">
 
             <div class="img_caption">
