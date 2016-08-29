@@ -1,39 +1,54 @@
+"use strict";
 $(document).ready(function(){
+	var COUNT_OF_ALL_IMAGES = -1;
+	var IMAGE_ID = -1;
+	var img_width;
 
-console.log(window.location.href );
-
-/*DETAILVIEW*/
+	/*DETAILVIEW*/
 	$('.lightbox_detail').click(function(event){
 		$("body").css("overflow", "hidden");
 		$(".lightbox_detailview").css("display", "block")
 		$('.backdrop_detail, .box_detail').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.box_detail').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.backdrop_detail, .box_detail').css('display', 'block');
-		thumb_id = (""+$(this).attr("id")).split("_")[1];
-		url = $("#img"+thumb_id).attr("src")
-		$("#lightbox_img_id_detail").attr("src",url);
-		$(".btn_publishview").attr("id", "btn_"+thumb_id);
-		detail_image(thumb_id);
-		//col_height = $('.box_detail').height();
-		//$('.col_wrap').css('height', col_height);
+		IMAGE_ID = (""+$(this).attr("id")).split("_")[1];
+		$("#detail_image").attr("value",IMAGE_ID);
+		get_image_info(IMAGE_ID);
 	});
 
-/*PUBLISHVIEW*/
+	/*SLIDER*/
+	$('#show_next').click(function(event){
+		if(IMAGE_ID > 0){
+			IMAGE_ID = parseInt(IMAGE_ID)+1;
+				if(IMAGE_ID > COUNT_OF_ALL_IMAGES){
+					IMAGE_ID = 1;
+			}
+			$("#detail_image").attr("value",IMAGE_ID);
+			get_image_info(IMAGE_ID);
+		}
+	});
+
+		$('#show_pref').click(function(event){
+		if(IMAGE_ID > 0){
+			IMAGE_ID = parseInt(IMAGE_ID)-1;
+			if(IMAGE_ID <= 0){
+				IMAGE_ID = COUNT_OF_ALL_IMAGES;
+			}
+			$("#detail_image").attr("value",IMAGE_ID);
+			get_image_info(IMAGE_ID);
+		}
+	});
+
+	/*PUBLISHVIEW*/
 	$('.btn_publishview').click(function(event){
 		$('.backdrop_pubview, .box_pubview').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.box_pubview').animate({'opacity':'1.00'}, 300, 'linear');
 		$('.backdrop_pubview, .box_pubview').css('display', 'block');
-		//close_box();
-		thumb_id = (""+$(this).attr("id")).split("_")[1];
-		url = $("#img"+thumb_id).attr("src")
-		$("#lightbox_img_id_pubview").attr("src",url);
-		$("#lightbox_img_id_pubview").attr("value",thumb_id);
-		$("#detail_image").attr("value",thumb_id);
 		img_width = $('#lightbox_img_id_pubview').width();
 		$('#publish_caption').css('width',img_width);
 	});
 
-/*CLOSE*/
+	/*CLOSE*/
 	$('.close_all').click(function(){
 		close_box(true);
 	});
@@ -42,8 +57,7 @@ console.log(window.location.href );
 		close_box();
 	});
 
-
-/*FUNCTIONS*/
+	/*FUNCTIONS*/
 	function close_box(state)
 	{
 		$("body").css("overflow", "");
@@ -63,27 +77,32 @@ console.log(window.location.href );
 		}
 	}
 
-/*AJAX for posting*/
-	function detail_image(thumb_id) {
-		$.ajax({
-			url : "detail_image/", // the endpoint
-			type : "POST", // http method
-			data : { image_id : thumb_id }, // data sent with the post request
-			// handle a successful response
-			success : function(json) {
-				$('#detail_image_title').html(""+json.image_title);
-				$('#detail_image_author').html(""+json.image_author);
-				$('#publish_image_title').html(""+json.image_title);
-				$('#publish_image_author').html(""+json.image_author);
-			},
-			// handle a non-successful response
-			error : function(xhr,errmsg,err) {
-				console.log(xhr.status + ": " + xhr.responseText);
-			}
-		});
+	/*AJAX for detail*/
+	function get_image_info(my_id) {
+		if(my_id > 0){
+			$.ajax({
+				url : "detail_image/", // the endpoint
+				type : "POST", // http method
+				data : { image_id : my_id }, // data sent with the post request
+				// handle a successful response
+				success : function(json) {
+					$('#detail_image_title').html(""+json.image_title);
+					$('#detail_image_author').html(""+json.image_author);
+					$('#lightbox_img_id_detail').attr('src',""+json.image_filename);
+					$('#publish_image_title').html(""+json.image_title);
+					$('#publish_image_author').html(""+json.image_author);
+					$('#lightbox_img_id_pubview').attr('src',""+json.image_filename);
+					COUNT_OF_ALL_IMAGES = json.image_count;
+				},
+				// handle a non-successful response
+				error : function(xhr,errmsg,err) {
+					console.log(xhr.status + ": " + xhr.responseText);
+				}
+			});
+		}
 	};
 
-/*AJAX_Setuo for django csrf*/
+	/*AJAX_Setup for django csrf*/
 		function csrfSafeMethod(method) {
 		// these HTTP methods do not require CSRF protection
 		return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -97,7 +116,9 @@ console.log(window.location.href );
 	});
 });
 
+/*RESIZE*/
 $(window).resize(function(){
+	var img_width;
     img_width = $('#lightbox_img_id_pubview').width();
 	$('#publish_caption').css('width',img_width);
 

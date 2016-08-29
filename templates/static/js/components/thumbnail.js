@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function() {
     $('#content').imagesLoaded( function() {
     console.log('#container background image loaded');

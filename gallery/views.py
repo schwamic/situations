@@ -136,6 +136,8 @@ def detail_image(request):
         response_data = {}
         response_data['image_title'] = image.title
         response_data['image_author'] = image.author
+        response_data['image_filename'] = '/media/'+image.filename
+        response_data['image_count'] = Image.objects.count()
 
         return HttpResponse(
             json.dumps(response_data),

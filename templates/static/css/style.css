@@ -7455,31 +7455,33 @@ body {
       margin-top: 2px; }
 
 /* MIXIN and VARIABLES */
-/* SASS */
-/* line 26, ../sass/components/_lightbox.scss */
+/*#############################################################################*/
+/*############################ BASE LIGHTBOX ################################*/
+/*#############################################################################*/
+/* line 28, ../sass/components/_lightbox.scss */
 .img_caption {
   text-align: center;
   margin-top: 18px; }
-  /* line 29, ../sass/components/_lightbox.scss */
+  /* line 31, ../sass/components/_lightbox.scss */
   .img_caption p {
     font-size: 0.7em;
     margin-bottom: 0px; }
-  /* line 33, ../sass/components/_lightbox.scss */
+  /* line 35, ../sass/components/_lightbox.scss */
   .img_caption h6 {
     font-size: 10px;
     margin: 0px;
     margin-bottom: 10px;
     margin-top: 2px; }
 
-/* line 41, ../sass/components/_lightbox.scss */
+/* line 43, ../sass/components/_lightbox.scss */
 input {
   border-radius: 0px !important; }
 
-/* line 45, ../sass/components/_lightbox.scss */
+/* line 47, ../sass/components/_lightbox.scss */
 textarea {
   border-radius: 0px !important; }
 
-/* line 49, ../sass/components/_lightbox.scss */
+/* line 51, ../sass/components/_lightbox.scss */
 .form-control-sm {
   border-radius: 0;
   cursor: pointer;
@@ -7493,7 +7495,7 @@ textarea {
 /*#############################################################################*/
 /*############################ DETAIL LIGHTBOX ################################*/
 /*#############################################################################*/
-/* line 65, ../sass/components/_lightbox.scss */
+/* line 67, ../sass/components/_lightbox.scss */
 .lightbox_detailview {
   margin-left: 0px;
   margin-right: 0px;
@@ -7507,36 +7509,36 @@ textarea {
   overflow: scroll;
   z-index: 500; }
 
-/* line 78, ../sass/components/_lightbox.scss */
+/* line 80, ../sass/components/_lightbox.scss */
 .box_detail {
   display: none;
   height: auto; }
-  /* line 82, ../sass/components/_lightbox.scss */
+  /* line 84, ../sass/components/_lightbox.scss */
   .box_detail img {
     margin: 0 auto; }
-  /* line 85, ../sass/components/_lightbox.scss */
+  /* line 87, ../sass/components/_lightbox.scss */
   .box_detail p {
     text-align: center; }
-  /* line 89, ../sass/components/_lightbox.scss */
+  /* line 91, ../sass/components/_lightbox.scss */
   .box_detail h6 {
     text-align: center; }
-  /* line 92, ../sass/components/_lightbox.scss */
+  /* line 94, ../sass/components/_lightbox.scss */
   .box_detail button {
     display: block;
     margin: 0 auto;
     margin-top: 18px;
     margin-bottom: 76px; }
 
-/* line 101, ../sass/components/_lightbox.scss */
+/* line 103, ../sass/components/_lightbox.scss */
 .close {
   float: right;
   cursor: pointer; }
-  /* line 104, ../sass/components/_lightbox.scss */
+  /* line 106, ../sass/components/_lightbox.scss */
   .close img {
     height: 40px;
     width: 40px; }
 
-/* line 110, ../sass/components/_lightbox.scss */
+/* line 112, ../sass/components/_lightbox.scss */
 .lightclose {
   position: absolute;
   width: 100%;
@@ -7544,11 +7546,11 @@ textarea {
   top: 15px;
   left: -15px;
   z-index: 500; }
-  /* line 117, ../sass/components/_lightbox.scss */
+  /* line 119, ../sass/components/_lightbox.scss */
   .lightclose img {
     float: right; }
 
-/* line 122, ../sass/components/_lightbox.scss */
+/* line 124, ../sass/components/_lightbox.scss */
 .backdrop_detail {
   position: absolute;
   top: 0px;
@@ -7564,7 +7566,7 @@ textarea {
   display: none;
   z-index: 501; }
 
-/* line 130, ../sass/components/_lightbox.scss */
+/* line 132, ../sass/components/_lightbox.scss */
 #lightbox_img_id_detail {
   display: block;
   width: auto;
@@ -7573,43 +7575,43 @@ textarea {
   margin-top: 110px;
   z-index: 600; }
 
-/* line 140, ../sass/components/_lightbox.scss */
+/* line 142, ../sass/components/_lightbox.scss */
 .col_wrap {
   display: table;
   padding: 0;
   height: 100vh; }
 
-/* line 146, ../sass/components/_lightbox.scss */
+/* line 148, ../sass/components/_lightbox.scss */
 .next_wrap {
   float: right;
   cursor: pointer; }
 
-/* line 151, ../sass/components/_lightbox.scss */
+/* line 153, ../sass/components/_lightbox.scss */
 .col_next {
   cursor: pointer;
   display: table-cell;
   vertical-align: middle; }
 
-/* line 158, ../sass/components/_lightbox.scss */
+/* line 160, ../sass/components/_lightbox.scss */
 #next_img {
   width: 50px;
   height: 50px;
   float: right;
   margin: 7px; }
 
-/* line 167, ../sass/components/_lightbox.scss */
+/* line 169, ../sass/components/_lightbox.scss */
 .col_pref {
   cursor: pointer;
   display: table-cell;
   vertical-align: middle; }
 
-/* line 173, ../sass/components/_lightbox.scss */
+/* line 175, ../sass/components/_lightbox.scss */
 #pref_img {
   width: 50px;
   height: 50px;
   margin: 7px; }
 
-/* line 180, ../sass/components/_lightbox.scss */
+/* line 182, ../sass/components/_lightbox.scss */
 .detail_nav {
   position: fixed;
   width: 100vw;
@@ -7619,35 +7621,35 @@ textarea {
 /*#############################################################################*/
 /*########################### PUBLISH LIGHTBOX ################################*/
 /*#############################################################################*/
-/* line 190, ../sass/components/_lightbox.scss */
+/* line 192, ../sass/components/_lightbox.scss */
 .form_wrapper {
   padding-top: 110px; }
   @media screen and (max-width: 767px) {
-    /* line 190, ../sass/components/_lightbox.scss */
+    /* line 192, ../sass/components/_lightbox.scss */
     .form_wrapper {
       padding-top: 150px; } }
-  /* line 195, ../sass/components/_lightbox.scss */
+  /* line 197, ../sass/components/_lightbox.scss */
   .form_wrapper .col_form {
     height: 508px; }
 
-/* line 199, ../sass/components/_lightbox.scss */
+/* line 201, ../sass/components/_lightbox.scss */
 .publish_form {
   float: right;
   width: 80%;
   max-width: 500px; }
   @media screen and (max-width: 767px) {
-    /* line 199, ../sass/components/_lightbox.scss */
+    /* line 201, ../sass/components/_lightbox.scss */
     .publish_form {
       float: none;
       width: 100%;
       margin: 0 auto; } }
-  /* line 209, ../sass/components/_lightbox.scss */
+  /* line 211, ../sass/components/_lightbox.scss */
   .publish_form .custom-select {
     width: 100px; }
-  /* line 212, ../sass/components/_lightbox.scss */
+  /* line 214, ../sass/components/_lightbox.scss */
   .publish_form .form-control {
     font-size: 12px; }
-  /* line 216, ../sass/components/_lightbox.scss */
+  /* line 218, ../sass/components/_lightbox.scss */
   .publish_form label {
     width: 150px;
     font-size: 12px;
@@ -7656,7 +7658,7 @@ textarea {
     margin-top: 0px;
     margin-bottom: 0px;
     padding-top: 8px; }
-  /* line 226, ../sass/components/_lightbox.scss */
+  /* line 228, ../sass/components/_lightbox.scss */
   .publish_form .btn_form {
     position: absolute;
     left: 0px;
@@ -7667,21 +7669,21 @@ textarea {
     width: 200%;
     margin-top: 50px;
     margin-bottom: 50px; }
-    /* line 228, ../sass/components/_lightbox.scss */
+    /* line 230, ../sass/components/_lightbox.scss */
     .publish_form .btn_form .btn {
       margin-top: 40px; }
     @media screen and (max-width: 767px) {
-      /* line 226, ../sass/components/_lightbox.scss */
+      /* line 228, ../sass/components/_lightbox.scss */
       .publish_form .btn_form {
         width: 100%; } }
 
-/* line 246, ../sass/components/_lightbox.scss */
+/* line 248, ../sass/components/_lightbox.scss */
 .btn_publish {
   display: block;
   margin: 0 auto;
   margin-bottom: 26px; }
 
-/* line 252, ../sass/components/_lightbox.scss */
+/* line 254, ../sass/components/_lightbox.scss */
 .box_pubview {
   overflow-x: scroll;
   position: fixed;
@@ -7691,20 +7693,20 @@ textarea {
   width: 100%;
   z-index: 51;
   display: none; }
-  /* line 262, ../sass/components/_lightbox.scss */
+  /* line 264, ../sass/components/_lightbox.scss */
   .box_pubview .col_img {
     height: 508px;
     max-width: 660px;
     display: table; }
     @media screen and (max-width: 767px) {
-      /* line 262, ../sass/components/_lightbox.scss */
+      /* line 264, ../sass/components/_lightbox.scss */
       .box_pubview .col_img {
         display: none; } }
-    /* line 270, ../sass/components/_lightbox.scss */
+    /* line 272, ../sass/components/_lightbox.scss */
     .box_pubview .col_img .col_img_center {
       display: table-cell;
       vertical-align: middle; }
-  /* line 276, ../sass/components/_lightbox.scss */
+  /* line 278, ../sass/components/_lightbox.scss */
   .box_pubview .col_img:before {
     /* create a full-height inline block pseudo=element */
     content: ' ';
@@ -7712,18 +7714,18 @@ textarea {
     vertical-align: middle;
     /* vertical alignment of the inline element */
     height: 100%; }
-  /* line 283, ../sass/components/_lightbox.scss */
+  /* line 285, ../sass/components/_lightbox.scss */
   .box_pubview .publish_img {
     max-width: 75%;
     max-height: 427px; }
 
-/* line 289, ../sass/components/_lightbox.scss */
+/* line 291, ../sass/components/_lightbox.scss */
 .lightbox_publishview {
   margin-left: 0px;
   margin-right: 0px;
   z-index: 500; }
 
-/* line 294, ../sass/components/_lightbox.scss */
+/* line 296, ../sass/components/_lightbox.scss */
 .backdrop_pubview {
   position: absolute;
   margin-right: 0px;
@@ -7738,7 +7740,7 @@ textarea {
   z-index: 600;
   display: none; }
 
-/* line 309, ../sass/components/_lightbox.scss */
+/* line 311, ../sass/components/_lightbox.scss */
 .no_margin_bottom {
   margin-bottom: 0px !important; }
 
