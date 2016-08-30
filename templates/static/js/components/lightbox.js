@@ -10,7 +10,6 @@ $(document).ready(function(){
 		$(".lightbox_detailview").fadeIn(300);
 		$('.backdrop_detail').fadeIn(300);
 		$('.box_detail').fadeIn(300);
-
 		IMAGE_ID = (""+$(this).attr("id")).split("_")[1];
 		$("#detail_image").attr("value",IMAGE_ID);
 		get_image_info(IMAGE_ID);
