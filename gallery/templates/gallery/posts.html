@@ -3,33 +3,183 @@
 {% block title %}Situations - Posts{% endblock %}
 
 {% block content %}
-<div class="row">
+
+{% load staticfiles %}
+<!-- thumbnail -->
+<div class="row thumbgallery" id="abd">
     {% for post in object_list %}
     <div class="col-sm-4 col-md-4 thumbscope">
-        <div class="thumbnail">
-            <img id="img{{post.id}}"
-                 class="img-fluid"
-                 src="/media/{{post.image.filename}}"
-                 alt="{{post.image.title}}">
+        <a class="lightbox_detail" id="lightbox_{{post.image.id}}"> <!-- no href-->
+            <div class="thumbnail">
+                <img id="img{{post.image.id}}" class="img-fluid" src="/media/small/{{post.image.filename}}"
+                     alt="{{post.image.title}}">
 
-            <div class="caption">
-                <p>{{ post.publishing_date|date }}</p>
-                <p>{{ post.publisher.get_gender_display }}</p>
-                <p>{{ post.publisher.loaction }}</p>
+                <div class="caption">
+                    <div class="caption_text">
+                        <p>{{ post.publishing_date|date }}</p>
 
-                <hr>
+                        <p>{{ post.publisher.get_gender_display }}</p>
 
-                <p>Image-Title:</p>
-                <p>{{ post.image.title }}</p>
-                <p>Image-Author:</p>
-                <p>{{ post.image.author }}</p>
+                        <p>{{ post.publisher.loaction }}</p>
 
-                <button id="lightbox_{{image.id}}">Show More Data</button>
+                        <hr width="150px">
+
+                        <p>Image-Title:</p>
+
+                        <p>{{ post.image.title }}</p>
+
+                        <p>Image-Author:</p>
+
+                        <p>{{ post.image.author }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     {% empty %}
     <div class="thumbnail"><p>No images yet.</p></div>
-    {% endfor %}
 </div>
+{% endfor %}
+
+<!-- lightbox detailview -->
+<div class="lightbox_detailview">
+    <div class="row backdrop_detail">
+        <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
+            <div id="show_pref" class="col-xs-2 col-sm-1 col-md-1 col_wrap">
+                <div class="col_pref">
+                    <img id="pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
+                </div>
+            </div>
+            <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+            <div id="show_next" class="col-xs-2 col-sm-1 col-md-1 col_wrap next_wrap">
+                <div class="col_next">
+                    <img id="next_img" src="{% static 'img/next.svg' %}" alt="next">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-sm-10 col-md-10 col-xs-push-2 col-sm-push-1 col-md-push-1 box_detail">
+            <!-- new stuff -->
+            <!-- fromview -->
+            <div class="row detail_wrapper">
+                <div class="col-sx-12 col-sm-6 col-md-6 col_group_wrapper">
+
+                    <!-- new stuff -->
+                    <div class="list_group_wrapper">
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">ID</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">test test test test test test test</p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Date of Publication</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">test test test test test test test</p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Gender</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">test test test test test test test</p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Occupation</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">test test test test test test test</p>
+                            </div>
+                        </div>
+
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Age</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">test test test test test test test</p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Location</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">test test test test test test test</p>
+                            </div>
+                        </div>
+
+                        <hr width="60%">
+
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Describe the image</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">The Refusal of Time is essentially a
+                                    room-sized, filmic machine—a mechanized
+                                    Plato's cave in which five video
+                                    projections surround the viewer and the
+                                    whole seems to be run by a pumping,
+                                    organlike sculpture at center. Through
+                                    a series of half-hour episodes,
+                                    Kentridge intersperses images of
+                                    antiquated devices for measuring time.</p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Why did I choose this image?</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list-group-item-text">The reason I chose this image is
+                                    random. I like cars, they make me
+                                    really happy. And this image doesn’t
+                                    show any car. So maybe subconsciously I
+                                    was thinking about cars but then I saw
+                                    this image which has nothing to with
+                                    cars and it made me think about cars so
+                                    I thought, well, maybe it makes other
+                                    people think about cars as well. So I
+                                    chose it. As simple is that.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col_img high_wrapper">
+                    <div class="col_img_center">
+                        <div class="detail_post_placeholder">
+                            <img id="lightbox_img_postview" class="img-fluid publish_img" src="#" alt="#">
+                        </div>
+                        <div id="publish_caption" class="img_caption">
+                            <p>Image-Title:</p>
+                            <h6 id="publish_image_title"></h6>
+
+                            <p>Image-Author:</p>
+                            <h6 id="publish_image_author" class="no_margin_bottom"></h6>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">Socials</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
+
+
+
+
+
+
+

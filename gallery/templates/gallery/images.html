@@ -64,7 +64,7 @@
     <div class="col-sm-2 col-md-2 thumbscope">
         <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
             <div class="thumbnail">
-                <img id="img{{image.id}}" class="img-fluid" src="/media/{{image.filename}}" alt="{{image.title}}">
+                <img id="img{{image.id}}" class="img-fluid" src="/media/small/{{image.filename}}" alt="{{image.title}}">
 
                 <div class="caption">
                     <div class="caption_text">
@@ -100,8 +100,9 @@
             </div>
         </div>
         <div class="col-xs-8 col-sm-10 col-md-10 col-xs-push-2 col-sm-push-1 col-md-push-1 box_detail">
-            <img id="lightbox_img_detail" class="img-fluid" src="#" alt="no found">
-
+            <div class="image-placeholder">
+                <img id="lightbox_img_detail" class="img-fluid" src="#" alt="no found">
+            </div>
             <div class="img_caption">
                 <p>Image-Title:</p>
                 <h6 id="detail_image_title"></h6>
