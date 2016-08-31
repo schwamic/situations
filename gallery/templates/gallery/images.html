@@ -64,7 +64,7 @@
     <div class="col-sm-2 col-md-2 thumbscope">
         <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
             <div class="thumbnail">
-                <img id="img{{image.id}}" class="img-fluid" src="/media/small/{{image.filename}}" alt="{{image.title}}">
+                <img id="img{{image.id}}" class="img-fluid" src="/media/600x600/{{image.filename}}" alt="{{image.title}}">
 
                 <div class="caption">
                     <div class="caption_text">
@@ -89,7 +89,7 @@
         <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
             <div id="show_pref" class="col-xs-2 col-sm-1 col-md-1 col_wrap">
                 <div class="col_pref">
-                    <img id="pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
+                    <img class="pref_img" id="pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
                 </div>
             </div>
             <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
@@ -239,7 +239,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col_img">
                     <div class="col_img_center">
-                        <img id="lightbox_img_pubview" class="img-fluid publish_img" src="#" alt="#">
+                        <img id="lightbox_img_pubview" class="lightbox_img_center img-fluid publish_img" src="#" alt="#">
                         <div id="publish_caption" class="img_caption">
                             <p>Image-Title:</p>
                             <h6 id="publish_image_title"></h6>

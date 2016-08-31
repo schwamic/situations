@@ -212,8 +212,9 @@ def detail_post(request):
         response_data['post_publishing_date'] = str(post.publishing_date.date())
         response_data['publisher_gender'] = choices.GENDER_CHOICES[int(post.publisher.gender)][1]
         response_data['publisher_occupation'] = choices.OCCUPATION_CHOICES[int(post.publisher.occupation)][1]
-        #response_data['publisher_age'] = post.publisher.age
-        #response_data['publisher_location'] = post.publisher.city #noch anpassen
+        #response_data['publisher_age'] = choices.YEAR_BORN[post.publisher.year_of_birth][1]
+        response_data['publisher_age'] = str(post.publisher.year_of_birth)
+        response_data['publisher_location'] = str(post.publisher.city)+', '+str(post.publisher.country)
         #response_data['publisher_active_time'] = post.publisher.active_time
         response_data['post_description'] = post.description
         response_data['post_reason'] = post.reason
