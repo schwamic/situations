@@ -1,2 +1,4 @@
 "use strict";
-$('#welcomeModal').modal('show');
+$(document).ready(function(){
+    $('#welcomeModal').modal('show');
+});

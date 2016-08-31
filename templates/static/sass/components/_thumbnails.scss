@@ -1,5 +1,10 @@
+$xs: 767px;
+
 .thumbgallery{
     margin-bottom: 5vw;
+    	@media screen and (max-width: $xs) {
+         margin-bottom: 50px;
+        }
     margin-top: 3vw;
     hr{
         border-top: 1px solid #090909;
