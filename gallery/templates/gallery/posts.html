@@ -9,7 +9,7 @@
 <div class="row thumbgallery" id="abd">
     {% for post in object_list %}
     <div class="col-sm-4 col-md-4 thumbscope">
-        <a class="lightbox_detail" id="lightbox_{{post.image.id}}"> <!-- no href-->
+        <a class="lightbox_post" id="lightbox_{{post.id}}"> <!-- no href-->
             <div class="thumbnail">
                 <img id="img{{post.image.id}}" class="img-fluid" src="/media/small/{{post.image.filename}}"
                      alt="{{post.image.title}}">
@@ -47,11 +47,11 @@
         <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
             <div id="show_pref" class="col-xs-2 col-sm-1 col-md-1 col_wrap">
                 <div class="col_pref">
-                    <img id="pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
+                    <img id="post_pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
                 </div>
             </div>
             <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
-            <div id="show_next" class="col-xs-2 col-sm-1 col-md-1 col_wrap next_wrap">
+            <div id="post_show_next" class="col-xs-2 col-sm-1 col-md-1 col_wrap next_wrap">
                 <div class="col_next">
                     <img id="next_img" src="{% static 'img/next.svg' %}" alt="next">
                 </div>

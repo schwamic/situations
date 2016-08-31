@@ -102,6 +102,17 @@ textarea{
 .image-placeholder{
 	width: 100%;
 	height: 500px;
+	width: 100%;
+    height: 480px;
+    position: relative;
+    display: table;
+    margin-top: 110px;
+
+    .placeholder_center_imgage{
+    display: table-cell;
+	vertical-align: middle;
+    }
+
 	/*
 	max-width: 500px;
 	background: url(../img/loading.gif);
@@ -110,10 +121,7 @@ textarea{
 	background-position: center center;
 	background-color: #eee;
 	*/
-	img{
-		width: 100%;
-		height: 100%;
-	}
+
 }
 
 .lightclose{
@@ -144,9 +152,10 @@ textarea{
 #lightbox_img_detail{
 	display: block;
     width: auto;
+    height: auto;
     max-width: 60vw;
     max-height: 480px;
-    margin-top: 110px;
+	margin: 0 auto;
     z-index: 600;
 }
 
@@ -244,10 +253,6 @@ textarea{
 			}
 
 			.btn_form{
-
-				.btn{
-					margin-top: 40px;
-				}
 				position: absolute;
 				left: 0px;
 				margin: 0 auto;
@@ -269,6 +274,7 @@ textarea{
 	display: block;
     margin: 0 auto;
     margin-bottom: 26px;
+    margin-top: 49px;
 }
 
 .box_pubview{
