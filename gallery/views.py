@@ -4,10 +4,12 @@ from django.http import Http404, HttpResponse
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from situations import settings
 from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
 import json
+import urllib.request
 
 """
 use this url to access images (for now):
@@ -64,6 +66,7 @@ class ImagesView(generic.ListView):
         context['my_publisher_id'] = self.publisher.id
         context['gender_choices'] = choices.GENDER_CHOICES
         context['occupation_choices'] = choices.OCCUPATION_CHOICES
+        context['year_choices'] = choices.YEAR_BORN
 
         print(context)
         return context
@@ -86,32 +89,69 @@ class ThankYouView(generic.DetailView):
 
 
 def publish(request, publisher_id):
-
-    #get current publisher object
+    # get current publisher object
     publisher = get_object_or_404(Publisher, pk=publisher_id)
-    #add all attr
+
+    # add publisher attributes
     publisher.gender = int(request.POST['gender'])
     publisher.occupation = int(request.POST['occupation'])
-    #publisher.year_of_birth = int(request.POST['year_of_birth'])
+    publisher.year_of_birth = int(request.POST['year_of_birth'])
+    if request.POST['latitude'] != 'no_entry':
+        # get additional geo data using google geo code api
+        publisher.latitude = float(request.POST['latitude'])
+        publisher.longitude = float(request.POST['longitude'])
 
-    #post
-    description = request.POST['describtion']
+        google_reverse_geo_code_url =\
+            'https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
+                publisher.latitude, publisher.longitude, settings.GOOGLE_API_KEY
+            )
+        google_api_response = urllib.request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+        geo_data = json.loads(google_api_response)
+
+        for result in geo_data['results']:
+            for address_component in result['address_components']:
+                if address_component['types'] == ['locality', 'political']:
+                    publisher.city = address_component['long_name']
+                    break
+                if address_component['types'] == ['administrative_area_level_1', 'political']:
+                    publisher.region = address_component['short_name']
+                    break
+                if address_component['types'] == ['country', 'political']:
+                    publisher.country = address_component['long_name']
+                    break
+
+    else:
+        # geo locating via geoIP2 --- FALLBACK
+        user_ip = get_client_ip(request)
+        g = GeoIP2()
+
+        if settings.DEBUG:
+            location = g.city('128.101.101.101')  # dummy ip for testing, localhost wont work
+            print('user dummy ip: %s (debug true -> ip using: 128.101.101.101' % user_ip)
+        else:
+            location = g.city(user_ip)
+
+        publisher.city = location['city']
+        publisher.region = location['region']
+        publisher.country = location['country_name']
+        publisher.latitude = location['latitude']
+        publisher.longitude = location['longitude']
+
+    if settings.DEBUG:
+        print('city: %s' % publisher.city)
+        print('region: %s' % publisher.region)
+        print('country: %s' % publisher.country)
+        print('latitude: %s' % publisher.latitude)
+        print('longitude: %s' % publisher.longitude)
+
+    # post
+    description = request.POST['description']
     reason = request.POST['reason']
     image_id = request.POST.get('image')
     image = get_object_or_404(Image, pk=image_id)
     new_post = Post(image=image, publisher=publisher, description=description, reason=reason)
 
-    # geo locating
-    """
-    user_ip = get_client_ip(request)
-    location = GeoIP2.city(request, user_ip)
-    publisher.city = location.city
-    publisher.country = location.country_name
-    publisher.region = location.region
-    publisher.longitude = location.longitude
-    publisher.latitude = location.latitude
-    """
-    #push to db
+    # push to db
     new_post.save()
     publisher.save()
 
@@ -160,3 +200,12 @@ def detail_image(request):
 #get session
 # #publisher_id=request.session['current_publisher']
 #print(publisher.id)
+
+###########################################################
+#
+#   google dev acc: greif.situations
+#               pw: DasIstSicher123
+#
+#   google api key: AIzaSyBs4ZYShxicQyYy_lZ5cOJlcFUqHHw1V9M
+#
+###########################################################

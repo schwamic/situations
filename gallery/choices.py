@@ -1,3 +1,5 @@
+import datetime
+
 GENDER_MALE = 0
 GENDER_FEMALE = 1
 GENDER_CHOICES = [
@@ -33,21 +35,14 @@ OCCUPATION_CHOICES = [
     (24, 'Production/Manufacturing'),
 ]
 
-YEAR_BORN = [
-    (1990, 'so ein quatsch'),
-    (1991, 'so ein quatsch'),
-    (1992, 'so ein quatsch'),
-    (1993, 'so ein quatsch'),
-    (1994, 'so ein quatsch'),
-    (1995, 'so ein quatsch'),
-    (1996, 'so ein quatsch'),
-    (1997, 'so ein quatsch'),
-    (1998, 'so ein quatsch'),
-    (1999, 'so ein quatsch')
-]
-"""
-MAX_AGE = 110
+
+MIN_AGE = 10
+START_YEAR = 1900
+now = datetime.datetime.now()
+END_YEAR = now.year - MIN_AGE
+
 YEAR_BORN = []
-for x in range(110):
-    YEAR_BORN[x] = (x, 1900 + x)
-"""
+
+for x in range(END_YEAR - START_YEAR):
+    tup1 = (x, END_YEAR - x)
+    YEAR_BORN.append(tup1)

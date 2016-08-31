@@ -133,3 +133,6 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR)+'/situations', 'media')
 
 # GeoIP files
 GEOIP_PATH = BASE_DIR + '/geoip'
+
+# Google API
+GOOGLE_API_KEY = 'AIzaSyBs4ZYShxicQyYy_lZ5cOJlcFUqHHw1V9M'
