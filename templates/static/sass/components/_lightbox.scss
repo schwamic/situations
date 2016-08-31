@@ -71,13 +71,13 @@ textarea{
     position: fixed;
     top: 0px;
     left: 0px;
-    display: none;
     overflow:scroll;
     z-index: 500;
+    background: white;
+    display: none;
 }
 
 .box_detail{
-	display:none;
 	height: auto;
 
 	img{
@@ -99,6 +99,23 @@ textarea{
 	}
 }
 
+.image-placeholder{
+	width: 100%;
+	height: 500px;
+	/*
+	max-width: 500px;
+	background: url(../img/loading.gif);
+	background-size: 64px 64px;
+	background-repeat:no-repeat;
+	background-position: center center;
+	background-color: #eee;
+	*/
+	img{
+		width: 100%;
+		height: 100%;
+	}
+}
+
 .lightclose{
 	cursor:pointer;
 	float:right;
@@ -117,7 +134,7 @@ textarea{
 
 .backdrop_detail{
 	@include backdrop();
-	display:none;
+	/*display:none;*/
 	margin-right: 0px;
     margin-left: 0px;
 	z-index: 501;
@@ -196,52 +213,55 @@ textarea{
         }
 	.col_form{
 		height: $publish_col_height;
-	}
-}
-.publish_form{
-	float: right;
-	width: 80%;
 
-	@media screen and (max-width: $xs) {
-        float: none;
-		width: 100%;
-		margin: 0 auto;
-        }
-    max-width: 500px;
-	.custom-select{
-		width: 100px;
-	}
-	.form-control{
-		font-size: 12px;
-	}
+		.publish_form{
+			float: right;
+			width: 80%;
 
-	label{
-		width: 150px;
-		font-size: 12px;
-		text-align: right;
-		float: right;
-		margin-top: 0px;
-    	margin-bottom: 0px;
-    	padding-top: 8px;
-	}
+			@media screen and (max-width: $xs) {
+				float: none;
+				width: 100%;
+				margin: 0 auto;
+				}
+			max-width: 500px;
 
-	.btn_form{
+			.custom-select{
+				width: 100px;
+			}
 
-		.btn{
-			margin-top: 40px;
+			.form-control{
+				font-size: 12px;
+			}
+
+			label{
+				width: 150px;
+				font-size: 12px;
+				text-align: right;
+				float: right;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				padding-top: 8px;
+			}
+
+			.btn_form{
+
+				.btn{
+					margin-top: 40px;
+				}
+				position: absolute;
+				left: 0px;
+				margin: 0 auto;
+				right: 0px;
+				top: 480px;
+				border: 0px;
+				width: 200%;
+				margin-top: 50px;
+				margin-bottom: 50px;
+			@media screen and (max-width: $xs) {
+				width: 100%;
+				}
+			}
 		}
-		position: absolute;
-		left: 0px;
-		margin: 0 auto;
-		right: 0px;
-		top: 480px;
-		border: 0px;
-		width: 200%;
-		margin-top: 50px;
-   		margin-bottom: 50px;
-	@media screen and (max-width: $xs) {
-        width: 100%;
-        }
 	}
 }
 
@@ -259,38 +279,31 @@ textarea{
 	height:100%;
 	width: 100%;
 	z-index:51;
-	display:none;
-
-	.col_img{
-		@media screen and (max-width: $xs) {
-        display: none;
-        }
-		height: $publish_col_height;
-		max-width: 660px;
-		display: table;
-
-		.col_img_center{
-			display: table-cell;
-			vertical-align: middle;
-		}
-	}
-
-	.col_img:before {    /* create a full-height inline block pseudo=element */
-		content: ' ';
-		display: inline-block;
-		vertical-align: middle;  /* vertical alignment of the inline element */
-		height: 100%;
 }
 
-	.publish_img{
+.col_img{								/*table_img_center*/
+	height: $publish_col_height;
+	max-width: 660px;
+	display: table;
+	@media screen and (max-width: $xs) {
+		display: none;
+	}
+
+	.col_img_center{					/*table_cell_img_center*/
+		display: table-cell;
+		vertical-align: middle;
+
+		.publish_img{					/*img_center*/
 		max-width: 75%;
-    	max-height: 427px;;
+		max-height: 427px;
+		}
 	}
 }
 
 .lightbox_publishview{
 	@include lightbox(0px);
 	z-index: 500;
+	/*display: none;*/
 }
 
 .backdrop_pubview{
@@ -308,4 +321,33 @@ textarea{
 
 .no_margin_bottom{
 		margin-bottom: 0px !important;
+}
+
+
+/*#############################################################################*/
+/*############################ POST LIGHTBOX ##################################*/
+/*#############################################################################*/
+
+
+.col_group_wrapper{
+	height: 100vh;
+    display: table;
+}
+
+.list_group_wrapper{
+	margin-top: 100px;
+	display: table-cell;
+	vertical-align: middle;
+
+	p{
+		text-align: left;
+	}
+
+	h6{
+		text-align: right;
+	}
+}
+
+.high_wrapper{
+    height: 100vh !important;
 }
