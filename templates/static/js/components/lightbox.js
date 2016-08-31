@@ -12,6 +12,7 @@ $(document).ready(function(){
 		$("body").css("overflow", "hidden");
 		$(".lightbox_detailview").hide(0).fadeIn(300);
 		IMAGE_ID = (""+$(this).attr("id")).split("_")[1];
+		$("#detail_image").attr("value",IMAGE_ID);
 		get_image_info(IMAGE_ID);
 	});
 
@@ -79,6 +80,7 @@ $(document).ready(function(){
 
 	/*PUBLISHVIEW*/
 	$('.btn_publishview').click(function(event){
+		getLocation();
 		//$('.lightbox_publishview').fadeIn(300);
 		$('.backdrop_pubview').fadeIn(300);
 		resizeCaption();

@@ -199,7 +199,7 @@ def detail_post(request):
         response_data = {}
 
         response_data['publisher_id'] = str(random.randint(100000, 999999))+'-'+str(post.publisher.id)
-        response_data['post_publishing_date'] = str(post.publishing_date.date())
+        #response_data['post_publishing_date'] = str(post.publishing_date.date())
         response_data['publisher_gender'] = choices.GENDER_CHOICES[int(post.publisher.gender)][1]
         response_data['publisher_occupation'] = choices.OCCUPATION_CHOICES[int(post.publisher.occupation)][1]
         #response_data['publisher_age'] = post.publisher.age
