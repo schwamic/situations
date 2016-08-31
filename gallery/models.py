@@ -14,8 +14,8 @@ class Publisher(models.Model):
     city = models.CharField(max_length=50, blank=True, null=True)
     country = models.CharField(max_length=50, blank=True, null=True)
     region = models.CharField(max_length=50, blank=True, null=True)
-    longitude = models.IntegerField(blank=True, null=True)
-    latitude = models.IntegerField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     active_time = models.DurationField('time spent to publish', blank=True, null=True)
 
