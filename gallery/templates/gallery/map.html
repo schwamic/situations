@@ -1,9 +1,17 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}Situations - Map{% endblock %}
 
 {% block content %}
-<p>
-    A map will be displayed here, containing all publishers locations.
-</p>
+<div id="map"></div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script>
+        var publisher_data = {{ publisher_data|safe }};
+        initializeMap(publisher_data, '#9922CC', '#FFFFFF');
+    </script>
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}Situations - Images{% endblock %}
 
 {% block content %}
-{% load staticfiles %}
 <!-- modal -->
 <div class="modal" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true"
@@ -254,4 +254,8 @@
     </div>
 </div>
 <div class="prefix"></div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/geo_location.js' %}"></script>
 {% endblock %}

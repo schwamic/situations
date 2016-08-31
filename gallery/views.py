@@ -1,5 +1,5 @@
 from django.contrib.gis.geoip2 import GeoIP2
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.http import Http404, HttpResponse
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -8,6 +8,8 @@ from situations import settings
 from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
+from django.core.serializers.json import DjangoJSONEncoder
+from django.core import serializers
 import json
 import random
 import urllib.request
@@ -74,8 +76,16 @@ class ImagesView(generic.ListView):
 
 
 class MapView(generic.ListView):
-    model = Post
     template_name = 'gallery/map.html'
+
+    def get_queryset(self):
+        return Publisher.objects.filter(is_active=False).exclude(latitude__isnull=True, longitude__isnull=True)
+
+    def get_context_data(self, **kwargs):
+        context = super(MapView, self).get_context_data(**kwargs)
+        context['publisher_data'] = serializers.serialize("json", self.get_queryset())
+
+        return context
 
 
 class PostsView(generic.ListView):
