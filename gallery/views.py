@@ -9,6 +9,7 @@ from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
 import json
+import random
 import urllib.request
 
 """
@@ -178,6 +179,40 @@ def detail_image(request):
         response_data['image_author'] = image.author
         response_data['image_filename'] = '/media/'+image.filename
         response_data['image_count'] = Image.objects.count()
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+
+def detail_post(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, pk=post_id)
+        print(post_id)
+
+        response_data = {}
+
+        response_data['publisher_id'] = str(random.randint(100000, 999999))+'-'+str(post.publisher.id)
+        response_data['post_publishing_date'] = str(post.publishing_date.date())
+        response_data['publisher_gender'] = choices.GENDER_CHOICES[int(post.publisher.gender)][1]
+        response_data['publisher_occupation'] = choices.OCCUPATION_CHOICES[int(post.publisher.occupation)][1]
+        #response_data['publisher_age'] = post.publisher.age
+        #response_data['publisher_location'] = post.publisher.city #noch anpassen
+        #response_data['publisher_active_time'] = post.publisher.active_time
+        response_data['post_description'] = post.description
+        response_data['post_reason'] = post.reason
+
+        response_data['image_author'] = post.image.author
+        response_data['image_title'] = post.image.title
+        response_data['image_filename'] = '/media/'+post.image.filename
+        response_data['post_count'] = Post.objects.count()
+
 
         return HttpResponse(
             json.dumps(response_data),

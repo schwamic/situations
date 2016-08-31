@@ -1,23 +1,30 @@
 "use strict";
 $(document).ready(function(){
 	var COUNT_OF_ALL_IMAGES = -1;
+	var COUNT_OF_ALL_POSTS = -1;
 	var IMAGE_ID = -1;
+	var POST_ID = -1;
 	var img_width;
 
 	/*DETAILVIEW*/
+	/*Images*/
 	$('.lightbox_detail').click(function(event){
 		$("body").css("overflow", "hidden");
 		$(".lightbox_detailview").hide(0).fadeIn(300);
-		//$(".backdrop_detail").fadeIn(300);
-
 		IMAGE_ID = (""+$(this).attr("id")).split("_")[1];
-
 		get_image_info(IMAGE_ID);
+	});
 
-
+	/*Posts*/
+	$('.lightbox_post').click(function(event){
+		$("body").css("overflow", "hidden");
+		$(".lightbox_detailview").hide(0).fadeIn(300);
+		POST_ID = (""+$(this).attr("id")).split("_")[1];
+		get_post_info(POST_ID);
 	});
 
 	/*SLIDER*/
+	/*Images*/
 	$('#show_next').click(function(event){
 		if(IMAGE_ID > 0){
 			IMAGE_ID = parseInt(IMAGE_ID)+1;
@@ -31,7 +38,7 @@ $(document).ready(function(){
 		}
 	});
 
-		$('#show_pref').click(function(event){
+	$('#show_pref').click(function(event){
 		if(IMAGE_ID > 0){
 			IMAGE_ID = parseInt(IMAGE_ID)-1;
 			if(IMAGE_ID <= 0){
@@ -41,9 +48,34 @@ $(document).ready(function(){
 			get_image_info(IMAGE_ID, function(){
 				resizeCaption();
 			});
-
 		}
 	});
+	/*Posts*/
+	$('#post_show_next').click(function(event){
+		if(POST_ID > 0){
+			POST_ID = parseInt(POST_ID)+1;
+				if(POST_ID > COUNT_OF_ALL_POSTS){
+					POST_ID = 1;
+			}
+			get_post_info(POST_ID, function(){
+				resizeCaption();
+			});
+		}
+	});
+
+	$('#post_show_pref').click(function(event){
+		if(POST_ID > 0){
+			POST_ID = parseInt(POST_ID)-1;
+			if(POST_ID <= 0){
+				POST_ID = COUNT_OF_ALL_POSTS;
+			}
+			get_post_info(POST_ID, function(){
+				resizeCaption();
+			});
+		}
+	});
+
+
 
 	/*PUBLISHVIEW*/
 	$('.btn_publishview').click(function(event){
@@ -67,12 +99,9 @@ $(document).ready(function(){
 		$("body").css("overflow", "");
 		if(state){
 				$(".lightbox_detailview").fadeOut(0);
-				//$('.backdrop_detail').fadeOut(300);
-				//$('.lightbox_publishview').fadeOut(500);
 				$('.backdrop_pubview').fadeOut(300);
 		}else{
 				$(".lightbox_detailview").fadeOut(300);
-				//$('.backdrop_detail').fadeOut(300);
 		}
 	}
 
@@ -89,7 +118,7 @@ $(document).ready(function(){
 		$('#publish_caption').css('width',img_width);
 	}
 
-	/*AJAX for detail*/
+	/*AJAX for DETAILVIEW*/
 	function get_image_info(my_id) {
 		if(my_id > 0){
 			$.ajax({
@@ -110,6 +139,31 @@ $(document).ready(function(){
 					$('#publish_image_author').html(""+json.image_author);
 					$('#lightbox_img_pubview').attr('src',""+json.image_filename);
 					COUNT_OF_ALL_IMAGES = json.image_count;
+				},
+				// handle a non-successful response
+				error : function(xhr,errmsg,err) {
+					console.log(xhr.status + ": " + xhr.responseText);
+				}
+			});
+		}
+	};
+
+	/*AJAX for POSTVIEW*/
+	function get_post_info(my_id) {
+		if(my_id > 0){
+			$.ajax({
+				url : "detail_post/", // the endpoint
+				type : "POST", // http method
+				data : { post_id : my_id }, // data sent with the post request
+				// handle a successful response
+				success : function(json) {
+					console.log(json);
+					$('#publish_image_title').html(""+json.image_title);
+					$('#publish_image_author').html(""+json.image_author);
+					$('#lightbox_img_postview').fadeOut(0, function(){
+						$('#lightbox_img_postview').attr('src',""+json.image_filename);
+					}).fadeIn(300);
+					COUNT_OF_ALL_POSTS = json.image_count;
 				},
 				// handle a non-successful response
 				error : function(xhr,errmsg,err) {
