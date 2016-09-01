@@ -12,8 +12,8 @@ from django.core import serializers
 import json
 import random
 import urllib.request
-from django.db.models.signals import pre_delete
-from django.dispatch import receiver
+#from django.db.models.signals import pre_delete
+#from django.dispatch import receiver
 
 """
 use this url to access images (for now):
@@ -22,9 +22,9 @@ its a working uuid in the current db
 """
 
 
-@receiver(pre_delete)
-def my_callback(sender, **kwargs):
-    print("Request finished!")
+#@receiver(pre_delete)
+#def my_callback(sender, **kwargs):
+ #   print("Request finished!")
 
 class ImagesView(generic.ListView):
     model = Image
