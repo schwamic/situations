@@ -84,6 +84,7 @@ class MapView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
         context['publisher_data'] = serializers.serialize("json", self.get_queryset())
+        context['gender_choices'] = json.dumps(choices.GENDER_CHOICES)
 
         return context
 
