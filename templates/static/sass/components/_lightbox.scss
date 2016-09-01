@@ -18,7 +18,8 @@
 
 $publish_col_height: 508px;
 $xs: 767px;
-
+$sm: 991px;
+$md: 1200px;
 
 /*#############################################################################*/
 /*############################ BASE LIGHTBOX ################################*/
@@ -93,7 +94,10 @@ textarea{
 		display: block;
 		margin: 0 auto;
 		margin-top: 18px;
-		margin-bottom: 76px;
+		@media screen and (max-width: $xs) {
+			margin-top: 72px;
+		}
+		margin-bottom: 40px;
 
 	}
 }
@@ -101,6 +105,7 @@ textarea{
 .image-placeholder{
 	width: 100%;
 	height: 500px;
+
 	@media screen and (max-width: $xs) {
 		height: 300px;
 	}
@@ -109,22 +114,18 @@ textarea{
 
     position: relative;
     display: table;
-    margin-top: 110px;
+    margin-top: 150px;
 
     .placeholder_center_imgage{
     display: table-cell;
 	vertical-align: middle;
     }
 
-	/*
-	max-width: 500px;
+
 	background: url(../img/loading.gif);
 	background-size: 64px 64px;
 	background-repeat:no-repeat;
 	background-position: center center;
-	background-color: #eee;
-	*/
-
 }
 
 .lightclose{
@@ -160,6 +161,12 @@ textarea{
     max-height: 480px;
 	margin: 0 auto;
     z-index: 600;
+
+	@media screen and (max-width: $xs) {
+		max-height: 300px;
+	}
+
+
 }
 
 .col_wrap{
@@ -219,10 +226,7 @@ textarea{
 /*########################### PUBLISH LIGHTBOX ################################*/
 /*#############################################################################*/
 .form_wrapper{
-	padding-top: 110px;
-	@media screen and (max-width: $xs) {
-        padding-top: 150px;
-        }
+	padding-top: 150px;
 	.col_form{
 		height: $publish_col_height;
 
@@ -230,7 +234,8 @@ textarea{
 			float: right;
 			width: 80%;
 
-			@media screen and (max-width: $xs) {
+			@media screen and (max-width: $sm) {
+			 	padding-right: 10px;
 				float: none;
 				width: 100%;
 				margin: 0 auto;
@@ -264,9 +269,12 @@ textarea{
 				border: 0px;
 				width: 200%;
 				margin-top: 50px;
-				margin-bottom: 50px;
-			@media screen and (max-width: $xs) {
+			@media screen and (max-width: $sm) {
 				width: 100%;
+				/*top: 1000px;*/
+				}
+			@media screen and (max-width: $xs) {
+				top: 480px;
 				}
 			}
 		}
@@ -276,7 +284,7 @@ textarea{
 .btn_publish{
 	display: block;
     margin: 0 auto;
-    margin-bottom: 26px;
+    margin-bottom: 40px;
     margin-top: 49px;
 }
 
@@ -294,6 +302,10 @@ textarea{
 	height: $publish_col_height;
 	max-width: 660px;
 	display: table;
+		@media screen and (max-width: $sm) {
+		max-width:100%;
+		display: none;
+	}
 	@media screen and (max-width: $xs) {
 		display: none;
 	}
@@ -302,9 +314,19 @@ textarea{
 		display: table-cell;
 		vertical-align: middle;
 
+	@media screen and (max-width: $sm) {
+		width: 100%;
+    	display: block;
+    	margin: 0 auto;
+	}
+
 		.publish_img{					/*img_center*/
 		max-width: 75%;
 		max-height: 427px;
+		@media screen and (max-width: $sm) {
+		    margin-top: 100px;
+			max-height: 350px !important;
+		}
 		}
 	}
 }
@@ -343,7 +365,13 @@ textarea{
 }
 .col_group_wrapper{
 	height: auto;
+	min-height: 650px;
     display: table;
+
+    @media screen and (max-width: $sm) {
+    	min-height: 450px;
+	}
+
 }
 
 .list_group_wrapper{
@@ -370,7 +398,9 @@ textarea{
 
 .col_img_post{
 	margin-top: 200px;
-
+	@media screen and (max-width: $sm) {
+		margin-top: 100px;
+	}
 	.publish_img{
 		margin: 0 auto;
     	display: block;
@@ -380,8 +410,8 @@ textarea{
 }
 
 .center_Socials{
-	margin-top: 100px;
-    margin-bottom: 60px;
+	margin-top: 75px;
+    margin-bottom: 45px;
 }
 
 .post_thumscope{
@@ -391,4 +421,34 @@ textarea{
 
 .post_gallery{
 	margin-bottom: 80px;
+}
+
+.detail_post_placeholder{
+	min-height: 350px;
+
+	@media screen and (max-width: $md) {
+		min-height: 250px;
+	}
+
+		@media screen and (max-width: $sm) {
+		min-height: 350px;
+	}
+
+	background: url(../img/loading.gif);
+	background-size: 64px 64px;
+	background-repeat:no-repeat;
+	background-position: center center;
+}
+
+.lightbox_img_post{
+	max-height: 350px !important;
+
+		@media screen and (max-width: $md) {
+		max-height: 250px !important;
+	}
+
+		@media screen and (max-width: $sm) {
+		max-height: 350px !important;
+	}
+
 }

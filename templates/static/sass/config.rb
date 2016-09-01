@@ -8,7 +8,7 @@ sass_dir = "/"
 images_dir = "../img"
 
 # You can select your preferred output style here (can be overridden via the command line):
-output_style = :nested
+output_style = :compressed
 environment = :development
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
