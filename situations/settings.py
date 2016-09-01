@@ -136,3 +136,6 @@ GEOIP_PATH = BASE_DIR + '/geoip'
 
 # Google API
 GOOGLE_API_KEY = 'AIzaSyBs4ZYShxicQyYy_lZ5cOJlcFUqHHw1V9M'
+
+# Colors
+ID_COLOR = '#9036fe'
