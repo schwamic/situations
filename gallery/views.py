@@ -1,5 +1,5 @@
 from django.contrib.gis.geoip2 import GeoIP2
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponse
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -8,17 +8,23 @@ from situations import settings
 from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
-from django.core.serializers.json import DjangoJSONEncoder
 from django.core import serializers
 import json
 import random
 import urllib.request
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 """
 use this url to access images (for now):
 http://127.0.0.1:8000/images/?id=940e6d98-9f30-42a8-8c9a-c37b4e514c62
 its a working uuid in the current db
 """
+
+
+@receiver(pre_delete)
+def my_callback(sender, **kwargs):
+    print("Request finished!")
 
 class ImagesView(generic.ListView):
     model = Image

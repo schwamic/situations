@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_ajax',                   #addes django_ajax
+    'kronos',
 ]
 
 MIDDLEWARE = [
