@@ -1,4 +1,5 @@
 from django.contrib.gis.geoip2 import GeoIP2
+from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponse
 from django.views import generic
@@ -24,7 +25,7 @@ its a working uuid in the current db
 
 #@receiver(pre_delete)
 #def my_callback(sender, **kwargs):
- #   print("Request finished!")
+#   print("Request finished!")
 
 class ImagesView(generic.ListView):
     model = Image
