@@ -18,7 +18,8 @@ class Publisher(models.Model):
     latitude = models.FloatField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     active_time = models.DurationField('time spent to publish', blank=True, null=True)
-    last_session_start = models.DateTimeField(blank=True, null=True)
+    session_start = models.DateTimeField(blank=True, null=True)
+    session_end = models.DateTimeField(blank=True, null=True)
 
     # user input, defaults needed?
     year_of_birth = models.IntegerField(choices=choices.YEAR_BORN, blank=True, null=True)

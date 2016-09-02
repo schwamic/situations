@@ -10,11 +10,10 @@ from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
 from django.core import serializers
+from django.utils import timezone
 import json
 import random
 import urllib.request
-#from django.db.models.signals import pre_delete
-#from django.dispatch import receiver
 
 """
 use this url to access images (for now):
@@ -22,10 +21,6 @@ http://127.0.0.1:8000/images/?id=940e6d98-9f30-42a8-8c9a-c37b4e514c62
 its a working uuid in the current db
 """
 
-
-#@receiver(pre_delete)
-#def my_callback(sender, **kwargs):
-#   print("Request finished!")
 
 class ImagesView(generic.ListView):
     model = Image
@@ -44,6 +39,10 @@ class ImagesView(generic.ListView):
 
         if not self.publisher.is_active:
             raise Http404("Link already used or expired.")
+
+        self.publisher.session_start = timezone.now()
+        self.publisher.save()
+        print('called')
 
         return uuid
 
@@ -118,6 +117,10 @@ def publish(request, publisher_id):
     publisher.gender = int(request.POST['gender'])
     publisher.occupation = int(request.POST['occupation'])
     publisher.year_of_birth = int(request.POST['year_of_birth'])
+    publisher.active_time = timezone.now() - publisher.session_start
+    publisher.is_active = False
+
+    # add location info to publisher
     if request.POST['latitude'] != 'no_entry':
         # get additional geo data using google geo code api
         publisher.latitude = float(request.POST['latitude'])
@@ -143,7 +146,7 @@ def publish(request, publisher_id):
                     break
 
     else:
-        # geo locating via geoIP2 --- FALLBACK
+        # FALLBACK: geo locating via geoIP2
         user_ip = get_client_ip(request)
         g = GeoIP2()
 
@@ -177,6 +180,13 @@ def publish(request, publisher_id):
     new_post.save()
     publisher.save()
 
+    # invite new publisher
+    invite_new_publisher(publisher, request.POST['email_1'])
+    if request.POST['email_2'] is not '':
+        invite_new_publisher(publisher, request.POST['email_2'])
+    if request.POST['email_3'] is not '':
+        invite_new_publisher(publisher, request.POST['email_3'])
+
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
 
 
@@ -187,6 +197,33 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+def invite_new_publisher(parent, mail_address):
+    new_publisher = Publisher(
+        email=mail_address,
+        invited_by=parent
+    )
+    new_publisher.save()
+
+    # sent mail
+    subject = 'Invitation to SITUATIONS from ' + parent.email
+    content = '[project description]\n'
+    content += 'To participate, simply follow this link:\n'
+    content += settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '\n\n'
+    content += 'Please note: there is no need to log in or create an account.\n'
+    content += 'However, once the link has been used to publish, it will expire.\n\n'
+    content += 'Thanks and have fun browsing!\n'
+    content += '- SITUATIONS'
+    send_mail(
+        subject,
+        content,
+        parent.email,
+        [new_publisher.email],
+        fail_silently=False,
+    )
+    print('usr created, mail sent - subject: ' + subject)
+    print('content : \n' + content)
 
 
 def detail_image(request):
