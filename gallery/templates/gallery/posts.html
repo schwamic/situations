@@ -45,13 +45,13 @@
 <div class="lightbox_detailview">
     <div class="row backdrop_detail">
         <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
-            <div id="post_show_pref" class="col-xs-2 col-sm-2 col-md-1 col_wrap">
+            <div id="post_show_next" class="col-xs-2 col-sm-2 col-md-1 col_wrap">
                 <div class="col_pref">
                     <img id="pref_img" class="pref_img" src="{% static 'img/pref.svg' %}" alt="pref">
                 </div>
             </div>
             <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
-            <div id="post_show_next" class="col-xs-2 col-sm-2 col-md-1 col_wrap next_wrap">
+            <div id="post_show_pref" class="col-xs-2 col-sm-2 col-md-1 col_wrap next_wrap">
                 <div class="col_next">
                     <img id="next_img" src="{% static 'img/next.svg' %}" alt="next">
                 </div>
@@ -129,7 +129,7 @@
                             <div class="col-xs-4 pull-left">
                                 <h6 class="list-group-item-heading">Why did I choose this image?</h6>
                             </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-8 col_max_width">
                                 <p class="list_reason list-group-item-text"></p>
                             </div>
                         </div>
@@ -161,7 +161,6 @@
         </div>
     </div>
 </div>
-<div class="prefix"></div>
 {% endblock %}
 
 

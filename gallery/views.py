@@ -74,6 +74,7 @@ class ImagesView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ImagesView, self).get_context_data(**kwargs)
         context['my_publisher_id'] = self.publisher.id
+        context['my_publisher_email'] = self.publisher.email;
         context['gender_choices'] = choices.GENDER_CHOICES
         context['occupation_choices'] = choices.OCCUPATION_CHOICES
         context['year_choices'] = choices.YEAR_BORN
@@ -100,6 +101,8 @@ class PostsView(generic.ListView):
     model = Post
     template_name = 'gallery/posts.html'
     paginate_by = 15
+    ordering = '-pk'
+
 
 
 class ThankYouView(generic.DetailView):

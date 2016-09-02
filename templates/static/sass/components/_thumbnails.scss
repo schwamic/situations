@@ -5,17 +5,8 @@ $md: 1200px;
 .thumbgallery{
     max-width: 1400px;
     margin: auto;
-    margin-bottom: 5vw;
-    @media screen and (min-width: $md) {
-        margin-bottom: 100px;
-    }
-    @media screen and (max-width: $xs) {
-        margin-bottom: 50px;
-    }
-    margin-top: 42px;
-    @media screen and (max-width: $md) {
-        margin-top: 3vw;
-    }
+    margin-bottom: 70px;
+    margin-top: 55px;
 
     hr{
         border-top: 1px solid #090909;
@@ -29,6 +20,7 @@ $md: 1200px;
     padding-right: 0px;
     margin-top: 8px;
     margin-bottom: 8px;
+    /*max-width: 440px;*/
 
     .thumbnail{
         margin-left: 10px;
@@ -124,4 +116,8 @@ $md: 1200px;
             margin-top: 2px;
         }
     }
+}
+
+.post_gallery{
+    margin-bottom: 120px !important;
 }
