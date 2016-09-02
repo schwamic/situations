@@ -8,9 +8,9 @@
 <!-- thumbnail -->
 <div class="row thumbgallery post_gallery" id="abd">
     {% for post in object_list %}
-    <div class="col-sm-4 col-md-4 thumbscope">
+    <div class="col-sm-6 col-md-4 thumbscope">
         <a class="lightbox_post" id="lightbox_{{post.id}}"> <!-- no href-->
-            <div class="thumbnail post_thumscope">
+            <div class="thumbnail post_thumbnail">
                 <img id="img{{post.image.id}}" class="img-fluid" src="/media/900x900/{{post.image.filename}}"
                      alt="{{post.image.title}}">
 
@@ -70,7 +70,7 @@
                                 <h6 class="list-group-item-heading">ID</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_id list-group-item-text">test test test test test test test</p>
+                                <p class="list_id list-group-item-text"></p>
                             </div>
                         </div>
                         <div class="list-group row">
@@ -78,7 +78,7 @@
                                 <h6 class="list-group-item-heading">Date of Publication</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_date list-group-item-text">test test test test test test test</p>
+                                <p class="list_date list-group-item-text"></p>
                             </div>
                         </div>
                         <div class="list-group row">
@@ -86,7 +86,7 @@
                                 <h6 class="list-group-item-heading">Gender</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_gender list-group-item-text">test test test test test test test</p>
+                                <p class="list_gender list-group-item-text"></p>
                             </div>
                         </div>
                         <div class="list-group row">
@@ -94,7 +94,7 @@
                                 <h6 class="list-group-item-heading">Occupation</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_occupation list-group-item-text">test test test test test test test</p>
+                                <p class="list_occupation list-group-item-text"></p>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                                 <h6 class="list-group-item-heading">Age</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_age list-group-item-text">test test test test test test test</p>
+                                <p class="list_age list-group-item-text"></p>
                             </div>
                         </div>
                         <div class="list-group row">
@@ -111,7 +111,7 @@
                                 <h6 class="list-group-item-heading">Location</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_location list-group-item-text">test test test test test test test</p>
+                                <p class="list_location list-group-item-text"></p>
                             </div>
                         </div>
 
@@ -122,15 +122,7 @@
                                 <h6 class="list-group-item-heading">Describe the image</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_description list-group-item-text">The Refusal of Time is essentially a
-                                    room-sized, filmic machine—a mechanized
-                                    Plato's cave in which five video
-                                    projections surround the viewer and the
-                                    whole seems to be run by a pumping,
-                                    organlike sculpture at center. Through
-                                    a series of half-hour episodes,
-                                    Kentridge intersperses images of
-                                    antiquated devices for measuring time.</p>
+                                <p class="list_description list-group-item-text"></p>
                             </div>
                         </div>
                         <div class="list-group row">
@@ -138,16 +130,7 @@
                                 <h6 class="list-group-item-heading">Why did I choose this image?</h6>
                             </div>
                             <div class="col-xs-8">
-                                <p class="list_reason list-group-item-text">The reason I chose this image is
-                                    random. I like cars, they make me
-                                    really happy. And this image doesn’t
-                                    show any car. So maybe subconsciously I
-                                    was thinking about cars but then I saw
-                                    this image which has nothing to with
-                                    cars and it made me think about cars so
-                                    I thought, well, maybe it makes other
-                                    people think about cars as well. So I
-                                    chose it. As simple is that.</p>
+                                <p class="list_reason list-group-item-text"></p>
                             </div>
                         </div>
                     </div>
@@ -178,7 +161,7 @@
         </div>
     </div>
 </div>
-
+<div class="prefix"></div>
 {% endblock %}
 
 

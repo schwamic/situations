@@ -61,7 +61,7 @@
 <!-- thumbnail -->
 <div class="row thumbgallery" id="abd">
     {% for image in object_list %}
-    <div class="col-sm-2 col-md-2 thumbscope">
+    <div class="col-sm-2 col-md-2 thumbscope thumbscope_img">
         <a class="lightbox_detail" id="lightbox_{{image.id}}"> <!-- no href-->
             <div class="thumbnail">
                 <img id="img{{image.id}}" class="img-fluid" src="/media/600x600/{{image.filename}}" alt="{{image.title}}">
@@ -126,7 +126,7 @@
             <!-- formfields -->
             <div class="row form_wrapper">
                 <div class="col-sx-12 col-sm-12 col-md-6 col_form">
-                    <form class=" publish_form" action="{% url 'gallery:publish' my_publisher_id %}"
+                    <form data-toggle="validator" class=" publish_form" action="{% url 'gallery:publish' my_publisher_id %}"
                           method="post">
                         {% csrf_token %}
                         <div class="form-group row">
@@ -170,50 +170,47 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-xs-4 pull-left">
-                                <label class=" col-form-label">Describe the image</label>
+                                <label for="Text2" class=" col-form-label">Describe the image</label>
                             </div>
                             <div class="col-xs-8">
-                        <textarea class="form-control" type="text" name="description" id="exampleTextarea"
-                                  rows="5"></textarea>
+                        <textarea class="form-control" type="text" name="description" id="Text1"
+                                  rows="5" required></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-xs-4 pull-left">
-                                <label class=" col-form-label">Why did you choose this image?</label>
+                                <label for="Text2" class=" col-form-label">Why did you choose this image?</label>
                             </div>
                             <div class="col-xs-8">
-                        <textarea class="form-control" type="text" name="reason" id="exampleTextarea"
-                                  rows="5"></textarea>
+                        <textarea class="form-control" type="text" name="reason" id="Text2"
+                                  rows="5" required></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-xs-4 pull-left">
-                                <label class=" col-form-label">1. email address</label>
+                                <label for="inputEmail1" class=" col-form-label">1. email address</label>
                             </div>
 
                             <div class="col-xs-8">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                       aria-describedby="emailHelp"
-                                       placeholder="Enter email">
+                                <input type="email" class="form-control" id="inputEmail1"
+                                       placeholder="Enter email" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-xs-4 pull-left">
-                                <label class=" col-form-label">2. email address</label>
+                                <label for="inputEmail2" class=" col-form-label">2. email address</label>
                             </div>
                             <div class="col-xs-8">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                       aria-describedby="emailHelp"
+                                <input type="email" class="form-control" id="inputEmail2"
                                        placeholder="Enter email">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group has-feedback row">
                             <div class="col-xs-4 pull-left">
-                                <label class=" col-form-label">3. email address</label>
+                                <label for="inputEmail3" class=" col-form-label">3. email address</label>
                             </div>
                             <div class="col-xs-8">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                       aria-describedby="emailHelp"
+                                <input type="email" class="form-control" id="inputEmail3"
                                        placeholder="Enter email">
                             </div>
                         </div>
@@ -257,5 +254,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/geo_location.js' %}"></script>
+    <script src="{% static 'js/components/geo_location.js' %}"></script>
 {% endblock %}

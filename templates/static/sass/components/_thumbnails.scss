@@ -1,11 +1,22 @@
 $xs: 767px;
+$sm: 991px;
+$md: 1200px;
 
 .thumbgallery{
+    max-width: 1400px;
+    margin: auto;
     margin-bottom: 5vw;
-    	@media screen and (max-width: $xs) {
-         margin-bottom: 50px;
-        }
-    margin-top: 3vw;
+    @media screen and (min-width: $md) {
+        margin-bottom: 100px;
+    }
+    @media screen and (max-width: $xs) {
+        margin-bottom: 50px;
+    }
+    margin-top: 42px;
+    @media screen and (max-width: $md) {
+        margin-top: 3vw;
+    }
+
     hr{
         border-top: 1px solid #090909;
         margin-top: 5px;
@@ -18,15 +29,21 @@ $xs: 767px;
     padding-right: 0px;
     margin-top: 8px;
     margin-bottom: 8px;
+
     .thumbnail{
         margin-left: 10px;
         margin-right: 10px;
         margin-bottom: 10px;
         margin-top: 5px;
         height: 20vw;
+        max-height: 300px;
         padding: 0;
 
-        @media screen and (max-width: 767px) {
+         @media screen and (max-width: $sm) {
+            max-height: 300px;
+        }
+
+        @media screen and (max-width: $xs) {
         height: 50vw;
         }
 
@@ -58,6 +75,17 @@ $xs: 767px;
         display: none;
         }
 }
+    .post_thumbnail{
+        max-height: 278px;
+        @media screen and (max-width: $sm) {
+            height: 35vw !important;
+            max-height: 300px;
+        }
+
+        @media screen and (max-width: $xs) {
+            height: 50vw !important;
+        }
+    }
 
     .caption {
         .caption_text{
@@ -97,5 +125,3 @@ $xs: 767px;
         }
     }
 }
-
-
