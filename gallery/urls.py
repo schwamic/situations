@@ -14,7 +14,8 @@ urlpatterns = [
     url(r'^posts/detail_post/$', views.detail_post, name='detail_post'),
     url(r'^about/$', TemplateView.as_view(template_name='gallery/about.html'), name="about"),
     url(r'^impressum/$', TemplateView.as_view(template_name='gallery/impressum.html'), name="impressum"),
+    #url(r'^images/(?P<id>[^/]+)/(?P<page>[0-9]+)/$', views.ImagesView.as_view(paginate_by=30), name='images'),
 ]
-# note
+
 # uuid: (?P<something>[^/]+)
 # number: (?P<something>[0-9]+)

@@ -73,12 +73,12 @@ class ImagesView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ImagesView, self).get_context_data(**kwargs)
         context['my_publisher_id'] = self.publisher.id
-        context['my_publisher_email'] = self.publisher.email;
+        context['my_publisher_email'] = self.publisher.email
+        context['my_publisher_verbose_id'] = self.publisher.verbose_id
         context['gender_choices'] = choices.GENDER_CHOICES
         context['occupation_choices'] = choices.OCCUPATION_CHOICES
         context['year_choices'] = choices.YEAR_BORN
 
-        print(context)
         return context
 
 
@@ -117,8 +117,10 @@ def publish(request, publisher_id):
     publisher.gender = int(request.POST['gender'])
     publisher.occupation = int(request.POST['occupation'])
     publisher.year_of_birth = int(request.POST['year_of_birth'])
+    print('year_of_birth: '+str(publisher.year_of_birth))
+
     publisher.active_time = timezone.now() - publisher.session_start
-    publisher.is_active = False
+   # publisher.is_active = False
 
     # add location info to publisher
     if request.POST['latitude'] != 'no_entry':
@@ -256,7 +258,7 @@ def detail_post(request):
 
         response_data = {}
 
-        response_data['publisher_id'] = str(random.randint(100000, 999999))+'-'+str(post.publisher.id)
+        response_data['publisher_id'] = post.publisher.name +'-'+ str(post.publisher.id)
         response_data['post_publishing_date'] = str(post.publishing_date.date())
         response_data['publisher_gender'] = choices.GENDER_CHOICES[int(post.publisher.gender)][1]
         response_data['publisher_occupation'] = choices.OCCUPATION_CHOICES[int(post.publisher.occupation)][1]

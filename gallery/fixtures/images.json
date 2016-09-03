@@ -391,7 +391,7 @@
   },
   {
     "model": "gallery.image",
-    "pk": 515,
+    "pk": 51,
     "fields": {
       "filename"		: "67202_dorotka_kaczmarek_delete_after_test_dont_forward.jpg"
     }
@@ -435,7 +435,7 @@
     "model": "gallery.image",
     "pk": 57,
     "fields": {
-      "filename"		: "67688_magdalena_jooß_delete_after_test_dont_forward.jpg"
+      "filename"		: "67688_magdalena_joo_delete_after_test_dont_forward.jpg"
     }
   },
   {
@@ -491,7 +491,7 @@
     "model": "gallery.image",
     "pk": 65,
     "fields": {
-      "filename"		: "68387_andrás_cséfalvay_delete_after_test_dont_forward.jpg"
+      "filename"		: "68387_andras_csefalvay_delete_after_test_dont_forward.jpg"
     }
   },
   {
