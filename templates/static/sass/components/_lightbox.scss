@@ -19,7 +19,8 @@
 $publish_col_height: 508px;
 $xs: 767px;
 $sm: 991px;
-$md: 1200px;
+$md: 1999px;
+$lg: 850px;
 
 /*#############################################################################*/
 /*############################ BASE LIGHTBOX ################################*/
@@ -94,6 +95,9 @@ textarea{
 		display: block;
 		margin: 0 auto;
 		margin-top: 18px;
+		@media screen and (min-height: $lg) {
+    		margin-top: 68px;
+    	}
 		@media screen and (max-width: $xs) {
 			margin-top: 72px;
 		}
@@ -115,6 +119,10 @@ textarea{
     position: relative;
     display: table;
     margin-top: 150px;
+
+    @media screen and (min-height: $lg) {
+    	margin-top: 190px;
+    }
 
     .placeholder_center_imgage{
     display: table-cell;
@@ -227,6 +235,9 @@ textarea{
 /*#############################################################################*/
 .form_wrapper{
 	padding-top: 150px;
+	@media screen and (min-height: $lg){
+		padding-top: 190px !important;
+	}
 	.col_form{
 		height: $publish_col_height;
 
@@ -286,6 +297,9 @@ textarea{
     margin: 0 auto;
     margin-bottom: 40px;
     margin-top: 49px;
+    @media screen and (min-height: $lg) {
+    	margin-top: 99px;
+    }
 }
 
 .box_pubview{
@@ -296,6 +310,10 @@ textarea{
 	height:100%;
 	width: 100%;
 	z-index:51;
+}
+
+.post_col_img{
+	padding-left: 0px;
 }
 
 .col_img{								/*table_img_center*/
@@ -365,23 +383,28 @@ textarea{
 }
 .col_group_wrapper{
 	height: auto;
-	min-height: 650px;
+	min-height: 80vh;
     display: table;
-
-    @media screen and (max-width: $sm) {
-    	min-height: 450px;
-	}
 
 }
 
 .list_group_wrapper{
+    @media screen and (min-height: $lg) {
+    	margin-top: 240px;
+    }
 	margin-top: 200px;
     max-width: 600px;
-    min-width: 385px;
+    min-width: 382px;
     float: right;
-
+	@media screen and (max-width: $sm) {
+		width: 500px;
+    	margin: 0 auto;
+    	margin-top: 200px;
+    	float: none;
+	}
 	@media screen and (max-width: $xs) {
-		min-width: 63vw;
+		width: 63vw;
+		min-width: 0px;
 	}
 	p{
 		text-align: left;
@@ -401,6 +424,10 @@ textarea{
 
 .col_img_post{
 	margin-top: 200px;
+
+	@media screen and (min-height: $lg) {
+    	margin-top: 240px;
+    }
 	@media screen and (max-width: $sm) {
 		margin-top: 100px;
 	}
@@ -415,11 +442,6 @@ textarea{
 .center_Socials{
 	margin-top: 75px;
     margin-bottom: 45px;
-}
-
-.post_thumscope{
-
-	margin-bottom: 40px !important;
 }
 
 .detail_post_placeholder{

@@ -40,7 +40,7 @@
     <div class="thumbnail"><p>No images yet.</p></div>
 </div>
 {% endfor %}
-
+</div> <!-- fix clear later -->
 <!-- lightbox detailview -->
 <div class="lightbox_detailview">
     <div class="row backdrop_detail">
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col_img high_wrapper">
+                <div class="col-xs-12 col-sm-12 col-md-6 col_img post_col_img high_wrapper">
                     <div class="col_img_post">
                         <div class="detail_post_placeholder">
                             <img id="lightbox_img_postview" class="lightbox_img_post img-fluid publish_img" src="#"
@@ -161,45 +161,8 @@
         </div>
     </div>
 </div>
-{% if is_paginated %}
-<nav>
-    <ul class="pagination">
-        {% if page_obj.has_previous %}
-        <li>
-            <a href="?page={{ page_obj.previous_page_number }}">
-                <span>Previous</span>
-            </a>
-        </li>
-        {% else %}
-        <li class="disabled">
-            <a href="#">
-                <span>Previous</span>
-            </a>
-        </li>
-        {% endif %}
-
-        {% for page in paginator.page_range %}
-        <li {% if page == page_obj.number %}class="active" {% endif %}>
-            <a href="?page={{ page }}">{{ page }}</a>
-        </li>
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-        <li>
-            <a href="?page={{ page_obj.next_page_number }}">
-                <span>Next</span>
-            </a>
-        </li>
-        {% else %}
-        <li {% if not page_obj.has_next %}class="disabled" {% endif %}>
-            <a href="#">
-                <span>Next</span>
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-</nav>
-{% endif %}
+{% include 'pagination.html' %}
+<div class="prefix"></div>
 {% endblock %}
 
 

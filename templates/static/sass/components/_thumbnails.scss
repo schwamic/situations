@@ -3,10 +3,14 @@ $sm: 991px;
 $md: 1200px;
 
 .thumbgallery{
+    min-height: 90vh;
     max-width: 1400px;
     margin: auto;
     margin-bottom: 70px;
-    margin-top: 55px;
+    margin-top: 45px;
+    @media screen and (max-width: $xs) {
+    	margin-top: 0px;
+    }
 
     hr{
         border-top: 1px solid #090909;
@@ -27,6 +31,9 @@ $md: 1200px;
         margin-right: 10px;
         margin-bottom: 10px;
         margin-top: 5px;
+        @media screen and (max-width: $xs) {
+    	margin-top: 55px;
+    }
         height: 20vw;
         max-height: 300px;
         padding: 0;
@@ -69,6 +76,7 @@ $md: 1200px;
 }
     .post_thumbnail{
         max-height: 278px;
+        margin-top: 55px !important;
         @media screen and (max-width: $sm) {
             height: 35vw !important;
             max-height: 300px;
@@ -119,5 +127,5 @@ $md: 1200px;
 }
 
 .post_gallery{
-    margin-bottom: 120px !important;
+    margin-top: 0px !important;
 }
