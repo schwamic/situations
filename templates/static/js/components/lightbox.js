@@ -27,8 +27,6 @@ $(document).ready(function(){
 			$(".lightbox_detailview").hide(0).fadeIn(300);
 			get_post_info(POST_ID);
 		});
-
-
 	});
 
 	/*SLIDER*/
