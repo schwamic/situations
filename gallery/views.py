@@ -139,7 +139,7 @@ def publish(request, publisher_id):
     print('year_of_birth: '+str(publisher.year_of_birth))
 
     publisher.active_time = timezone.now() - publisher.session_start
-   # publisher.is_active = False
+    publisher.is_active = False
 
     # add location info to publisher
     if request.POST['latitude'] != 'no_entry':
