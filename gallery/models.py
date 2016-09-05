@@ -1,7 +1,7 @@
 from django.db import models
-from datetime import datetime
 from gallery import choices
 from django.utils import timezone
+from datetime import timedelta
 import uuid
 import random
 
@@ -14,17 +14,17 @@ class Publisher(models.Model):
     name = models.CharField('name', max_length=50, default=str(random.randint(100000, 999999)))
 
     # values generated on runtime
-    city = models.CharField(max_length=50, blank=True, null=True)
-    country = models.CharField(max_length=50, blank=True, null=True)
-    region = models.CharField(max_length=50, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True, default='some city')
+    country = models.CharField(max_length=50, blank=True, null=True, default='some country')
+    region = models.CharField(max_length=50, blank=True, null=True, default='some region')
     longitude = models.FloatField(blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    active_time = models.DurationField('time spent to publish', blank=True, null=True)
+    active_time = models.DurationField('time spent to publish', blank=True, null=True, default=timedelta(minutes=1))
     session_start = models.DateTimeField(blank=True, null=True)
     session_end = models.DateTimeField(blank=True, null=True)
     # user input, defaults needed?
-    year_of_birth = models.IntegerField(choices=choices.YEAR_BORN, blank=True, null=True)
+    year_of_birth = models.IntegerField(choices=choices.YEAR_BORN, blank=True, null=True, default=0)
     gender = models.IntegerField(choices=choices.GENDER_CHOICES, default=choices.GENDER_MALE)
     occupation = models.IntegerField(choices=choices.OCCUPATION_CHOICES, default=0)
 
