@@ -4,6 +4,16 @@
     margin: 0 auto;
 }
 
+.gm-style-iw {
+    font-family: Inconsolata, sans-serif;
+}
+
+.gm-style-iw .row {
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .gm-style-iw + div {
-  display: none;
+    display: none;
 }
