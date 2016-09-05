@@ -1,0 +1,28 @@
+$sm: 991px;
+$lg: 850px;
+
+.text_scope{
+    @media screen and (min-height: $lg) {
+    	margin-top: 50px;
+    }
+    width: 100vw;
+    @media screen and (max-width: $sm) {
+        width: 90vw;
+    }
+    max-width: 780px;
+    padding: 35px;
+    padding-left: 80px;
+    @media screen and (max-width: $xs) {
+        padding-left: 20px;
+    }
+    padding-bottom: 50px;
+    h4{
+        font-size: 20px;
+    }
+    .header_text{
+        margin-top: 50px !important;
+    }
+    .header_about{
+        color:  #9036fe;
+    }
+}
