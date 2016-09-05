@@ -18,7 +18,7 @@
 
         <div id="footer" class="panel-footer">
             <div class="footer_container">
-                <p><a href="{% url 'gallery:impressum' %}">Impressum</a></p>
+                <p class="{% if 'impressum' in request.path %}active_p{% endif %}"><a href="{% url 'gallery:impressum' %}">Impressum</a></p>
             </div>
         </div>
 

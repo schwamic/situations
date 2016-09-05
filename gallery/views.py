@@ -13,7 +13,6 @@ from django.utils import timezone
 import json
 import urllib.request
 
-
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
@@ -281,10 +280,9 @@ def detail_post(request):
         response_data['post_publishing_date'] = str(post.publishing_date.date())
         response_data['publisher_gender'] = choices.GENDER_CHOICES[int(post.publisher.gender)][1]
         response_data['publisher_occupation'] = choices.OCCUPATION_CHOICES[int(post.publisher.occupation)][1]
-        #response_data['publisher_age'] = choices.YEAR_BORN[post.publisher.year_of_birth][1]
-        response_data['publisher_age'] = str(post.publisher.year_of_birth)
+        response_data['publisher_age'] = int(timezone.now().year) - int(choices.YEAR_BORN[post.publisher.year_of_birth][1])
         response_data['publisher_location'] = str(post.publisher.city)+', '+str(post.publisher.country)
-        #response_data['publisher_active_time'] = post.publisher.active_time
+        response_data['publisher_active_time'] = str(post.publisher.active_time)
         response_data['post_description'] = post.description
         response_data['post_reason'] = post.reason
 
@@ -303,7 +301,6 @@ def detail_post(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
-
 # note:
 # a[start:end] # items start through end-1
 # a[start:]    # items start through the rest of the array

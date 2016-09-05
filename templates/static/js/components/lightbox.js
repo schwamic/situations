@@ -157,6 +157,7 @@ $(document).ready(function(){
 					$('.list_occupation').html(""+json.publisher_occupation);
 					$('.list_age').html(""+json.publisher_age);
 					$('.list_location').html(""+json.publisher_location);
+					$('.list_activity').html(""+json.publisher_active_time);
 					$('.list_description').html(""+json.post_description);
 					$('.list_reason').html(""+json.post_reason);
 					$('#publish_image_title').html(""+json.image_title);
