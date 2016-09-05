@@ -328,10 +328,6 @@ function draw_marker(marker) {
     });
 
     google.maps.event.addListener(new_marker, 'click', function() {
-		$("body").css("overflow", "hidden");
-		$(".lightbox_detailview").hide(0).fadeIn(300);
-		$('#lightbox_img_postview').fadeOut(0);
-        marker[0][1];
     });
 }
 
