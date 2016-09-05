@@ -1,5 +1,14 @@
 .modal-body{
     padding-top: 0px;
+
+    .pro_description{
+        margin-top: 40px;
+    }
+
+    .about_situations{
+        margin-top: 20px;
+        color: #9036fe;
+    }
 }
 
 .modal-header{
@@ -10,11 +19,15 @@
 .modal-dialog{
     margin: 52px auto;
     max-width: 650px;
+    width: 620px;
     margin-top: 100px;
 }
 
 .modal-content{
     border-radius: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
 }
 
 .modal-footer{
@@ -22,3 +35,14 @@
         font-family: 'Inconsolata';
     }
 }
+
+.modal-title{
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.intro{
+    font-size: 17px;
+    margin-top: 9px;
+}
+

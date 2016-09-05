@@ -15,6 +15,24 @@ body {
     .btn_new{
     border-radius: 0px;
     }
+
+    p{
+        letter-spacing: 0.02em;
+        word-spacing: 0.1em;
+    }
+    h1, h2, h3, h4, h5, h6{
+        letter-spacing: 0.03em;
+        word-spacing: 0.1em;
+    }
+
+    h6{
+        font-weight: bold
+    }
+
+    label{
+        letter-spacing: 0.03em;
+        word-spacing: 0.1em;
+    }
 }
 
 #content{
