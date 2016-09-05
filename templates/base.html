@@ -3,6 +3,8 @@
     <head>
         {% load staticfiles %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+        {% block style %}
+        {% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Situations{% endblock %}</title>
     </head>
