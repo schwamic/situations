@@ -1,3 +1,6 @@
+$xs: 767px;
+$sm: 991px;
+
 html {
     height: 100%;
 }
@@ -48,6 +51,25 @@ body {
 .active_p{
     a{
      color: #000 !important;
+    }
+
+}
+
+/* THANK YOU HTML */
+.thankyou_col{
+    padding-top: 25vh;
+    p{
+        text-align: center;
+    }
+    h1{
+        text-align: center;
+        word-break: break-all;
+        color: #9036fe;
+        font-family: 'Inconsolata';
+        font-size: 30px;
+        @media screen and (max-width: $xs) {
+		    font-size: 18px;
+	    }
     }
 
 }
