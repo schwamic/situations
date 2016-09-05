@@ -9,17 +9,9 @@ from situations import settings
 from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
-from django.core import serializers
 from django.utils import timezone
 import json
-import random
 import urllib.request
-
-"""
-use this url to access images (for now):
-http://127.0.0.1:8000/images/?id=940e6d98-9f30-42a8-8c9a-c37b4e514c62
-its a working uuid in the current db
-"""
 
 
 class ImagesView(generic.ListView):
@@ -83,15 +75,43 @@ class ImagesView(generic.ListView):
 
 
 class MapView(generic.ListView):
+    model = Post
     template_name = 'gallery/map.html'
 
-    def get_queryset(self):
-        return Publisher.objects.filter(is_active=False).exclude(latitude__isnull=True, longitude__isnull=True)
+    @staticmethod
+    def get_markers():
+        markers = []
+
+        for post in Post.objects.all():
+            marker = [
+                ('post_pk', post.pk),
+                ('date', '%s.%s.%s' % (post.publishing_date.day, post.publishing_date.month, post.publishing_date.year)),
+                ('publisher_pk', post.publisher.pk),
+                ('gender', choices.GENDER_CHOICES[post.publisher.gender][1]),
+                ('location', '%s, %s, %s' % (post.publisher.city, post.publisher.region, post.publisher.country)),
+                ('publisher_lat', post.publisher.latitude),
+                ('publisher_lng', post.publisher.longitude)
+            ]
+
+            if post.publisher.invited_by is not None:
+                inv_by_lat = ('inv_by_lat', post.publisher.invited_by.latitude)
+                inv_by_lng = ('inv_by_lng', post.publisher.invited_by.longitude)
+
+                marker.append(inv_by_lat)
+                marker.append(inv_by_lng)
+            markers.append(marker)
+
+
+        return markers
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context['publisher_data'] = serializers.serialize("json", self.get_queryset())
-        context['gender_choices'] = json.dumps(choices.GENDER_CHOICES)
+
+        # dumps to json for js
+        context['markers'] = json.dumps(self.get_markers())
+        context['colors'] = json.dumps(settings.COLORS)
+        context['mode'] = settings.MAP_MODE
+        context['limit'] = settings.MAP_LIMIT
 
         return context
 
@@ -101,7 +121,6 @@ class PostsView(generic.ListView):
     template_name = 'gallery/posts.html'
     paginate_by = 15
     ordering = '-pk'
-
 
 
 class ThankYouView(generic.DetailView):
@@ -213,7 +232,7 @@ def invite_new_publisher(parent, mail_address):
     content = '[project description]\n'
     content += 'To participate, simply follow this link:\n'
     content += settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '\n\n'
-    content += 'Please note: there is no need to log in or create an account.\n'
+    content += 'Please note: there is no need to log in or to create an account.\n'
     content += 'However, once the link has been used to publish, it will expire.\n\n'
     content += 'Thanks and have fun browsing!\n'
     content += '- SITUATIONS'

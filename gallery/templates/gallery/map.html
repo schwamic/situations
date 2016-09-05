@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/components/map.css' %}"/>
+{% endblock %}
 
 {% block title %}Situations - Map{% endblock %}
 
 {% block content %}
-<div id="map"></div> <!-- row und col fehlt ! -->
+    <div id="map_holder"></div>
 {% endblock %}
 
 {% block scripts %}
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="{% static 'js/components/map.js' %}"></script>
     <script>
-        var gender_choices = {{ gender_choices|safe }};
-        var publisher_data = {{ publisher_data|safe }};
-        initializeMap(publisher_data, gender_choices, '#9036fe', '#FFFFFF');
+        var colors = {{ colors|safe }};
+        var markers = {{ markers|safe }};
+        var mode = {{ mode|safe }};
+        var limit = {{ limit|safe }};
+
+        initialize(colors);
+        render(markers, mode, limit);
     </script>
 {% endblock %}

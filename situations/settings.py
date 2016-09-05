@@ -151,5 +151,12 @@ GOOGLE_API_KEY = 'AIzaSyBs4ZYShxicQyYy_lZ5cOJlcFUqHHw1V9M'
 
 # Colors
 COLORS = [
-    ('#9036fe', 'id color'),
+    (0, '#9036fe'),     # id color (purple)
+    (1, '#ffffff'),     # background
+    (2, '#f8f9fa'),     # light grey    - e.g. nav
+    (3, '#babbba'),     # medium grey   - e.g. map
 ]
+
+# Map
+MAP_MODE = 0            # 0 = all, 1 = only markers, 2 = limited markers
+MAP_LIMIT = 100         # num of markers shown on map for mode != 0
