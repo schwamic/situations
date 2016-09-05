@@ -451,6 +451,21 @@ textarea{
 .center_Socials{
 	margin-top: 75px;
     margin-bottom: 45px;
+    text-align: center;
+
+    img{
+    	margin-left: 4px;
+    	margin-right: 4px;
+    	opacity: 0.5;
+    	-webkit-transition: opacity 0.4s; /* Safari */
+    	transition: opacity 0.4s;
+    }
+
+    a:hover{
+    	>img{
+    		opacity:1;
+    	}
+    }
 }
 
 .detail_post_placeholder{
