@@ -88,7 +88,8 @@ class MapView(generic.ListView):
                 ('date', '%s.%s.%s' % (post.publishing_date.day, post.publishing_date.month, post.publishing_date.year)),
                 ('publisher_pk', post.publisher.pk),
                 ('gender', choices.GENDER_CHOICES[post.publisher.gender][1]),
-                ('location', '%s, %s, %s' % (post.publisher.city, post.publisher.region, post.publisher.country)),
+                # ('location', '%s, %s, %s' % (post.publisher.city, post.publisher.region, post.publisher.country)),
+                ('location', post.publisher.city),
                 ('publisher_lat', post.publisher.latitude),
                 ('publisher_lng', post.publisher.longitude)
             ]

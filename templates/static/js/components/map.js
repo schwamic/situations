@@ -307,9 +307,42 @@ function draw_marker(marker) {
         map: map
     });
 
-    var data = '<p>' + marker[1][1] + '</p>';
-    data    += '<p>' + marker[3][1] + '</p>';
-    data    += '<p>' + marker[4][1] + '</p>';
+    var data =  '<div class="row">' +
+                    '<div class="col-xs-6">' +
+                        '<h6 class="list-group-item-heading" style="color:' + colors[0][1] + '">' +
+                            'Date:' +
+                        '</h6>' +
+                    '</div>' +
+                    '<div class="col-xs-6">' +
+                        '<p class="list-group-item-text" style="color:' + colors[0][1] + '">' +
+                            marker[1][1] +
+                        '</p>' +
+                    '</div>' +
+                '</div>';
+    data +=     '<div class="row">' +
+                    '<div class="col-xs-6">' +
+                        '<h6 class="list-group-item-heading" style="color:' + colors[0][1] + '">' +
+                            'Gender:' +
+                        '</h6>' +
+                    '</div>' +
+                    '<div class="col-xs-6">' +
+                        '<p class="list-group-item-text" style="color:' + colors[0][1] + '">' +
+                            marker[3][1] +
+                        '</p>' +
+                    '</div>' +
+                '</div>';
+    data +=     '<div class="row">' +
+                    '<div class="col-xs-6">' +
+                        '<h6 class="list-group-item-heading" style="color:' + colors[0][1] + '">' +
+                            'Location:' +
+                        '</h6>' +
+                    '</div>' +
+                    '<div class="col-xs-6">' +
+                        '<p class="list-group-item-text" style="color:' + colors[0][1] + '">' +
+                            marker[4][1] +
+                        '</p>' +
+                    '</div>' +
+                '</div>';
     /*
     data    += '<hr>';
     data    += '<button>More info</button>';
@@ -328,6 +361,7 @@ function draw_marker(marker) {
     });
 
     google.maps.event.addListener(new_marker, 'click', function() {
+        console.log('marker clicked')
     });
 }
 
