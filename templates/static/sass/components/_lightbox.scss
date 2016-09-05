@@ -1,5 +1,4 @@
 /* MIXIN and VARIABLES */
-
 @mixin backdrop(){
 	position:absolute;
 	top:0px;
@@ -27,6 +26,7 @@ $lg: 850px;
 /*#############################################################################*/
 
 .img_caption{
+	color: #9036fe;
 	text-align: center;
 	margin-top: 18px;
 	p{
@@ -92,6 +92,7 @@ textarea{
 		text-align: center;
 	}
 	button{
+		font-family: 'Inconsolata';
 		display: block;
 		margin: 0 auto;
 		margin-top: 18px;
@@ -242,6 +243,8 @@ textarea{
 		height: $publish_col_height;
 
 		.publish_form{
+			font-family: 'Inconsolata';
+			color: #9036fe;
 			float: right;
 			width: 80%;
 
@@ -259,6 +262,8 @@ textarea{
 
 			.form-control{
 				font-size: 12px;
+				color: #9036fe;
+
 			}
 
 			label{
@@ -272,6 +277,7 @@ textarea{
 			}
 
 			.btn_form{
+				font-family: 'Inconsolata';
 				position: absolute;
 				left: 0px;
 				margin: 0 auto;
@@ -389,6 +395,8 @@ textarea{
 }
 
 .list_group_wrapper{
+	font-family: 'Inconsolata';
+	color: #9036fe;
     @media screen and (min-height: $lg) {
     	margin-top: 240px;
     }
@@ -415,6 +423,7 @@ textarea{
 	}
 	hr{
 		margin-bottom: 24px;
+		/*border-top: 1px solid #9036fe;*/
     }
 }
 

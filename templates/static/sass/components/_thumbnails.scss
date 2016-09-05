@@ -93,6 +93,12 @@ $md: 1200px;
             height: 100%;
             display: table-cell;
             vertical-align: middle;
+            font-family: 'Inconsolata';
+            color: #9036fe;
+
+            hr{
+                border-top: 1px solid #9036fe;
+            }
         }
         cursor: pointer;
         padding: 5px;
