@@ -3,18 +3,13 @@ $sm: 991px;
 $md: 1200px;
 
 .thumbgallery{
+    min-height: 90vh;
     max-width: 1400px;
     margin: auto;
-    margin-bottom: 5vw;
-    @media screen and (min-width: $md) {
-        margin-bottom: 100px;
-    }
+    margin-bottom: 70px;
+    margin-top: 45px;
     @media screen and (max-width: $xs) {
-        margin-bottom: 50px;
-    }
-    margin-top: 42px;
-    @media screen and (max-width: $md) {
-        margin-top: 3vw;
+    	margin-top: 0px;
     }
 
     hr{
@@ -29,12 +24,16 @@ $md: 1200px;
     padding-right: 0px;
     margin-top: 8px;
     margin-bottom: 8px;
+    /*max-width: 440px;*/
 
     .thumbnail{
         margin-left: 10px;
         margin-right: 10px;
         margin-bottom: 10px;
         margin-top: 5px;
+        @media screen and (max-width: $xs) {
+    	margin-top: 55px;
+    }
         height: 20vw;
         max-height: 300px;
         padding: 0;
@@ -77,6 +76,7 @@ $md: 1200px;
 }
     .post_thumbnail{
         max-height: 278px;
+        margin-top: 55px !important;
         @media screen and (max-width: $sm) {
             height: 35vw !important;
             max-height: 300px;
@@ -93,6 +93,12 @@ $md: 1200px;
             height: 100%;
             display: table-cell;
             vertical-align: middle;
+            font-family: 'Inconsolata';
+            color: #9036fe;
+
+            hr{
+                border-top: 1px solid #9036fe;
+            }
         }
         cursor: pointer;
         padding: 5px;
@@ -124,4 +130,8 @@ $md: 1200px;
             margin-top: 2px;
         }
     }
+}
+
+.post_gallery{
+    margin-top: 0px !important;
 }

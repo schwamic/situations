@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='gallery/about.html'), name="about"),
     url(r'^impressum/$', TemplateView.as_view(template_name='gallery/impressum.html'), name="impressum"),
 ]
-# note
+
 # uuid: (?P<something>[^/]+)
 # number: (?P<something>[0-9]+)

@@ -10,10 +10,10 @@ $(document).ready(function(){
 	/*Images*/
 	$('.lightbox_detail').click(function(event){
 		$("body").css("overflow", "hidden");
-		$(".lightbox_detailview").hide(0).fadeIn(300);
 		IMAGE_ID = (""+$(this).attr("id")).split("_")[1];
 		$("#detail_image").attr("value",IMAGE_ID);
 		$('#lightbox_img_detail').fadeOut(0,function(){
+			$(".lightbox_detailview").hide(0).fadeIn(300);
 			get_image_info(IMAGE_ID);
 		});
 
@@ -22,9 +22,9 @@ $(document).ready(function(){
 	/*Posts*/
 	$('.lightbox_post').click(function(event){
 		$("body").css("overflow", "hidden");
-		$(".lightbox_detailview").hide(0).fadeIn(300);
 		POST_ID = (""+$(this).attr("id")).split("_")[1];
 		$('#lightbox_img_postview').fadeOut(0, function(){
+			$(".lightbox_detailview").hide(0).fadeIn(300);
 			get_post_info(POST_ID);
 		});
 
@@ -77,8 +77,9 @@ $(document).ready(function(){
 			if(POST_ID <= 0){
 				POST_ID = COUNT_OF_ALL_POSTS;
 			}
-			$('#lightbox_img_postview').fadeOut(0);
-			get_post_info(POST_ID);
+			$('#lightbox_img_postview').fadeOut(0,function(){
+				get_post_info(POST_ID);
+			});
 		}
 	});
 

@@ -35,3 +35,48 @@
     background-color: #000;
     }
 }
+
+.pagination{
+    width: 100%;
+    text-align: center;
+    margin-top: 0px;
+    cursor: pointer;
+
+    >.active>a,
+    >.active>a:hover,
+    >.active>a:focus,
+    >.active>span,
+    >.active>span:hover,
+    >.active>span:focus {
+        color: black;
+        background-color: transparent;
+    }
+
+    >.li>a:hover,
+    >.li>a:focus,
+    >.li>span,
+    >.li>span:hover,
+    >.li>span:focus {
+        color: black;
+        background-color: transparent;
+    }
+
+    >li {
+      float: none;
+      display: inline-block;
+      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0px;
+      color: grey;
+
+      a{
+        color: grey;
+        background-color: transparent;
+        border: 0px;
+      }
+      a:hover{
+        color: black;
+        background-color: transparent;
+        border: 0px;
+      }
+    }
+}
