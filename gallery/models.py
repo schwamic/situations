@@ -36,7 +36,7 @@ class Image(models.Model):
     filename = models.CharField(max_length=200)
     title = models.CharField(max_length=50, default='Some Title')
     author = models.CharField(max_length=50, default='Some Author')
-    date_photo_taken = models.DateTimeField('year photo taken', default=timezone.now())
+    date_photo_taken = models.DateTimeField('year photo taken', default=timezone.now)
     location = models.CharField(max_length=50, default='Some City')
 
     def __str__(self):
@@ -46,7 +46,7 @@ class Image(models.Model):
 class Post(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
-    publishing_date = models.DateTimeField(default=timezone.now())
+    publishing_date = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=200, default='Some description')
     reason = models.CharField(max_length=200, default='Some Reason')
 
