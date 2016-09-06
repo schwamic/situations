@@ -143,6 +143,7 @@ $(document).ready(function(){
 
 	/*AJAX for POSTVIEW*/
 	function get_post_info(my_id) {
+		console.log('get_post_info called');
 		if(my_id > 0){
 			$.ajax({
 				url : "detail_post/", // the endpoint
