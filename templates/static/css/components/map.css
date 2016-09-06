@@ -1,7 +1,17 @@
 #map_holder {
-    height: 80vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    bottom: 55px;
+    z-index: 0;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-map {
+    z-index: 9999999 !important;
 }
 
 .gm-style-iw {

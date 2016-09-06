@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Situations - Error{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 thankyou_col">
+        <h1>Sorry, we weren't able to fulfill your request.</h1>
+        <p>This is probably due to a temporary problem.<br>Your link has not been used - please try again (later).</p>
+        {{ link }}
+    </div>
+</div>
+{% endblock %}

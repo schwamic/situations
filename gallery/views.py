@@ -128,7 +128,14 @@ class ThankYouView(generic.DetailView):
     template_name = 'gallery/thankyou.html'
 
 
+class PublishError(generic.DetailView):
+    model = Publisher
+    template_name = 'gallery/publisherror.html'
+
+
 def publish(request, publisher_id):
+    success = False
+
     # get current publisher object
     publisher = get_object_or_404(Publisher, pk=publisher_id)
 
@@ -151,7 +158,12 @@ def publish(request, publisher_id):
             'https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
                 publisher.latitude, publisher.longitude, settings.GOOGLE_API_KEY
             )
-        google_api_response = urllib.request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+
+        try:
+            google_api_response = urllib.request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+        except:
+            return
+
         geo_data = json.loads(google_api_response)
 
         for result in geo_data['results']:
@@ -166,7 +178,9 @@ def publish(request, publisher_id):
                     publisher.country = address_component['long_name']
                     break
 
-    else:
+        success = True
+
+    if success is False:
         # FALLBACK: geo locating via geoIP2
         user_ip = get_client_ip(request)
         g = GeoIP2()
@@ -197,16 +211,21 @@ def publish(request, publisher_id):
     image = get_object_or_404(Image, pk=image_id)
     new_post = Post(image=image, publisher=publisher, description=description, reason=reason)
 
-    # push to db
-    new_post.save()
-    publisher.save()
-
     # invite new publisher
-    invite_new_publisher(publisher, request.POST['email_1'])
-    if request.POST['email_2'] is not '':
+    try:
+        invite_new_publisher(publisher, request.POST['email_1'])
         invite_new_publisher(publisher, request.POST['email_2'])
-    if request.POST['email_3'] is not '':
-        invite_new_publisher(publisher, request.POST['email_3'])
+        success = True
+    except:
+        success = False
+
+    # push to db
+    if success is True:
+        new_post.save()
+        publisher.save()
+    else:
+        return HttpResponseRedirect(reverse('gallery:publisherror', args=(publisher_id,)))
+
 
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
 
