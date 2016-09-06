@@ -2,16 +2,29 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 50px;
-    bottom: 55px;
+    top: 0;
+    bottom: 0;
     z-index: 0;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.navbar-map {
-    z-index: 9999999 !important;
+.small_lightbox {
+    position: absolute;
+    width: 40vw;
+    right: 30vw;
+    left: 30vw;
+    background-color: white;
+    z-index: 9000001 !important;
+}
+
+.index-high {
+    z-index: 9000001 !important;
+}
+
+.index-very-high {
+    z-index: 9000002 !important;
 }
 
 .gm-style-iw {

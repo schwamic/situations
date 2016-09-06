@@ -361,7 +361,11 @@ function draw_marker(marker) {
     });
 
     google.maps.event.addListener(new_marker, 'click', function() {
-        console.log('marker clicked')
+        /*Posts*/
+        console.log('clicked');
+            $("body").css("overflow", "hidden");
+                $(".lightbox_detailview").hide(0).fadeIn(300);
+                get_post_info(marker[0][1]);
     });
 }
 
@@ -385,3 +389,56 @@ function draw_link(marker) {
         */
     }
 }
+
+
+
+// --- AJAX by Micha
+
+/*AJAX for POSTVIEW*/
+function get_post_info(my_id) {
+    console.log('get_post_info called');
+    if(my_id > 0){
+        $.ajax({
+            url : "detail_post/", // the endpoint
+            type : "POST", // http method
+            data : { post_id : my_id }, // data sent with the post request
+            // handle a successful response
+            success : function(json) {
+                console.log(json);
+                $('.list_id').html(""+json.publisher_id);
+                $('.list_date').html(""+json.post_publishing_date);
+                $('.list_gender').html(""+json.publisher_gender);
+                $('.list_occupation').html(""+json.publisher_occupation);
+                $('.list_age').html(""+json.publisher_age);
+                $('.list_location').html(""+json.publisher_location);
+                $('.list_activity').html(""+json.publisher_active_time);
+                $('.list_description').html(""+json.post_description);
+                $('.list_reason').html(""+json.post_reason);
+
+                $('#publish_image_title').html(""+json.image_title);
+                $('#publish_image_author').html(""+json.image_author);
+                $('#lightbox_img_pubview').fadeOut(0, function(){
+                    $('#lightbox_img_pubview').attr('src',""+json.image_filename);
+                }).fadeIn(400);
+                COUNT_OF_ALL_POSTS = json.post_count;
+            },
+            // handle a non-successful response
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
+};
+
+/*AJAX_Setup for django csrf*/
+    function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
