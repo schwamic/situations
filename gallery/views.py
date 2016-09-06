@@ -132,7 +132,6 @@ class PublishError(generic.DetailView):
     model = Publisher
     template_name = 'gallery/publisherror.html'
 
-
 def publish(request, publisher_id):
     success = False
 
