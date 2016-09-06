@@ -23,7 +23,7 @@ $(document).ready(function(){
 	$('.lightbox_post').click(function(event){
 		$("body").css("overflow", "hidden");
 		POST_ID = (""+$(this).attr("id")).split("_")[1];
-		$('#lightbox_img_postview').fadeOut(0, function(){
+		$('#lightbox_img_pubview').fadeOut(0, function(){
 			$(".lightbox_detailview").hide(0).fadeIn(300);
 			get_post_info(POST_ID);
 		});
@@ -63,7 +63,7 @@ $(document).ready(function(){
 				if(POST_ID > COUNT_OF_ALL_POSTS){
 					POST_ID = 1;
 			}
-			$('#lightbox_img_postview').fadeOut(0,function(){
+			$('#lightbox_img_pubview').fadeOut(0,function(){
 				get_post_info(POST_ID);
 			});
 		}
@@ -75,7 +75,7 @@ $(document).ready(function(){
 			if(POST_ID <= 0){
 				POST_ID = COUNT_OF_ALL_POSTS;
 			}
-			$('#lightbox_img_postview').fadeOut(0,function(){
+			$('#lightbox_img_pubview').fadeOut(0,function(){
 				get_post_info(POST_ID);
 			});
 		}
@@ -125,8 +125,8 @@ $(document).ready(function(){
 					$('#lightbox_img_detail').fadeOut(0, function(){
 						$('#lightbox_img_detail').attr('src',""+json.image_filename);
 					}).fadeIn(400);
-					$('#lightbox_img_postview').fadeOut(0, function(){
-						$('#lightbox_img_postview').attr('src',""+json.image_filename);
+					$('#lightbox_img_pubview').fadeOut(0, function(){
+						$('#lightbox_img_pubview').attr('src',""+json.image_filename);
 					}).fadeIn(400);
 					$('#publish_image_title').html(""+json.image_title);
 					$('#publish_image_author').html(""+json.image_author);
@@ -160,10 +160,11 @@ $(document).ready(function(){
 					$('.list_activity').html(""+json.publisher_active_time);
 					$('.list_description').html(""+json.post_description);
 					$('.list_reason').html(""+json.post_reason);
+
 					$('#publish_image_title').html(""+json.image_title);
 					$('#publish_image_author').html(""+json.image_author);
-					$('#lightbox_img_postview').fadeOut(0, function(){
-						$('#lightbox_img_postview').attr('src',""+json.image_filename);
+					$('#lightbox_img_pubview').fadeOut(0, function(){
+						$('#lightbox_img_pubview').attr('src',""+json.image_filename);
 					}).fadeIn(400);
 					COUNT_OF_ALL_POSTS = json.post_count;
 				},
