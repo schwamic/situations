@@ -22,15 +22,10 @@ $md: 1200px;
 .thumbscope{
     padding-left: 0px;
     padding-right: 0px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    /*max-width: 440px;*/
 
     .thumbnail{
         margin-left: 10px;
         margin-right: 10px;
-        margin-bottom: 10px;
-        margin-top: 5px;
         @media screen and (max-width: $xs) {
     	margin-top: 55px;
     }
@@ -60,8 +55,6 @@ $md: 1200px;
         transition: all 0.2s ease-in-out;
 
     img{
-        max-width:100%;
-        max-height:100%;
         vertical-align: middle;
         position: absolute;
         padding: 5px;
@@ -74,9 +67,28 @@ $md: 1200px;
         display: none;
         }
 }
+
+    .thumbnail_img{
+        img{
+            max-height: 78%;
+            max-width:100%;
+            @media screen and (max-width: $sm) {
+                max-height: 100%;
+            }
+            @media screen and (max-width: $xs) {
+                max-width: 65%;
+            }
+        }
+    }
     .post_thumbnail{
+
+        img{
+            max-width: 65%;
+            max-height:100%;
+        }
         max-height: 278px;
         margin-top: 55px !important;
+        margin-bottom: 25px !important;
         @media screen and (max-width: $sm) {
             height: 35vw !important;
             max-height: 300px;
