@@ -334,6 +334,9 @@ textarea{
 		display: none;
 	}
 
+	.col_img_center_post{
+		/*vertical-align: bottom !important;*/
+	}
 	.col_img_center{					/*table_cell_img_center*/
 		display: table-cell;
 		vertical-align: middle;
@@ -439,6 +442,7 @@ textarea{
 
 .col_img_post{
 	margin-top: 150px;
+	height: 480px;
 
 	@media screen and (min-height: $lg) {
     	margin-top: 240px;
@@ -496,6 +500,10 @@ textarea{
 		max-height: 350px !important;
 	}
 
+}
+
+.img_post{
+	max-height: 400px !important;
 }
 
 .header_form_email{

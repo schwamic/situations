@@ -105,11 +105,35 @@ $md: 1200px;
             height: 100%;
             display: table-cell;
             vertical-align: middle;
-            font-family: 'Inconsolata';
             color: #9036fe;
+
+           .img_meta{
+                margin-top: 10px !important;
+            }
+            .no_bottom{
+                margin-bottom: 0px !important;
+            }
+            .inconsolata_typo{
+                width: 300px;
+                margin: 0 auto;
+                font-family: 'Inconsolata';
+
+                h6{
+                    font-size: 12px;
+                }
+                p{
+                    font-size: 12px;
+                }
+            }
 
             hr{
                 border-top: 1px solid #9036fe;
+            }
+            .col_left{
+                padding-right: 0px;
+            }
+            .col_right{
+                padding-left: 0px;
             }
         }
         cursor: pointer;
