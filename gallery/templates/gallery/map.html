@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/components/map.css' %}"/>
 {% endblock %}
@@ -7,6 +8,7 @@
 {% block title %}Situations - Map{% endblock %}
 
 {% block content %}
+{% csrf_token %}
 <div id="map_holder"></div>
 <div class="lightbox_detailview index-very-high">
     <div class="row backdrop_detail">
@@ -18,7 +20,6 @@
             <!-- fromview -->
             <div class="row detail_wrapper">
                 <div class="col-sx-12 col-sm-12 col-md-6 col_group_wrapper">
-
                     <!-- new stuff -->
                     <div class="list_group_wrapper list_group_wrapper_post">
                         <div class="list-group row">
@@ -143,6 +144,7 @@
 
         initialize(colors);
         render(markers, mode, limit);
+
 
 
 </script>

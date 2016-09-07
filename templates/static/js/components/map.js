@@ -428,7 +428,7 @@ function get_post_info(my_id) {
             }
         });
     }
-};
+}
 
 /*AJAX_Setup for django csrf*/
     function csrfSafeMethod(method) {

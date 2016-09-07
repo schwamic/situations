@@ -13,6 +13,7 @@ from django.utils import timezone
 import json
 import urllib.request
 
+
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
@@ -33,11 +34,11 @@ class ImagesView(generic.ListView):
 
         self.publisher.session_start = timezone.now()
         self.publisher.save()
-        print('called')
 
         return uuid
 
-    def get_slice_position(self, uuid, max_value):
+    @staticmethod
+    def get_slice_position(uuid, max_value):
         """
         generates a user specific value 0 <= x < max_value using
         :return:
@@ -101,7 +102,6 @@ class MapView(generic.ListView):
                 marker.append(inv_by_lng)
             markers.append(marker)
 
-
         return markers
 
     def get_context_data(self, **kwargs):
@@ -122,6 +122,16 @@ class PostsView(generic.ListView):
     paginate_by = 15
     ordering = '-pk'
 
+    def get_context_data(self, **kwargs):
+        context = super(PostsView, self).get_context_data(**kwargs)
+
+        if self.request.GET.get('id') is not None:
+            context['lightbox_id'] = self.request.GET.get('id')
+        else:
+            context['lightbox_id'] = '-1'
+
+        return context
+
 
 class ThankYouView(generic.DetailView):
     model = Publisher
@@ -131,6 +141,7 @@ class ThankYouView(generic.DetailView):
 class PublishError(generic.DetailView):
     model = Publisher
     template_name = 'gallery/publisherror.html'
+
 
 def publish(request, publisher_id):
     success = False
@@ -225,7 +236,6 @@ def publish(request, publisher_id):
     else:
         return HttpResponseRedirect(reverse('gallery:publisherror', args=(publisher_id,)))
 
-
     return HttpResponseRedirect(reverse('gallery:thankyou', args=(publisher_id,)))
 
 
@@ -287,6 +297,7 @@ def detail_image(request):
             content_type="application/json"
         )
 
+
 def detail_post(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
@@ -310,7 +321,6 @@ def detail_post(request):
         response_data['image_filename'] = '/media/'+post.image.filename
         response_data['post_count'] = Post.objects.count()
 
-
         return HttpResponse(
             json.dumps(response_data),
             content_type="application/json"
@@ -320,7 +330,6 @@ def detail_post(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
-
 
 class DataVisualisationView(generic.ListView):
     model = Publisher
@@ -336,18 +345,17 @@ class DataVisualisationView(generic.ListView):
         context['gender_male'] = self.gender_male
         return context
 
-
 # note:
 # a[start:end] # items start through end-1
 # a[start:]    # items start through the rest of the array
 # a[:end]      # items from the beginning through end-1
 # a[:]         # a copy of the whole array
 
-#add session
+# add session
 # #self.request.session['current_publisher_id'] = uuid
-#get session
+# get session
 # #publisher_id=request.session['current_publisher']
-#print(publisher.id)
+# print(publisher.id)
 
 ###########################################################
 #
