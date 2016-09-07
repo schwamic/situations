@@ -5,6 +5,8 @@ $(document).ready(function(){
 	var IMAGE_ID = -1;
 	var POST_ID = -1;
 	var img_width;
+	var csrftoken = $.cookie('csrftoken');
+	console.log(csrftoken);
 
 	/*DETAILVIEW*/
 	/*Images*/

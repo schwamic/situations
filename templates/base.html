@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}"/>
+        <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/5f395b69-a24d-41b8-bc51-1eeb7d950bdc.css"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
         {% block style %}
         {% endblock %}
@@ -35,6 +37,7 @@
         <script src="{% static 'js/components/modal.js' %}"></script>
         <script src="{% static 'js/components/thumbnail.js' %}"></script>
         <script src="{% static 'js/components/validator.js' %}"></script>
+
         {% block scripts %}
         {% endblock %}
 

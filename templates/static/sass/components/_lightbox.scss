@@ -7,7 +7,6 @@
 	height: auto;
 	min-height: 100vh;
 	background:white;
-
 }
 
 @mixin lightbox($pixel){
@@ -80,7 +79,6 @@ textarea{
 
 .box_detail{
 	height: auto;
-
 	img{
 		margin: 0 auto;
 	}
@@ -95,15 +93,14 @@ textarea{
 		font-family: 'Inconsolata';
 		display: block;
 		margin: 0 auto;
-		margin-top: 18px;
+		margin-top: 38px;
 		@media screen and (min-height: $lg) {
-    		margin-top: 68px;
+    		margin-top: 88px;
     	}
 		@media screen and (max-width: $xs) {
 			margin-top: 72px;
 		}
 		margin-bottom: 40px;
-
 	}
 }
 
@@ -119,7 +116,7 @@ textarea{
 
     position: relative;
     display: table;
-    margin-top: 150px;
+    margin-top: 130px;
 
     @media screen and (min-height: $lg) {
     	margin-top: 190px;
@@ -282,16 +279,12 @@ textarea{
 				left: 0px;
 				margin: 0 auto;
 				right: 0px;
-				top: 560px;
+				top: 500px;
 				border: 0px;
 				width: 200%;
 				margin-top: 50px;
 			@media screen and (max-width: $sm) {
 				width: 100%;
-				/*top: 1000px;*/
-				}
-			@media screen and (max-width: $xs) {
-				top: 560px;
 				}
 			}
 		}
@@ -334,9 +327,6 @@ textarea{
 		display: none;
 	}
 
-	.col_img_center_post{
-		/*vertical-align: bottom !important;*/
-	}
 	.col_img_center{					/*table_cell_img_center*/
 		display: table-cell;
 		vertical-align: middle;
@@ -348,12 +338,15 @@ textarea{
 	}
 
 		.publish_img{					/*img_center*/
-		max-width: 75%;
-		max-height: 427px;
-		@media screen and (max-width: $sm) {
-		    margin-top: 100px;
-			max-height: 350px !important;
-		}
+			max-width: 75%;
+			max-height: 427px;
+			@media screen and (max-width: $sm) {
+				margin-top: 100px;
+				max-height: 350px !important;
+			}
+			@media screen and (max-width: $xs) {
+				max-height: 250px !important;
+			}
 		}
 	}
 }
@@ -394,6 +387,9 @@ textarea{
 	height: auto;
 	min-height: 80vh;
     display: table;
+   	@media screen and (max-width: $sm) {
+		min-height: 0px;
+	}
 
 }
 
@@ -407,7 +403,7 @@ textarea{
 	color: #9036fe;
 	padding-left: 10%;
     @media screen and (min-height: $lg) {
-    	margin-top: 240px;
+    	margin-top: 190px;
     }
 	margin-top: 150px;
     max-width: 600px;
@@ -429,10 +425,18 @@ textarea{
 
 	h6{
 		text-align: right;
+		@media screen and (max-width: $xs) {
+			text-align: left;
+	}
+
 	}
 	hr{
 		margin-bottom: 24px;
-		/*border-top: 1px solid #9036fe;*/
+		@media screen and (max-width: $xs) {
+			margin-top: 0px;
+			float: left;
+			width: 70% !important;
+		}
     }
 }
 
@@ -445,30 +449,34 @@ textarea{
 	height: 480px;
 
 	@media screen and (min-height: $lg) {
-    	margin-top: 240px;
+    	margin-top: 200px;
     }
 	@media screen and (max-width: $sm) {
-		margin-top: 100px;
+		margin-top: 0px;
+		display: table !important;
+	}
+	@media screen and (max-width: $xs) {
+		height: auto;
+		margin-top: 0px;
+		display: table !important;
 	}
 }
 
 .center_Socials{
 	margin-top: 75px;
-    margin-bottom: 45px;
+	@media screen and (min-height: $lg) {
+    	margin-top: 55px;
+    }
+    margin-bottom: 40px;
     text-align: center;
 
-    img{
-    	margin-left: 4px;
+	a{
+		margin-left: 4px;
     	margin-right: 4px;
-    	opacity: 0.5;
-    	-webkit-transition: opacity 0.4s; /* Safari */
-    	transition: opacity 0.4s;
-    }
-
-    a:hover{
-    	>img{
-    		opacity:1;
-    	}
+	}
+    i{
+    	color: #9036fe;
+    	opacity: 1;
     }
 }
 
@@ -483,8 +491,19 @@ textarea{
 		min-height: 350px;
 	}
 
+	@media screen and (max-width: $xs) {
+		min-height: 150px;
+	}
+
 	background: url(../img/loading.gif);
-	background-size: 64px 64px;
+	background-size: 52px 52px;
+	@media screen and (max-width: $sm) {
+		background-size: 32px 32px;
+	}
+
+	@media screen and (max-width: $xs) {
+		background-size: 20px 20px;
+	}
 	background-repeat:no-repeat;
 	background-position: center center;
 }
@@ -499,11 +518,6 @@ textarea{
 		@media screen and (max-width: $sm) {
 		max-height: 350px !important;
 	}
-
-}
-
-.img_post{
-	max-height: 400px !important;
 }
 
 .header_form_email{

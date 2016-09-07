@@ -1,140 +1,141 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block style %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/components/map.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/components/map.css' %}"/>
 {% endblock %}
 
 {% block title %}Situations - Map{% endblock %}
 
 {% block content %}
-    <div id="map_holder"></div>
-    <div class="lightbox_detailview index-very-high">
-        <div class="row backdrop_detail">
-            <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
-                <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-10 col-xs-push-2 col-sm-push-2 col-md-push-1 box_detail">
-                <!-- new stuff -->
-                <!-- fromview -->
-                <div class="row detail_wrapper">
-                    <div class="col-sx-12 col-sm-12 col-md-6 col_group_wrapper">
+<div id="map_holder"></div>
+<div class="lightbox_detailview index-very-high">
+    <div class="row backdrop_detail">
+        <div class="col-md-12 col-sm-12 col-xs12 detail_nav">
+            <div class="close lightclose close_detail"><img src="{% static 'img/close.svg' %}" alt="close"></div>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-10 col-xs-push-2 col-sm-push-2 col-md-push-1 box_detail">
+            <!-- new stuff -->
+            <!-- fromview -->
+            <div class="row detail_wrapper">
+                <div class="col-sx-12 col-sm-12 col-md-6 col_group_wrapper">
 
-                        <!-- new stuff -->
-                        <div class="list_group_wrapper list_group_wrapper_post">
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">ID</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_id list-group-item-text"></p>
-                                </div>
+                    <!-- new stuff -->
+                    <div class="list_group_wrapper list_group_wrapper_post">
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">ID</h6>
                             </div>
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Date of Publication</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_date list-group-item-text"></p>
-                                </div>
-                            </div>
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Gender</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_gender list-group-item-text"></p>
-                                </div>
-                            </div>
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Occupation</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_occupation list-group-item-text"></p>
-                                </div>
-                            </div>
-
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Age</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_age list-group-item-text"></p>
-                                </div>
-                            </div>
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Location</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_location list-group-item-text"></p>
-                                </div>
-                            </div>
-
-                            <hr width="60%">
-
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Time of activity</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_activity list-group-item-text"></p>
-                                </div>
-                            </div>
-
-                            <hr width="60%">
-
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Describe the image</h6>
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="list_description list-group-item-text"></p>
-                                </div>
-                            </div>
-                            <div class="list-group row">
-                                <div class="col-xs-4 pull-left">
-                                    <h6 class="list-group-item-heading">Why did I choose this image?</h6>
-                                </div>
-                                <div class="col-xs-8 col_max_width">
-                                    <p class="list_reason list-group-item-text"></p>
-                                </div>
+                            <div class="col-xs-8">
+                                <p class="list_id list-group-item-text"></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col_img col_img_post">
-                        <div class="col_img_center">
-                            <div class="detail_post_placeholder">
-                                <img id="lightbox_img_pubview" class="lightbox_img_center img-fluid publish_img" src="#"
-                                     alt="#">
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Date of Publication</h6>
                             </div>
-                            <div id="publish_caption" class="img_caption">
-                                <p>Image-Title:</p>
-                                <h6 id="publish_image_title"></h6>
-
-                                <p>Image-Author:</p>
-                                <h6 id="publish_image_author" class="no_margin_bottom"></h6>
+                            <div class="col-xs-8">
+                                <p class="list_date list-group-item-text"></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="row center_socials">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center_Socials">
-                            <a><img src="{% static 'img/facebook.svg' %}"></a>
-                            <a><img src="{% static 'img/instagramm.svg' %}"></a>
-                            <a><img src="{% static 'img/twitter.svg' %}"></a>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Gender</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list_gender list-group-item-text"></p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Occupation</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list_occupation list-group-item-text"></p>
+                            </div>
+                        </div>
+
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Age</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list_age list-group-item-text"></p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Location</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list_location list-group-item-text"></p>
+                            </div>
+                        </div>
+
+                        <hr width="60%">
+
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Time of activity</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list_activity list-group-item-text"></p>
+                            </div>
+                        </div>
+
+                        <hr width="60%">
+
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Describe the image</h6>
+                            </div>
+                            <div class="col-xs-8">
+                                <p class="list_description list-group-item-text"></p>
+                            </div>
+                        </div>
+                        <div class="list-group row">
+                            <div class="col-xs-4 pull-left">
+                                <h6 class="list-group-item-heading">Why did I choose this image?</h6>
+                            </div>
+                            <div class="col-xs-8 col_max_width">
+                                <p class="list_reason list-group-item-text"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col_img col_img_post">
+                    <div class="col_img_center col_img_center_post">
+                        <div class="detail_post_placeholder">
+                            <img id="lightbox_img_pubview" class="lightbox_img_center img_post img-fluid publish_img"
+                                 src="#"
+                                 alt="#">
+                        </div>
+                        <div id="publish_caption" class="img_caption">
+                            <p>Image-Title:</p>
+                            <h6 id="publish_image_title"></h6>
 
+                            <p>Image-Author:</p>
+                            <h6 id="publish_image_author" class="no_margin_bottom"></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center_socials">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center_Socials">
+                        <a><img src="{% static 'img/facebook.svg' %}"></a>
+                        <a><img src="{% static 'img/instagramm.svg' %}"></a>
+                        <a><img src="{% static 'img/twitter.svg' %}"></a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="{% static 'js/components/map.js' %}"></script>
-    <script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="{% static 'js/components/map.js' %}"></script>
+<script>
         var colors = {{ colors|safe }};
         var markers = {{ markers|safe }};
         var mode = {{ mode|safe }};
@@ -142,5 +143,7 @@
 
         initialize(colors);
         render(markers, mode, limit);
-    </script>
+
+
+</script>
 {% endblock %}

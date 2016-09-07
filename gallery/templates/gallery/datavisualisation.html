@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Situations - Impressum{% endblock %}
+
+{% block content %}
+
+<div class="chart"></div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{% static 'js/components/age_d3.js' %}"></script>
+{% endblock %}

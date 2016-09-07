@@ -4,6 +4,7 @@
 {% block title %}Situations - Images{% endblock %}
 
 {% block content %}
+{% csrf_token %}
 <!-- modal -->
 <div class="modal" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true"
@@ -130,7 +131,6 @@
                     <form data-toggle="validator" class=" publish_form"
                           action="{% url 'gallery:publish' my_publisher_id %}"
                           method="post">
-                        {% csrf_token %}
                         <div class="form-group row">
                             <div class="col-xs-4 pull-left">
                                 <label class=" col-form-label">Gender</label>
@@ -189,7 +189,7 @@
                             </div>
                         </div>
                         <br>
-                        <h5>How's newx?</h5>
+                        <h5>Please invite others:</h5>
                          <hr class="header_form_email">
                         <div class="form-group has-feedback row">
                             <div class="col-xs-4 pull-left">
@@ -208,15 +208,6 @@
                             <div class="col-xs-8">
                                 <input type="email" class="form-control" id="inputEmail2" name="email_2"
                                        data-equals="{{ my_publisher_email }}" required>
-                            </div>
-                        </div>
-                        <div class="form-group has-feedback row">
-                            <div class="col-xs-4 pull-left">
-                                <label for="inputEmail3" class=" col-form-label">3. email address</label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="email" class="form-control" id="inputEmail3" name="email_3"
-                                       data-equals="{{ my_publisher_email }}">
                             </div>
                         </div>
                         <div class="form-group row" style="display: none">
@@ -259,7 +250,6 @@
 </div>
 
 {% include 'pagination.html' %}
-<div class="prefix"></div>
 {% endblock %}
 
 {% block scripts %}

@@ -320,6 +320,23 @@ def detail_post(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
+
+
+class DataVisualisationView(generic.ListView):
+    model = Publisher
+    template_name = 'gallery/datavisualisation.html'
+
+    #GENDER CHART
+    gender_female = (Publisher.objects.filter(gender = 1)).count()
+    gender_male = (Publisher.objects.filter(gender = 0)).count()
+
+    def get_context_data(self, **kwargs):
+        context = super(DataVisualisationView, self).get_context_data(**kwargs)
+        context['gender_female'] = self.gender_female
+        context['gender_male'] = self.gender_male
+        return context
+
+
 # note:
 # a[start:end] # items start through end-1
 # a[start:]    # items start through the rest of the array
