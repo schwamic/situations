@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+
 {% block style %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/components/map.css' %}"/>
 {% endblock %}
@@ -7,6 +8,7 @@
 {% block title %}Situations - Map{% endblock %}
 
 {% block content %}
+    {% csrf_token %}
     <div id="map_holder"></div>
     <div class="lightbox_detailview index-very-high">
         <div class="row backdrop_detail">
