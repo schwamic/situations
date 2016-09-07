@@ -154,7 +154,7 @@ COLORS = [
     (0, '#9036fe'),     # id color (purple)
     (1, '#ffffff'),     # background
     (2, '#f8f9fa'),     # light grey    - e.g. nav
-    (3, '#babbba'),     # medium grey   - e.g. map
+    (3, '#dddddd'),     # medium grey   - e.g. map
 ]
 
 # Map

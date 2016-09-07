@@ -6,6 +6,19 @@ $(document).ready(function(){
 	var POST_ID = -1;
 	var img_width;
 
+	/*AJAX_Setup for django csrf*/
+	function csrfSafeMethod(method) {
+		// these HTTP methods do not require CSRF protection
+		return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+	}
+	$.ajaxSetup({
+		beforeSend: function(xhr, settings) {
+			if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+				xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			}
+		}
+	});
+
 	/*DETAILVIEW*/
 	/*Images*/
 	$('.lightbox_detail').click(function(event){
@@ -139,12 +152,13 @@ $(document).ready(function(){
 				}
 			});
 		}
-	};
+	}
 
 	/*AJAX for POSTVIEW*/
 	function get_post_info(my_id) {
 		console.log('get_post_info called');
 		if(my_id > 0){
+			console.log(my_id);
 			$.ajax({
 				url : "detail_post/", // the endpoint
 				type : "POST", // http method
@@ -175,18 +189,14 @@ $(document).ready(function(){
 				}
 			});
 		}
-	};
-
-	/*AJAX_Setup for django csrf*/
-		function csrfSafeMethod(method) {
-		// these HTTP methods do not require CSRF protection
-		return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 	}
-	$.ajaxSetup({
-		beforeSend: function(xhr, settings) {
-			if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-				xhr.setRequestHeader("X-CSRFToken", csrftoken);
-			}
-		}
-	});
+
+	if (initial_lightbox_post != -1) {
+		console.log('initial lighbox called');
+		$('#lightbox_img_pubview').fadeOut(0, function () {
+			$(".lightbox_detailview").hide(0).fadeIn(300);
+			POST_ID = initial_lightbox_post;
+			get_post_info(POST_ID);
+		});
+	}
 });
