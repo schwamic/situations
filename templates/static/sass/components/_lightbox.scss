@@ -25,15 +25,12 @@ $lg: 850px;
 /*#############################################################################*/
 
 .img_caption{
-	color: #9036fe;
 	text-align: center;
 	margin-top: 18px;
 	p{
-		font-size: 0.7em;
 		margin-bottom: 0px;
 	}
 	h6{
-		font-size: 10px;
 		margin: 0px;
 		margin-bottom: 10px;
 		margin-top: 2px;
@@ -90,7 +87,6 @@ textarea{
 		text-align: center;
 	}
 	button{
-		font-family: 'Inconsolata';
 		display: block;
 		margin: 0 auto;
 		margin-top: 38px;
@@ -240,8 +236,6 @@ textarea{
 		height: $publish_col_height;
 
 		.publish_form{
-			font-family: 'Inconsolata';
-			color: #9036fe;
 			float: right;
 			width: 80%;
 
@@ -257,15 +251,8 @@ textarea{
 				width: 100px;
 			}
 
-			.form-control{
-				font-size: 12px;
-				color: #9036fe;
-
-			}
-
 			label{
 				width: 150px;
-				font-size: 12px;
 				text-align: right;
 				float: right;
 				margin-top: 0px;
@@ -274,7 +261,6 @@ textarea{
 			}
 
 			.btn_form{
-				font-family: 'Inconsolata';
 				position: absolute;
 				left: 0px;
 				margin: 0 auto;
@@ -399,8 +385,6 @@ textarea{
 }
 
 .list_group_wrapper{
-	font-family: 'Inconsolata';
-	color: #9036fe;
 	padding-left: 10%;
     @media screen and (min-height: $lg) {
     	margin-top: 190px;

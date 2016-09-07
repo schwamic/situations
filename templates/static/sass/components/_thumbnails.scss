@@ -113,17 +113,9 @@ $md: 1200px;
             .no_bottom{
                 margin-bottom: 0px !important;
             }
-            .inconsolata_typo{
+            .caption_wrap{
                 width: 300px;
                 margin: 0 auto;
-                font-family: 'Inconsolata';
-
-                h6{
-                    font-size: 12px;
-                }
-                p{
-                    font-size: 12px;
-                }
             }
 
             hr{
@@ -154,12 +146,10 @@ $md: 1200px;
         transition: opacity 0.2s ease-in-out;
 
         p{
-            font-size: 10px;
             text-align: center;
             margin-bottom: 0px;
         }
         h6{
-            font-size: 10px;
             text-align: center;
             margin: 0px;
             margin-bottom: 10px;
