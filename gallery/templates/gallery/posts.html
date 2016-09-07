@@ -197,15 +197,9 @@
 </div>
 <script>
     var initial_lightbox_post = {{ lightbox_id }};
+    {% if lightbox_id == "" %}
+        initial_lightbox_post = -1;
+    {% endif %};
 </script>
 {% include 'pagination.html' %}
 {% endblock %}
-{% block scripts %}
-{% endblock %}
-
-
-
-
-
-
-
