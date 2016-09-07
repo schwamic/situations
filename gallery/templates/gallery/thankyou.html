@@ -1,12 +1,15 @@
 {% extends "base.html" %}
-
 {% block title %}Situations - Thank you{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-12 thankyou_col">
         <h1>{{ publisher.email }}</h1>
+
         <p>Thank you for participating!</p>
+    </div>
+    <div class="col-sm-12 col-md-12 btn_form">
+        <a href="{% url 'gallery:posts' %}" ><button class="btn btn-default btn_publish btn_new">Get to all posts</button></a>
     </div>
 </div>
 {% endblock %}

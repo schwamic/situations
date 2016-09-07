@@ -16,21 +16,42 @@
 
                 <div class="caption">
                     <div class="caption_text">
-                        <p>{{ post.publishing_date|date }}</p>
-
-                        <p>{{ post.publisher.get_gender_display }}</p>
-
-                        <p>{{ post.publisher.loaction }}</p>
-
+                        <div class="inconsolata_typo">
+                            <div class="row">
+                                <div class="col-xs-3 col-xs-offset-3 col_left">
+                                    <h6 class="list-group-item-heading">Gender:</h6>
+                                </div>
+                                <div class="col-xs-3 col_right">
+                                    <p class="list-group-item-text">{{ post.publisher.city }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-xs-offset-3 col_left">
+                                    <h6 class="list-group-item-heading">Date:</h6>
+                                </div>
+                                <div class="col-xs-3 col_right">
+                                    <p class="list-group-item-text">{{post.publishing_date.day}}.{{post.publishing_date.month}}.{{post.publishing_date.year }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-xs-offset-3 col_left">
+                                    <h6 class="list-group-item-heading">Location:</h6>
+                                </div>
+                                <div class="col-xs-3 col_right">
+                                    <p class="list-group-item-text">{{ post.publisher.get_gender_display }}</p>
+                                </div>
+                            </div>
+                        </div>
                         <hr width="150px">
+                        <div class="img_meta">
+                            <p>Image-Title:</p>
 
-                        <p>Image-Title:</p>
+                            <h6>{{ post.image.title }}</h6>
 
-                        <h6>{{ post.image.title }}</h6>
+                            <p>Image-Author:</p>
 
-                        <p>Image-Author:</p>
-
-                        <h6>{{ post.image.author }}</h6>
+                            <h6 class="no_bottom">{{ post.image.author }}</h6>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,9 +168,10 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col_img col_img_post">
-                    <div class="col_img_center">
+                    <div class="col_img_center col_img_center_post">
                         <div class="detail_post_placeholder">
-                            <img id="lightbox_img_pubview" class="lightbox_img_center img-fluid publish_img" src="#"
+                            <img id="lightbox_img_pubview" class="lightbox_img_center img_post img-fluid publish_img"
+                                 src="#"
                                  alt="#">
                         </div>
                         <div id="publish_caption" class="img_caption">

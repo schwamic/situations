@@ -307,7 +307,7 @@ def detail_post(request):
         response_data = {}
 
         response_data['publisher_id'] = post.publisher.name +'-'+ str(post.publisher.id)
-        response_data['post_publishing_date'] = str(post.publishing_date.date())
+        response_data['post_publishing_date'] = '%s.%s.%s' % (post.publishing_date.day, post.publishing_date.month, post.publishing_date.year)
         response_data['publisher_gender'] = choices.GENDER_CHOICES[int(post.publisher.gender)][1]
         response_data['publisher_occupation'] = choices.OCCUPATION_CHOICES[int(post.publisher.occupation)][1]
         response_data['publisher_age'] = int(timezone.now().year) - int(choices.YEAR_BORN[post.publisher.year_of_birth][1])
