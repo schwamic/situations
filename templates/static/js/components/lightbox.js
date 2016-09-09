@@ -6,7 +6,7 @@ $(document).ready(function(){
 	var POST_ID = -1;
 	var img_width;
 	var csrftoken = $.cookie('csrftoken');
-	console.log(csrftoken);
+	var initial_lightbox_post;
 
 	/*AJAX_Setup for django csrf*/
 	function csrfSafeMethod(method) {
@@ -24,24 +24,24 @@ $(document).ready(function(){
 	/*DETAILVIEW*/
 	/*Images*/
 	$('.lightbox_detail').click(function(event){
-		$("body").css("overflow", "hidden");
 		IMAGE_ID = (""+$(this).attr("id")).split("_")[1];
 		$("#detail_image").attr("value",IMAGE_ID);
-		$('#lightbox_img_detail').fadeOut(0,function(){
-			$(".lightbox_detailview").hide(0).fadeIn(300);
-			get_image_info(IMAGE_ID);
+		$("#lightbox_img_detail").css("opacity", "0");
+		$(".lightbox_detailview").hide(0).fadeIn(300,function(){
+			$("body").css({'overflow':'hidden'});
 		});
+		get_image_info(IMAGE_ID);
 
 	});
 
 	/*Posts*/
 	$('.lightbox_post').click(function(event){
-		$("body").css("overflow", "hidden");
 		POST_ID = (""+$(this).attr("id")).split("_")[1];
-		$('#lightbox_img_pubview').fadeOut(0, function(){
-			$(".lightbox_detailview").hide(0).fadeIn(300);
-			get_post_info(POST_ID);
+		$('#lightbox_img_pubview').css("opacity", "0");
+		$(".lightbox_detailview").hide(0).fadeIn(300,function(){
+			$("body").css({'overflow':'hidden'});
 		});
+		get_post_info(POST_ID);
 	});
 
 	/*SLIDER*/
@@ -53,9 +53,8 @@ $(document).ready(function(){
 					IMAGE_ID = 1;
 			}
 			$("#detail_image").attr("value",IMAGE_ID);
-			$('#lightbox_img_detail').fadeOut(0,function(){
-				get_image_info(IMAGE_ID);
-			});
+			$("#lightbox_img_detail").css("opacity", "0");
+			get_image_info(IMAGE_ID);
 		}
 	});
 
@@ -66,9 +65,8 @@ $(document).ready(function(){
 				IMAGE_ID = COUNT_OF_ALL_IMAGES;
 			}
 			$("#detail_image").attr("value",IMAGE_ID);
-			$('#lightbox_img_detail').fadeOut(0,function(){
-				get_image_info(IMAGE_ID);
-		});
+			$("#lightbox_img_detail").css("opacity", "0");
+			get_image_info(IMAGE_ID);
 		}
 	});
 	/*Posts*/
@@ -78,9 +76,8 @@ $(document).ready(function(){
 				if(POST_ID > COUNT_OF_ALL_POSTS){
 					POST_ID = 1;
 			}
-			$('#lightbox_img_pubview').fadeOut(0,function(){
-				get_post_info(POST_ID);
-			});
+			$('#lightbox_img_pubview').css("opacity", "0");
+			get_post_info(POST_ID);
 		}
 	});
 
@@ -90,9 +87,8 @@ $(document).ready(function(){
 			if(POST_ID <= 0){
 				POST_ID = COUNT_OF_ALL_POSTS;
 			}
-			$('#lightbox_img_pubview').fadeOut(0,function(){
-				get_post_info(POST_ID);
-			});
+			$('#lightbox_img_pubview').css("opacity", "0");
+			get_post_info(POST_ID);
 		}
 	});
 
@@ -101,7 +97,6 @@ $(document).ready(function(){
 	/*PUBLISHVIEW*/
 	$('.btn_publishview').click(function(event){
 		getLocation();
-		//$('.lightbox_publishview').fadeIn(300);
 		$('.backdrop_pubview').fadeIn(300);
 	});
 
@@ -117,12 +112,18 @@ $(document).ready(function(){
 	/*FUNCTIONS*/
 	function close_box(state)
 	{
-		$("body").css("overflow", "");
+		$("body").css({'overflow': ""});
 		if(state){
-				$(".lightbox_detailview").fadeOut(0);
+				$(".lightbox_detailview").fadeOut(0,function(){
+					$("#lightbox_img_detail").css("opacity", "0");
+					$('#lightbox_img_pubview').css("opacity", "0");
+				});
 				$('.backdrop_pubview').fadeOut(400);
 		}else{
-				$(".lightbox_detailview").fadeOut(400);
+				$(".lightbox_detailview").fadeOut(400, function(){
+					$("#lightbox_img_detail").css("opacity", "0");
+					$('#lightbox_img_pubview').css("opacity", "0");
+				});
 		}
 	}
 
@@ -137,12 +138,15 @@ $(document).ready(function(){
 				success : function(json) {
 					$('#detail_image_title').html(""+json.image_title);
 					$('#detail_image_author').html(""+json.image_author);
-					$('#lightbox_img_detail').fadeOut(0, function(){
-						$('#lightbox_img_detail').attr('src',""+json.image_filename);
-					}).fadeIn(400);
-					$('#lightbox_img_pubview').fadeOut(0, function(){
-						$('#lightbox_img_pubview').attr('src',""+json.image_filename);
-					}).fadeIn(400);
+					$("#lightbox_img_detail").css("display", "none").attr("src", ""+json.image_filename).one("load",function(){
+					//fires (only once) when loaded
+							$(this).css("opacity", "1");
+							$(this).fadeIn("slow");
+						 }).each(function(){
+							if(this.complete) //trigger load if cached in certain browsers
+							  $(this).trigger("load");
+						 });
+					$('#lightbox_img_pubview').attr('src',""+json.image_filename);
 					$('#publish_image_title').html(""+json.image_title);
 					$('#publish_image_author').html(""+json.image_author);
 					$('#lightbox_img_pubview').attr('src',""+json.image_filename);
@@ -158,7 +162,6 @@ $(document).ready(function(){
 
 	/*AJAX for POSTVIEW*/
 	function get_post_info(my_id) {
-		console.log('get_post_info called');
 		if(my_id > 0){
 			console.log(my_id);
 			$.ajax({
@@ -180,9 +183,14 @@ $(document).ready(function(){
 
 					$('#publish_image_title').html(""+json.image_title);
 					$('#publish_image_author').html(""+json.image_author);
-					$('#lightbox_img_pubview').fadeOut(0, function(){
-						$('#lightbox_img_pubview').attr('src',""+json.image_filename);
-					}).fadeIn(400);
+					$("#lightbox_img_pubview").css("display", "none").attr("src", ""+json.image_filename).one("load",function(){
+					//fires (only once) when loaded
+							$(this).css({"opacity": "1"})
+							$(this).fadeIn("slow");
+						 }).each(function(){
+							if(this.complete) //trigger load if cached in certain browsers
+							  $(this).trigger("load");
+						 });
 					COUNT_OF_ALL_POSTS = json.post_count;
 				},
 				// handle a non-successful response
@@ -193,12 +201,15 @@ $(document).ready(function(){
 		}
 	}
 
-	if (initial_lightbox_post != -1) {
-		console.log('initial lighbox called');
-		$('#lightbox_img_pubview').fadeOut(0, function () {
-			$(".lightbox_detailview").hide(0).fadeIn(300);
+	// wo findet die uebergabe statt
+	if($('#social_id').attr('value') != ""){
+		initial_lightbox_post = $('#social_id').attr('value');
+		if (initial_lightbox_post != -1 && initial_lightbox_post > -1) {
 			POST_ID = initial_lightbox_post;
+			$(".lightbox_detailview").hide(0).fadeIn(0,function(){
+				$("body").css({'overflow':'hidden'});
+			});
 			get_post_info(POST_ID);
-		});
+		}
 	}
 });

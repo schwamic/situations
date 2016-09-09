@@ -163,12 +163,24 @@ textarea{
     max-height: 480px;
 	margin: 0 auto;
     z-index: 600;
-
 	@media screen and (max-width: $xs) {
 		max-height: 300px;
 	}
 
 
+}
+
+#lightbox_img_pubview{
+	display: block;
+}
+
+display_state{
+	display: block;
+	opacity: 0;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 .col_wrap{

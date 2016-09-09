@@ -361,11 +361,12 @@ function draw_marker(marker) {
     });
 
     google.maps.event.addListener(new_marker, 'click', function() {
-        /*Posts*/
-        console.log('clicked');
-            $("body").css("overflow", "hidden");
-                $(".lightbox_detailview").hide(0).fadeIn(300);
-                get_post_info(marker[0][1]);
+        POST_ID = marker[0][1];
+		$('#lightbox_img_pubview').css("opacity", "0");
+		$(".lightbox_detailview").hide(0).fadeIn(300,function(){
+			$("body").css({'overflow':'hidden'});
+		});
+		get_post_info(POST_ID);
     });
 }
 
@@ -390,14 +391,10 @@ function draw_link(marker) {
     }
 }
 
-
-
-// --- AJAX by Micha
-
 /*AJAX for POSTVIEW*/
 function get_post_info(my_id) {
-    console.log('get_post_info called');
     if(my_id > 0){
+        console.log(my_id);
         $.ajax({
             url : "detail_post/", // the endpoint
             type : "POST", // http method
@@ -417,10 +414,14 @@ function get_post_info(my_id) {
 
                 $('#publish_image_title').html(""+json.image_title);
                 $('#publish_image_author').html(""+json.image_author);
-                $('#lightbox_img_pubview').fadeOut(0, function(){
-                    $('#lightbox_img_pubview').attr('src',""+json.image_filename);
-                }).fadeIn(400);
-                COUNT_OF_ALL_POSTS = json.post_count;
+                $("#lightbox_img_pubview").css("display", "none").attr("src", ""+json.image_filename).one("load",function(){
+                //fires (only once) when loaded
+                        $(this).css({"opacity": "1"})
+                        $(this).fadeIn("slow");
+                     }).each(function(){
+                        if(this.complete) //trigger load if cached in certain browsers
+                          $(this).trigger("load");
+                     });
             },
             // handle a non-successful response
             error : function(xhr,errmsg,err) {

@@ -30,7 +30,8 @@
                                     <h6 class="list-group-item-heading">Date:</h6>
                                 </div>
                                 <div class="col-xs-3 col_right">
-                                    <p class="list-group-item-text">{{post.publishing_date.day}}.{{post.publishing_date.month}}.{{post.publishing_date.year }}</p>
+                                    <p class="list-group-item-text">
+                                        {{post.publishing_date.day}}.{{post.publishing_date.month}}.{{post.publishing_date.year}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -195,15 +196,10 @@
         </div>
     </div>
 </div>
-<script>
-    var initial_lightbox_post = {{ lightbox_id }};
-    {% if lightbox_id == "" %}
-        initial_lightbox_post = -1;
-    {% endif %};
-</script>
+<input type="hidden" id="social_id" style="display: none" name="variable" value="{{ lightbox_id }}" readonly>
 {% include 'pagination.html' %}
-<<<<<<< HEAD
 {% endblock %}
+
 {% block scripts %}
 {% endblock %}
 
@@ -212,6 +208,3 @@ sharing:
 https://developers.facebook.com/docs/sharing/web
 https://developers.facebook.com/docs/sharing/webmasters#markup
 -->
-=======
-{% endblock %}
->>>>>>> 18f091d9b376b23471b2ac85caf4af6c4679b444
