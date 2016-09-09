@@ -30,7 +30,7 @@ urlpatterns = [
 
     #data visualisation
     url(r'^datavisualisation/$', DataVisualisationView.as_view(), name='datavisualisation'),
-    url(r'^datavisualisation/d3data/$', d3_data, name='d3_data'),
+    url(r'^datavisualisation/d3_data/$', d3_data, name='d3_data'),
 ]
 
 # uuid: (?P<something>[^/]+)
