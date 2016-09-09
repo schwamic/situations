@@ -18,7 +18,7 @@ $publish_col_height: 508px;
 $xs: 767px;
 $sm: 991px;
 $md: 1999px;
-$lg: 850px;
+$lg: 900px;
 
 /*#############################################################################*/
 /*############################ BASE LIGHTBOX ################################*/
@@ -383,7 +383,11 @@ display_state{
 }
 .col_group_wrapper{
 	height: auto;
-	min-height: 80vh;
+	/*min-height: 80vh;*/
+	min-height: 664px;
+	@media screen and (min-height: $lg) {
+    	min-height: 807px;
+    }
     display: table;
    	@media screen and (max-width: $sm) {
 		min-height: 0px;
