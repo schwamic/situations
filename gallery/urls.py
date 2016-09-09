@@ -29,8 +29,8 @@ urlpatterns = [
     url(r'^impressum/$', TemplateView.as_view(template_name='gallery/imprint.html'), name="impressum"),
 
     #data visualisation
-    url(r'^datavisualisation/$', views.DataVisualisationView.as_view(), name='datavisualisation'),
-    url(r'^datavisualisation/d3data/$', views.d3_data, name='d3_data'),
+    url(r'^datavisualisation/$', DataVisualisationView.as_view(), name='datavisualisation'),
+    url(r'^datavisualisation/d3data/$', d3_data, name='d3_data'),
 ]
 
 # uuid: (?P<something>[^/]+)
