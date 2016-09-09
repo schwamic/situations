@@ -11,7 +11,6 @@ from itertools import chain
 from .models import Publisher, Image, Post
 from django.utils import timezone
 import json
-import urllib.request
 from django.core import serializers
 
 
@@ -155,7 +154,7 @@ def publish(request, publisher_id):
     publisher.gender = int(request.POST['gender'])
     publisher.occupation = int(request.POST['occupation'])
     publisher.year_of_birth = int(request.POST['year_of_birth'])
-    print('year_of_birth: '+str(publisher.year_of_birth))
+    # print('year_of_birth: '+str(publisher.year_of_birth))
 
     publisher.active_time = timezone.now() - publisher.session_start
     publisher.is_active = False
@@ -173,24 +172,22 @@ def publish(request, publisher_id):
 
         try:
             google_api_response = request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+            geo_data = json.loads(google_api_response)
+
+            for result in geo_data['results']:
+                for address_component in result['address_components']:
+                    if address_component['types'] == ['locality', 'political']:
+                        publisher.city = address_component['long_name']
+                        break
+                    if address_component['types'] == ['administrative_area_level_1', 'political']:
+                        publisher.region = address_component['short_name']
+                        break
+                    if address_component['types'] == ['country', 'political']:
+                        publisher.country = address_component['long_name']
+                        break
+            success = True
         except:
-            return
-
-        geo_data = json.loads(google_api_response)
-
-        for result in geo_data['results']:
-            for address_component in result['address_components']:
-                if address_component['types'] == ['locality', 'political']:
-                    publisher.city = address_component['long_name']
-                    break
-                if address_component['types'] == ['administrative_area_level_1', 'political']:
-                    publisher.region = address_component['short_name']
-                    break
-                if address_component['types'] == ['country', 'political']:
-                    publisher.country = address_component['long_name']
-                    break
-
-        success = True
+            success = False
 
     if success is False:
         # FALLBACK: geo locating via geoIP2
