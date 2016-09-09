@@ -22,7 +22,7 @@
                                     <h6 class="list-group-item-heading">Gender:</h6>
                                 </div>
                                 <div class="col-xs-3 col_right">
-                                    <p class="list-group-item-text">{{ post.publisher.city }}</p>
+                                    <p class="list-group-item-text">{{ post.publisher.get_gender_display }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -38,7 +38,7 @@
                                     <h6 class="list-group-item-heading">Location:</h6>
                                 </div>
                                 <div class="col-xs-3 col_right">
-                                    <p class="list-group-item-text">{{ post.publisher.get_gender_display }}</p>
+                                    <p class="list-group-item-text">{{ post.publisher.city }}</p>
                                 </div>
                             </div>
                         </div>
@@ -185,8 +185,8 @@
                 </div>
                 <div class="row center_socials">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center_Socials">
-                        <a><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
                         <a><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+                        <a><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
                         <a><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
                     </div>
                 </div>
@@ -197,4 +197,16 @@
 </div>
 <input type="hidden" id="social_id" style="display: none" name="variable" value="{{ lightbox_id }}" readonly>
 {% include 'pagination.html' %}
+<<<<<<< HEAD
 {% endblock %}
+{% block scripts %}
+{% endblock %}
+
+<!--
+sharing:
+https://developers.facebook.com/docs/sharing/web
+https://developers.facebook.com/docs/sharing/webmasters#markup
+-->
+=======
+{% endblock %}
+>>>>>>> 18f091d9b376b23471b2ac85caf4af6c4679b444

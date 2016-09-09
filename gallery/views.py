@@ -15,6 +15,7 @@ import urllib.request
 from django.core import serializers
 
 
+
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
@@ -171,7 +172,7 @@ def publish(request, publisher_id):
             )
 
         try:
-            google_api_response = urllib.request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+            google_api_response = request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
         except:
             return
 
