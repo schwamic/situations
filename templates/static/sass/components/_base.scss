@@ -184,7 +184,7 @@ body {
         text-align: center;
         word-break: break-all;
         color: #9036fe;
-        font-family: 'Inconsolata';
+        font-family: 'Inconsolata' !important;
         font-size: 25px;
         @media screen and (max-width: $xs) {
 		    font-size: 18px;
