@@ -1,0 +1,15 @@
+Django==1.10
+django-kronos==1.0
+djangoajax==2.3.6
+geoip2==2.4.0
+maxminddb==1.2.1
+pbr==1.10.0
+Pillow==3.3.0
+python-crontab==2.1.1
+python-dateutil==2.5.3
+requests==2.11.1
+six==1.10.0
+stevedore==1.17.0
+virtualenv==15.0.3
+virtualenv-clone==0.2.6
+virtualenvwrapper==4.7.1

@@ -11,7 +11,6 @@ from itertools import chain
 from .models import Publisher, Image, Post
 from django.utils import timezone
 import json
-import urllib.request
 
 
 class ImagesView(generic.ListView):
@@ -170,7 +169,7 @@ def publish(request, publisher_id):
             )
 
         try:
-            google_api_response = urllib.request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+            google_api_response = request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
         except:
             return
 

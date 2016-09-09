@@ -1,0 +1,3 @@
+- foreign key on publisher doesnt work (see map), why?
+- greif email account
+- share buttons
