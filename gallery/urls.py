@@ -24,10 +24,13 @@ urlpatterns = [
     url(r'^images/(?P<pk>[0-9]+)/thankyou/$', views.ThankYouView.as_view(), name='thankyou'),
     url(r'^images/(?P<pk>[0-9]+)/error/$', views.PublishError.as_view(), name='publisherror'),
 
-    # other
+    # static
     url(r'^about/$', TemplateView.as_view(template_name='gallery/about.html'), name="about"),
-    url(r'^impressum/$', TemplateView.as_view(template_name='gallery/impressum.html'), name="impressum"),
+    url(r'^impressum/$', TemplateView.as_view(template_name='gallery/imprint.html'), name="impressum"),
+
+    #data visualisation
     url(r'^datavisualisation/$', views.DataVisualisationView.as_view(), name='datavisualisation'),
+    url(r'^datavisualisation/d3data/$', views.d3_data, name='d3_data'),
 ]
 
 # uuid: (?P<something>[^/]+)

@@ -195,11 +195,6 @@
         </div>
     </div>
 </div>
-<script>
-    var initial_lightbox_post = {{ lightbox_id }};
-    {% if lightbox_id == "" %}
-        initial_lightbox_post = -1;
-    {% endif %};
-</script>
+<input type="hidden" id="social_id" style="display: none" name="variable" value="{{ lightbox_id }}" readonly>
 {% include 'pagination.html' %}
 {% endblock %}

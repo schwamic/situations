@@ -1,6 +1,6 @@
 from django.contrib.gis.geoip2 import GeoIP2
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.http import Http404, HttpResponse
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -12,12 +12,13 @@ from .models import Publisher, Image, Post
 from django.utils import timezone
 import json
 import urllib.request
+from django.core import serializers
 
 
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
-    paginate_by = 30
+    paginate_by = 36
 
     def get_uuid(self):
         """
@@ -119,7 +120,7 @@ class MapView(generic.ListView):
 class PostsView(generic.ListView):
     model = Post
     template_name = 'gallery/posts.html'
-    paginate_by = 15
+    paginate_by = 18
     ordering = '-pk'
 
     def get_context_data(self, **kwargs):
@@ -335,15 +336,13 @@ class DataVisualisationView(generic.ListView):
     model = Publisher
     template_name = 'gallery/datavisualisation.html'
 
-    #GENDER CHART
-    gender_female = (Publisher.objects.filter(gender = 1)).count()
-    gender_male = (Publisher.objects.filter(gender = 0)).count()
+def d3_data(request):
+    if request.method == 'GET':
+        d3_data = serializers.serialize('json', Publisher.objects.all().filter(is_active=False)) # ,fields('name', 'next attr')
+        return HttpResponse(json.dumps(d3_data),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}),content_type="application/json")
 
-    def get_context_data(self, **kwargs):
-        context = super(DataVisualisationView, self).get_context_data(**kwargs)
-        context['gender_female'] = self.gender_female
-        context['gender_male'] = self.gender_male
-        return context
 
 # note:
 # a[start:end] # items start through end-1
