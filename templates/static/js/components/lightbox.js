@@ -8,6 +8,9 @@ $(document).ready(function(){
 	var csrftoken = $.cookie('csrftoken');
 	var initial_lightbox_post;
 
+	console.log('cookie: '+$.cookie('c'));
+	console.log(csrftoken);
+
 	/*AJAX_Setup for django csrf*/
 	function csrfSafeMethod(method) {
 		// these HTTP methods do not require CSRF protection

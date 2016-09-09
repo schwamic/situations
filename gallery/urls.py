@@ -26,7 +26,7 @@ urlpatterns = [
 
     # static
     url(r'^about/$', TemplateView.as_view(template_name='gallery/about.html'), name="about"),
-    url(r'^impressum/$', TemplateView.as_view(template_name='gallery/imprint.html'), name="impressum"),
+    url(r'^imprint/$', TemplateView.as_view(template_name='gallery/imprint.html'), name="impressum"),
 
     #data visualisation
     url(r'^datavisualisation/$', DataVisualisationView.as_view(), name='datavisualisation'),
