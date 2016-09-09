@@ -1,3 +1,9 @@
+/*FONT*/
+
+.modal{
+
+}
+
 .modal-body{
     padding-top: 0px;
 
@@ -6,8 +12,7 @@
     }
 
     .about_situations{
-        margin-top: 20px;
-        color: #9036fe;
+        margin-top: 40px;
     }
 }
 
@@ -19,7 +24,6 @@
 .modal-dialog{
     margin: 52px auto;
     max-width: 650px;
-    //width: 620px;
     margin-top: 100px;
 }
 
@@ -30,19 +34,12 @@
     padding-top: 5px;
 }
 
-.modal-footer{
-    button{
-        font-family: 'Inconsolata';
-    }
-}
 
 .modal-title{
-    font-weight: normal;
     margin-top: 10px;
 }
 
 .intro{
-    font-size: 17px;
     margin-top: 9px;
 }
 

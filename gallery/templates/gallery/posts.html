@@ -16,7 +16,7 @@
 
                 <div class="caption">
                     <div class="caption_text">
-                        <div class="inconsolata_typo">
+                        <div class="caption_wrap">
                             <div class="row">
                                 <div class="col-xs-3 col-xs-offset-3 col_left">
                                     <h6 class="list-group-item-heading">Gender:</h6>
@@ -197,8 +197,12 @@
 </div>
 <script>
     var initial_lightbox_post = {{ lightbox_id }};
+    {% if lightbox_id == "" %}
+        initial_lightbox_post = -1;
+    {% endif %};
 </script>
 {% include 'pagination.html' %}
+<<<<<<< HEAD
 {% endblock %}
 {% block scripts %}
 {% endblock %}
@@ -208,3 +212,6 @@ sharing:
 https://developers.facebook.com/docs/sharing/web
 https://developers.facebook.com/docs/sharing/webmasters#markup
 -->
+=======
+{% endblock %}
+>>>>>>> 18f091d9b376b23471b2ac85caf4af6c4679b444
