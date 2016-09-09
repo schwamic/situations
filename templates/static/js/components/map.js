@@ -394,14 +394,12 @@ function draw_link(marker) {
 /*AJAX for POSTVIEW*/
 function get_post_info(my_id) {
     if(my_id > 0){
-        console.log(my_id);
         $.ajax({
             url : "detail_post/", // the endpoint
             type : "POST", // http method
             data : { post_id : my_id }, // data sent with the post request
             // handle a successful response
             success : function(json) {
-                console.log(json);
                 $('.list_id').html(""+json.publisher_id);
                 $('.list_date').html(""+json.post_publishing_date);
                 $('.list_gender').html(""+json.publisher_gender);

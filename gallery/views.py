@@ -173,6 +173,7 @@ def publish(request, publisher_id):
         try:
             google_api_response = request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
             geo_data = json.loads(google_api_response)
+            print(google_api_response)
 
             for result in geo_data['results']:
                 for address_component in result['address_components']:
