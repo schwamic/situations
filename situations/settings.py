@@ -13,7 +13,12 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # this is the production/development and live switch
-LIVE = False
+DEV_MODES = [
+    (0, 'LOCAL'),
+    (1, 'PROD'),
+    (2, 'LIVE'),
+]
+DEV_MODE = 0
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,11 +89,16 @@ WSGI_APPLICATION = 'situations.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-if LIVE:
+if DEV_MODE is 0:
     DATABASES = {
         'default': {
-            # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            # 'NAME': 'situations_db',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+if DEV_MODE is 1:
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'situations_mysql',
             'USER': 'pixelkante',
@@ -97,11 +107,15 @@ if LIVE:
             'PORT': '3306',
         }
     }
-else:
+if DEV_MODE is 2:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'situations_live_db',
+            'USER': 'dergreif',
+            'PASSWORD': 'ScbjG7R5tZYdGUpZ',
+            'HOST': 'web456.webfaction.com',
+            'PORT': '3306',
         }
     }
 
@@ -143,10 +157,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-if LIVE:
-    STATIC_ROOT = '/home/soley/webapps/situations_static/'
-else:
+if DEV_MODE is 0:
     STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR) + '/static/', 'static')
+if DEV_MODE is 1:
+    STATIC_ROOT = '/home/soley/webapps/situations_static/'
+if DEV_MODE is 2:
+    STATIC_ROOT = '/home/soley/webapps/situations_live_static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/static'),     # for future projects: this is not where the static folder should be
     os.path.join(BASE_DIR, 'gallery/static/gallery/'),
@@ -154,7 +170,7 @@ STATICFILES_DIRS = [
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR)+'/situations', 'media')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR) + '/situations/', 'media')
 # These are messed up settings, but for now they work - dont do this this in future projects
 
 # Mail

@@ -101,8 +101,8 @@
                 <div class="col-sx-12 col-sm-12 col-md-6 col_form">
                     <form data-toggle="validator" class=" publish_form"
                           action="{% url 'gallery:publish' my_publisher_id %}"
-                          method="post">{% csrf_token %}
-
+                          method="post">
+                        {% csrf_token %}
                         <div class="form-group row">
                             <div class="col-xs-4 pull-left">
                                 <label class=" col-form-label">Gender</label>
