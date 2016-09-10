@@ -198,7 +198,7 @@ def publish(request, publisher_id):
         publisher.longitude = float(request.POST['longitude'])
 
         google_reverse_geo_code_url =\
-            'https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
+            'http://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
                 publisher.latitude, publisher.longitude, settings.GOOGLE_API_KEY
             )
 
