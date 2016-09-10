@@ -71,24 +71,21 @@ class ImagesView(generic.ListView):
         context['gender_choices'] = choices.GENDER_CHOICES
         context['occupation_choices'] = choices.OCCUPATION_CHOICES
         context['year_choices'] = choices.YEAR_BORN
-
-
         # pagination
+
         paginator = context.get('paginator')
         num_pages = paginator.num_pages
         current_page = context.get('page_obj')
         page_no = current_page.number
 
-        if num_pages <= 11 or page_no <= 6:  # case 1 and 2
-            pages = [x for x in range(1, min(num_pages + 1, 12))]
+        if num_pages <= 8 or page_no <= 4:  # case 1 and 2
+            pages = [x for x in range(1, min(num_pages + 1, 9))]
         elif page_no > num_pages - 6:  # case 4
-            pages = [x for x in range(num_pages - 10, num_pages + 1)]
+            pages = [x for x in range(num_pages - 7, num_pages + 1)]
         else:  # case 3
-            pages = [x for x in range(page_no - 5, page_no + 6)]
+            pages = [x for x in range(page_no - 3, page_no + 4)]
 
         context.update({'pages': pages})
-
-
         return context
 
 
@@ -137,7 +134,7 @@ class MapView(generic.ListView):
 class PostsView(generic.ListView):
     model = Post
     template_name = 'gallery/posts.html'
-    paginate_by = 1
+    paginate_by = 18
     ordering = '-pk'
 
     def get_context_data(self, **kwargs):
@@ -154,15 +151,14 @@ class PostsView(generic.ListView):
         current_page = context.get('page_obj')
         page_no = current_page.number
 
-        if num_pages <= 11 or page_no <= 6:  # case 1 and 2
-            pages = [x for x in range(1, min(num_pages + 1, 12))]
+        if num_pages <= 8 or page_no <= 4:  # case 1 and 2
+            pages = [x for x in range(1, min(num_pages + 1, 9))]
         elif page_no > num_pages - 6:  # case 4
-            pages = [x for x in range(num_pages - 10, num_pages + 1)]
+            pages = [x for x in range(num_pages - 7, num_pages + 1)]
         else:  # case 3
-            pages = [x for x in range(page_no - 5, page_no + 6)]
+            pages = [x for x in range(page_no - 3, page_no + 4)]
 
         context.update({'pages': pages})
-
         return context
 
 

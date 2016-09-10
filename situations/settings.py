@@ -53,7 +53,6 @@ INSTALLED_APPS = [
 
     'gallery.apps.GalleryConfig',   # added gallery app
     'django_ajax',                  # added django_ajax
-    'endless_pagination',           # added endless_pagination
 ]
 
 MIDDLEWARE = [
@@ -80,7 +79,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #'django.core.context_processors.request', # maybe wrong
 
 
             ],
