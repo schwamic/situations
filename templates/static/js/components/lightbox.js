@@ -100,6 +100,7 @@ $(document).ready(function(){
 	/*PUBLISHVIEW*/
 	$('.btn_publishview').click(function(event){
 		getLocation();
+		$('#lightbox_img_pubview').css("opacity", "1");
 		$('.backdrop_pubview').fadeIn(300);
 	});
 
