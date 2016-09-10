@@ -205,7 +205,6 @@ $(document).ready(function(){
 		}
 	}
 
-	// wo findet die uebergabe statt
 	if($('#social_id').attr('value') != ""){
 		initial_lightbox_post = $('#social_id').attr('value');
 		if (initial_lightbox_post != -1 && initial_lightbox_post > -1) {
