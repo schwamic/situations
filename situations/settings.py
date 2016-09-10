@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+
 # this is the production/development and live switch
 DEV_MODES = [
     (0, 'LOCAL'),
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
 
     'gallery.apps.GalleryConfig',   # added gallery app
     'django_ajax',                  # added django_ajax
+    'endless_pagination',           # added endless_pagination
 ]
 
 MIDDLEWARE = [
@@ -78,6 +80,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'django.core.context_processors.request', # maybe wrong
+
+
             ],
         },
     },

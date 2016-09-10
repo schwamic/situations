@@ -15,11 +15,13 @@
         </li>
       {% endif %} -->
 
-      {% for page in paginator.page_range %}
-        <li {% if page == page_obj.number %}class="active"{% endif %}>
-          <a href="{{ settings.DOMAIN }}?id={{ my_publisher_verbose_id }}&page={{ page }}">{{ page }}</a>
-        </li>
+      {% for i in pages %}
+            <li {% if page_obj.number == i %} class="active" {% endif %}>
+                <a href="{{ settings.DOMAIN }}?id={{ my_publisher_verbose_id }}&page={{i}}">{{i}}</a>
+            </li>
       {% endfor %}
+
+
 
     <!--  {% if page_obj.has_next %}
         <li>

@@ -36,18 +36,23 @@ d3.json("d3_data/", function(error, d3_data) {
     }
 
     // here you can use your data
-    console.log(JSONData);
 
+    console.log(JSONData);
     //ZUWEISUNG DER DOMAINS
-    x.domain(JSONData.map(function(d) { return d.occupation; }));
-    y.domain([0, d3.max(JSONData, function(d) { return parseInt(d.longitude); })]);
+
+    var latitudeFn = function(d) { return d.latitude }
+    var nameFN = function(d) { return d.name }
+    var xNameFN = function(d) { return x(d.name); }
+    var ylatitudeFN = function(d) { console.log((d.latitude)); return y(d.latitude); }
+
+    x.domain(JSONData.map(nameFN));
+    y.domain([0, d3.max(JSONData, latitudeFn)]);
 
     //ZEICHNEN DER ACHSEN
     // Zeichnen der x-Achse
     svg.append("g")
        .attr("class", "axis abscissa")
-       .attr("transform",
-     "translate(0, "+ (height - bottomPadding)+")")
+       .attr("transform", "translate(0, "+ (height - bottomPadding)+")")
        .call(abscissa)
 
      // Positionierung der Label
@@ -67,36 +72,33 @@ d3.json("d3_data/", function(error, d3_data) {
 
     //ZEICHNEN DES DIAGRAMMS
     var barChart = svg.selectAll("rect")
-    .data(data)
-    .enter();
+        .data(data)
+        .enter();
 
     // Säulendiagramm zeichnen
     barChart.append("rect")
        .attr("class", "bar")
-       .attr("x", function(d) { return x(d.occupation); })
+       .attr("x", x(nameFN))
        .attr("y", height - bottomPadding )
        .attr("width", x.rangeBand())
        .attr("height", 0)
 
-
-/**************** HIER FEHLER !! *************/
-   // Animation der Balkenhöhe
-   .transition()
-   .delay(function(d, i) { return i * 80; })
-   .duration(800)
-   .attr("y", function(d) { return y(parseInt(d.longitude)); })
-   .attr("height", function(d) {
-    return height - bottomPadding - y(parseInt(d.longitude)); }
-   );
+    /* Animation der Balkenhöhe
+       .transition()
+       .delay(function(d, i) { return i * 80; })
+       .duration(800)
+       .attr("y", latitudeFn)
+       .attr("height", function(d) {
+        return height - bottomPadding - y(d.latitude); }
+       );*/
 
     // Werte als SVG-Text in Säulen anzeigen und positionieren
     barChart.append("text")
-       .attr("x", function(d) { return x(d.occupation); })
-       .attr("y", function(d) { return y(parseInt(d.longitude)); })
+       .attr("x", xNameFN)
+       .attr("y", ylatitudeFN)
        .attr("dx", x.rangeBand()/2)
        .attr("dy", "1.5em")
        .attr("text-anchor", "middle")
-       .text(function(d) { return (d.longitude); });
-
+       .text(function(d) { return (d); });
 
 });
