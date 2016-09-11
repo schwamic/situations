@@ -11,7 +11,7 @@
     <div class="col-sm-6 col-md-4 thumbscope">
         <a class="lightbox_post" id="lightbox_{{post.id}}"> <!-- no href-->
             <div class="thumbnail post_thumbnail">
-                <img id="img{{post.image.id}}" class="img-fluid" src="/media/900x900/{{post.image.filename}}"
+                <img id="img{{post.image.id}}" class="img-fluid" src="{% static '../media/' %}900x900/{{post.image.filename}}"
                      alt="{{post.image.title}}">
 
                 <div class="caption">
