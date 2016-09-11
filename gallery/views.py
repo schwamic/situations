@@ -1,3 +1,4 @@
+from tkinter.font import BOLD
 from django.contrib.gis.geoip2 import GeoIP2
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, render
@@ -251,8 +252,11 @@ def publish(request, publisher_id):
 
     # invite new publisher
     try:
-        invite_new_publisher(publisher, request.POST['email_1'])
-        invite_new_publisher(publisher, request.POST['email_2'])
+        email_1 = request.POST['email_1']
+        email_2 = request.POST['email_2']
+        invite_new_publisher(publisher, email_1)
+        if email_2 != email_1:
+            invite_new_publisher(publisher, email_2)
         success = True
     except:
         success = False
@@ -285,13 +289,47 @@ def invite_new_publisher(parent, mail_address):
 
     # sent mail
     subject = 'Invitation to SITUATIONS from ' + parent.email
-    content = '[project description]\n'
-    content += 'To participate, simply follow this link:\n'
-    content += settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '\n\n'
-    content += 'Please note: there is no need to log in or to create an account.\n'
-    content += 'However, once the link has been used to publish, it will expire.\n\n'
-    content += 'Thanks and have fun browsing!\n'
-    content += '- SITUATIONS'
+
+    content = '(Un)filtered Scenarios. An Experiment in Distributed Selection\n\n'
+
+    content += 'By receiving this mail, Fotomuseum Winterthur and Der Greif cordially invite you\n ' \
+              'to participate in a collectively curated online exhibition and a collaborative experiment on image\n ' \
+              'selection (read more here: https://www.dergreif-online.de/submit/call/29).\n\n'
+
+    content += 'Participating is simple:\n\n'
+
+    content += '1. Select your favourite image and write a brief explanation of why you chose that\n' \
+               'specific picture.\n'\
+               'Access the database of images on the project-website using this link:\n' \
+               ''+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '\n\n'
+
+    content += '2. Forward this email to two further participants of your choice.\n' \
+               'This project relies on user participation and we ask you to involve two additional people\n' \
+               ' who will likely be happy to join the initiative and be part of this experiment.\n\n'
+
+    content += 'There are no restrictions to who is invited other than that they must be 18 years old (images\n' \
+               ' may contain explicit content). Should you receive this email more than once by different\n' \
+               'participants, we ask you to follow the invitation repeatedly.\n\n'
+
+    content += '---------------------\n\n'
+
+    content += 'Please consult the project website http://situations.dergreif-online.de from 17.09 to\n' \
+               ' 27.11.2016 and follow the development of the online exhibition and experiment.\n\n'
+
+    content += 'In case you have any questions, we prepared a simple manual. Please download it\n' \
+               'here: http://situations.dergreif-online.de/media/pdf/manual.pdf\n' \
+               'If the manual doesn’t answer all your questions, do not hesitate to get in touch with\n' \
+               'situations@dergreif-online.de\n\n'
+
+    content += 'Many thanks for your participation, without which this project could not work!\n\n'
+
+    content += '---------------------\n\n'
+
+    content += 'Please note that your participation will be anonymized and only depersonalized data will be\n' \
+               'made accessible and displayed in the form of maps and charts on the project website\n' \
+               'http://situations.dergreif-online.de and at Fotomuseum Winterthur from 17.09 to 27.11.2016\n' \
+               'as part of the exhibition SITUATIONS/Filter (situations.fotomuseum.ch). \n\n\n'
+
     send_mail(
         subject,
         content,
