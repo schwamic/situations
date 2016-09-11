@@ -1,7 +1,6 @@
-from tkinter.font import BOLD
 from django.contrib.gis.geoip2 import GeoIP2
-from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, render
+from django.core.mail import EmailMessage
+from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponse
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -13,6 +12,8 @@ from .models import Publisher, Image, Post
 from django.utils import timezone
 import json
 from django.core import serializers
+
+from situations.settings import MEDIA_ROOT
 
 
 
@@ -287,56 +288,64 @@ def invite_new_publisher(parent, mail_address):
     )
     new_publisher.save()
 
-    # sent mail
+    # send mail
     subject = 'Invitation to SITUATIONS from ' + parent.email
 
-    content = '(Un)filtered Scenarios. An Experiment in Distributed Selection\n\n'
+    '''
+    file = open(MEDIA_ROOT + '/email/mail.txt', 'r')
+    content = file.read()
+    file.close()
+    '''
 
-    content += 'By receiving this mail, Fotomuseum Winterthur and Der Greif cordially invite you\n ' \
-              'to participate in a collectively curated online exhibition and a collaborative experiment on image\n ' \
-              'selection (read more here: https://www.dergreif-online.de/submit/call/29).\n\n'
+    content = '<p><b>(Un)filtered Scenarios. An Experiment in Distributed Selection</b></p>'
 
-    content += 'Participating is simple:\n\n'
+    content += '<p>By receiving this mail, Fotomuseum Winterthur and Der Greif cordially invite you<br> ' \
+              'to participate in a collectively curated online exhibition and a collaborative experiment on image<br> ' \
+              'selection (read more here: https://www.dergreif-online.de/submit/call/29).</p>'
 
-    content += '1. Select your favourite image and write a brief explanation of why you chose that\n' \
-               'specific picture.\n'\
-               'Access the database of images on the project-website using this link:\n' \
-               ''+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '\n\n'
+    content += '<p><b>Participating is simple:</b></p>'
 
-    content += '2. Forward this email to two further participants of your choice.\n' \
-               'This project relies on user participation and we ask you to involve two additional people\n' \
-               ' who will likely be happy to join the initiative and be part of this experiment.\n\n'
+    content += '<p><b>1. Select your favourite image and write a brief explanation of why you chose that<br>' \
+               'specific picture.</b><br>'\
+               'Access the database of images on the project-website using this link:<br>' \
+               ''+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '</p>'
 
-    content += 'There are no restrictions to who is invited other than that they must be 18 years old (images\n' \
-               ' may contain explicit content). Should you receive this email more than once by different\n' \
-               'participants, we ask you to follow the invitation repeatedly.\n\n'
+    content += '<p><b>2. Forward this email to two further participants of your choice.</b><br>' \
+               'This project relies on user participation and we ask you to involve <b>two additional people</b><br>' \
+               ' who will likely be happy to join the initiative and be part of this experiment.</p>'
 
-    content += '---------------------\n\n'
+    content += '<p>There are no restrictions to who is invited other than that they must be 18 years old (images<br>' \
+               ' may contain explicit content). Should you receive this email more than once by different<br>' \
+               'participants, we ask you to follow the invitation repeatedly.</p>'
 
-    content += 'Please consult the project website http://situations.dergreif-online.de from 17.09 to\n' \
-               ' 27.11.2016 and follow the development of the online exhibition and experiment.\n\n'
+    content += '<p>---------------------</p>'
 
-    content += 'In case you have any questions, we prepared a simple manual. Please download it\n' \
-               'here: http://situations.dergreif-online.de/media/pdf/manual.pdf\n' \
-               'If the manual doesn’t answer all your questions, do not hesitate to get in touch with\n' \
-               'situations@dergreif-online.de\n\n'
+    content += '<p>Please consult the project website http://situations.dergreif-online.de from 17.09 to<br>' \
+               ' 27.11.2016 and follow the development of the online exhibition and experiment.</p>'
 
-    content += 'Many thanks for your participation, without which this project could not work!\n\n'
+    content += '<p><b>In case you have any questions, we prepared a simple manual. Please download it<br>' \
+               'here: http://situations.dergreif-online.de/media/pdf/manual.pdf</b><br>' \
+               'If the manual doesn’t answer all your questions, do not hesitate to get in touch with<br>' \
+               'situations@dergreif-online.de</p>'
 
-    content += '---------------------\n\n'
+    content += '<p>Many thanks for your participation, without which this project could not work!</p>'
 
-    content += 'Please note that your participation will be anonymized and only depersonalized data will be\n' \
-               'made accessible and displayed in the form of maps and charts on the project website\n' \
-               'http://situations.dergreif-online.de and at Fotomuseum Winterthur from 17.09 to 27.11.2016\n' \
-               'as part of the exhibition SITUATIONS/Filter (situations.fotomuseum.ch). \n\n\n'
+    content += '<p>---------------------</p>'
 
-    send_mail(
+    content += '<p>Please note that your participation will be anonymized and only depersonalized data will be<br>' \
+               'made accessible and displayed in the form of maps and charts on the project website<br>' \
+               'http://situations.dergreif-online.de and at Fotomuseum Winterthur from 17.09 to 27.11.2016<br>' \
+               'as part of the exhibition SITUATIONS/Filter (situations.fotomuseum.ch). </p><br><br>'
+
+    msg = EmailMessage(
         subject,
         content,
         parent.email,
         [new_publisher.email],
-        fail_silently=False,
     )
+    msg.content_subtype = "html"
+    msg.send(fail_silently=False)
+
     print('usr created, mail sent - subject: ' + subject)
     print('content : \n' + content)
 
