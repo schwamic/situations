@@ -13,10 +13,6 @@ from django.utils import timezone
 import json
 from django.core import serializers
 
-from situations.settings import MEDIA_ROOT
-
-
-
 class ImagesView(generic.ListView):
     model = Image
     template_name = 'gallery/images.html'
@@ -406,9 +402,11 @@ def detail_post(request):
             content_type="application/json"
         )
 
+
 class DataVisualisationView(generic.ListView):
     model = Publisher
     template_name = 'gallery/datavisualisation.html'
+
 
 def d3_data(request):
     if request.method == 'GET':
