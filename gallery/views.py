@@ -301,14 +301,14 @@ def invite_new_publisher(parent, mail_address):
 
     content += '<p>By receiving this mail, Fotomuseum Winterthur and Der Greif cordially invite you<br> ' \
               'to participate in a collectively curated online exhibition and a collaborative experiment on image<br> ' \
-              'selection (read more here: https://www.dergreif-online.de/submit/call/29).</p>'
+              'selection (read more here: <a href="https://www.dergreif-online.de/submit/call/29" style="color: black;">dergreif-online.de/submit/call/29</a>).</p>'
 
     content += '<p><b>Participating is simple:</b></p>'
 
     content += '<p><b>1. Select your favourite image and write a brief explanation of why you chose that<br>' \
                'specific picture.</b><br>'\
                'Access the database of images on the project-website using this link:<br>' \
-               ''+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '</p>'
+               '<a href="'+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '" style="color: black;">'+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) +'</a></p>'
 
     content += '<p><b>2. Forward this email to two further participants of your choice.</b><br>' \
                'This project relies on user participation and we ask you to involve <b>two additional people</b><br>' \
@@ -320,13 +320,13 @@ def invite_new_publisher(parent, mail_address):
 
     content += '<p>---------------------</p>'
 
-    content += '<p>Please consult the project website http://situations.dergreif-online.de from 17.09 to<br>' \
+    content += '<p>Please consult the project website <a href="http://situations.dergreif-online.de" style="color: black;">situations.dergreif-online.de</a> from 17.09 to<br>' \
                ' 27.11.2016 and follow the development of the online exhibition and experiment.</p>'
 
     content += '<p><b>In case you have any questions, we prepared a simple manual. Please download it<br>' \
-               'here: http://situations.dergreif-online.de/media/pdf/manual.pdf</b><br>' \
+               'here: <a href="http://situations.dergreif-online.de/media/pdf/manual.pdf" style="color: black;">situations.dergreif-online.de/manual</a></b><br>' \
                'If the manual doesn’t answer all your questions, do not hesitate to get in touch with<br>' \
-               'situations@dergreif-online.de</p>'
+               '<a href="mailto:situations@dergreif-online.de" style="color: black;">situations@dergreif-online.de</a></p>'
 
     content += '<p>Many thanks for your participation, without which this project could not work!</p>'
 
@@ -334,8 +334,8 @@ def invite_new_publisher(parent, mail_address):
 
     content += '<p>Please note that your participation will be anonymized and only depersonalized data will be<br>' \
                'made accessible and displayed in the form of maps and charts on the project website<br>' \
-               'http://situations.dergreif-online.de and at Fotomuseum Winterthur from 17.09 to 27.11.2016<br>' \
-               'as part of the exhibition SITUATIONS/Filter (situations.fotomuseum.ch). </p><br><br>'
+               '<a href="http://situations.dergreif-online.de" style="color: black;">situations.dergreif-online.de</a> and at Fotomuseum Winterthur from 17.09 to 27.11.2016<br>' \
+               'as part of the exhibition SITUATIONS/Filter (<a href="http://situations.fotomuseum.ch" style="color: black;">situations.fotomuseum.ch</a>). </p><br><br>'
 
     msg = EmailMessage(
         subject,
