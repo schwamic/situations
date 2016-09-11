@@ -4,6 +4,119 @@
 var data;
 var JSONData;
 
+
+var width = 420,
+    barHeight = 20;
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var chart = d3.select(".chart")
+    .attr("width", width);
+
+// get-request to endpoint d3_gender - hier muss nichts weiter gemacht werden. json-file passt!
+d3.json("d3_occupation/", function(error, JSONData) {
+    console.log(JSONData);
+  x.domain([0, d3.max(JSONData, function(d) { return d.value; })]);
+
+  chart.attr("height", barHeight * JSONData.length);
+
+  var bar = chart.selectAll("g")
+      .data(JSONData)
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight - 1);
+
+  bar.append("text")
+      .attr("x", function(d) { return x(d.value) - 3; })
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.value; });
+
+});
+
+function type(d) {
+  d.value = +d.value; // coerce to number
+  return d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// EXAMPLE 1
+var width = 420,
+    barHeight = 20;
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var chart = d3.select(".chart")
+    .attr("width", width);
+
+// get-request to endpoint d3_data
+d3.json("d3_data/", function(error, d3_data) {
+
+    // parse string to json
+    data = JSON.parse(d3_data);
+
+    // load just the fields in an array -> clean json
+    JSONData = [];
+    for (var i = 0; i < data.length; i++){
+       JSONData.push(data[i].fields);
+    }
+
+    // here you can use your data
+    console.log(JSONData);
+    x.domain([0, d3.max(JSONData, function(d) { return d.latitude; })]);
+
+  chart.attr("height", barHeight * JSONData.length);
+
+  var bar = chart.selectAll("g")
+      .data(JSONData)
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.latitude); })
+      .attr("height", barHeight - 1);
+
+  bar.append("text")
+      .attr("x", function(d) { return x(d.latitude) - 3; })
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.latitude; });
+
+});
+
+function type(d) {
+  d.value = +d.value; // coerce to number
+  return d;
+}
+
+*/
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// T3N - EXAMPLE 2
+// variables
+var data;
+var JSONData;
+
 //DIMENSIONEN DES DIAGRAMMS
 var width = 600, height = 300;
 var padding = 20, leftPadding = 100, bottomPadding = 120;
@@ -72,7 +185,7 @@ d3.json("d3_data/", function(error, d3_data) {
 
     //ZEICHNEN DES DIAGRAMMS
     var barChart = svg.selectAll("rect")
-        .data(data)
+        .data(JSONData)
         .enter();
 
     // Säulendiagramm zeichnen
@@ -83,14 +196,14 @@ d3.json("d3_data/", function(error, d3_data) {
        .attr("width", x.rangeBand())
        .attr("height", 0)
 
-    /* Animation der Balkenhöhe
+    // Animation der Balkenhöhe
        .transition()
        .delay(function(d, i) { return i * 80; })
        .duration(800)
        .attr("y", latitudeFn)
        .attr("height", function(d) {
         return height - bottomPadding - y(d.latitude); }
-       );*/
+       );
 
     // Werte als SVG-Text in Säulen anzeigen und positionieren
     barChart.append("text")
@@ -102,3 +215,4 @@ d3.json("d3_data/", function(error, d3_data) {
        .text(function(d) { return (d); });
 
 });
+*/

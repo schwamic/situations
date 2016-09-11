@@ -60,11 +60,16 @@
     focus: true,
     custom: {
       equals: function($el) {
-      var matchValue = $el.data("equals") // foo
-      if ($el.val() == matchValue){
-      return "Hey, that's not valid!"
-    }
-  }
+        var matchValue = $el.data("equals") // foo
+        if ($el.val() == matchValue){
+          return "Hey, that's not valid!"
+        }
+      }
+      /*compare: function($el){ //mal testen
+        var matchValue = $el.data("compare") // foo
+        if ($el.val() == matchValue){
+          return "Hey, that's not valid!"
+      }*/
     },
     errors: {
       match: 'Does not match',
