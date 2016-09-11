@@ -1,7 +1,5 @@
 "use strict";
 $(document).ready(function(){
-
-     console.log('cookie: '+$.cookie('pop'));
      if ($.cookie('pop') != 'checked') {
       $('#welcomeModal').modal('show');
     }
