@@ -25,7 +25,12 @@ DEV_MODE = 0
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # site domain
-DOMAIN = 'https://dev.pixelkante.com/'
+if DEV_MODE is 0:
+    DOMAIN = 'localhost'
+if DEV_MODE is 1:
+    DOMAIN = 'http://dev.pixelkante.com/'
+if DEV_MODE is 2:
+    DOMAIN = 'http://live.pixelkante.com/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/

@@ -324,7 +324,7 @@ def invite_new_publisher(parent, mail_address):
 
     content += '<p><b>In case you have any questions, we prepared a simple manual. Please download it<br>' \
                'here: <a href="http://situations.dergreif-online.de/media/pdf/manual.pdf" style="color: black;">situations.dergreif-online.de/manual</a></b><br>' \
-               'If the manual doesn’t answer all your questions, do not hesitate to get in touch with<br>' \
+               "If the manual doesn't answer all your questions, do not hesitate to get in touch with<br>" \
                '<a href="mailto:situations@dergreif-online.de" style="color: black;">situations@dergreif-online.de</a></p>'
 
     content += '<p>Many thanks for your participation, without which this project could not work!</p>'
