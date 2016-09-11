@@ -185,6 +185,7 @@ def publish(request, publisher_id):
     publisher.active_time = timezone.now() - publisher.session_start
     publisher.is_active = False
 
+    print(request.POST['latitude'])
     # add location info to publisher
     if request.POST['latitude'] != 'no_entry':
         # get additional geo data using google geo code api
@@ -192,11 +193,12 @@ def publish(request, publisher_id):
         publisher.longitude = float(request.POST['longitude'])
 
         google_reverse_geo_code_url =\
-            'http://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
+            'https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
                 publisher.latitude, publisher.longitude, settings.GOOGLE_API_KEY
             )
 
         try:
+            # idk whats broken here now, fixing it on sunday
             google_api_response = request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
             geo_data = json.loads(google_api_response)
             print(google_api_response)
@@ -220,9 +222,10 @@ def publish(request, publisher_id):
         # FALLBACK: geo locating via geoIP2
         user_ip = get_client_ip(request)
         g = GeoIP2()
+        print('USER IP: ' + user_ip)
 
-        if settings.DEBUG:
-            location = g.city('128.101.101.101')  # dummy ip for testing, localhost wont work
+        if settings.DEV_MODE is 0:
+            location = g.city('128.101.101.101')  # dummy ip for local testing, localhost wont work
             print('user dummy ip: %s (debug true -> ip using: 128.101.101.101' % user_ip)
         else:
             location = g.city(user_ip)

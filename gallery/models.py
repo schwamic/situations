@@ -36,7 +36,7 @@ class Image(models.Model):
     filename = models.CharField(max_length=200)
     title = models.CharField(max_length=50, default='Some Title')
     author = models.CharField(max_length=50, default='Some Author')
-    date_photo_taken = models.DateTimeField('year photo taken', default=timezone.now)
+    year_photo_taken = models.IntegerField(blank=True, null=True)
     location = models.CharField(max_length=50, default='Some City')
 
     def __str__(self):

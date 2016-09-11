@@ -177,6 +177,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR) + '/situations/', 'media')
 # These are messed up settings, but for now they work - dont do this this in future projects
 
 # Mail
+"""
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
@@ -184,6 +185,14 @@ EMAIL_HOST_USER = 'greif.situation@gmail.com'
 EMAIL_HOST_PASSWORD = 'DasIstSicher123'
 DEFAULT_FROM_EMAIL = 'greif.situation@gmail.com'
 DEFAULT_TO_EMAIL = 'buddy.oley@gmail.com'
+"""
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'w00c93ee.kasserver.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'm03aaa83'
+EMAIL_HOST_PASSWORD = 'GeMU7795yeVBxBHB'
+DEFAULT_FROM_EMAIL = 'situations@dergreif-online.de'
+DEFAULT_TO_EMAIL = 'situations@dergreif-online.de'
 
 # GeoIP files
 GEOIP_PATH = BASE_DIR + '/geoip'
