@@ -414,9 +414,46 @@ class DataVisualisationView(generic.ListView):
 def d3_data(request):
     if request.method == 'GET':
         d3_data = serializers.serialize('json', Publisher.objects.all().filter(is_active=False)) # ,fields('name', 'next attr')
-        return HttpResponse(json.dumps(d3_data),content_type="application/json")
+        return HttpResponse(json.dumps(d3_data), content_type="application/json")
     else:
-        return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}),content_type="application/json")
+        return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}), content_type="application/json")
+
+def d3_gender(request):
+    if request.method == 'GET':
+
+        gender = []
+        for i, val in choices.GENDER_CHOICES:
+            gender.append({"name": val, "value": Publisher.objects.all().filter(occupation=i).count()})
+
+        return HttpResponse(json.dumps(gender), content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}), content_type="application/json")
+
+def d3_occupation(request):
+    if request.method == 'GET':
+        occupation = []
+        for i, val in choices.OCCUPATION_CHOICES:
+            occupation.append({"name": val, "value": Publisher.objects.all().filter(occupation=i).count()})
+        return HttpResponse(json.dumps(occupation), content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}), content_type="application/json")
+
+def d3_age(request):
+    if request.method == 'GET':
+
+        '''
+        <18
+        19-15
+        26-35
+        36-50
+        >51
+        '''
+
+        age = []
+
+        return HttpResponse(json.dumps(age), content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}), content_type="application/json")
 
 
 # note:

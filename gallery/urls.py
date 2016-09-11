@@ -31,6 +31,9 @@ urlpatterns = [
     #data visualisation
     url(r'^datavisualisation/$', DataVisualisationView.as_view(), name='datavisualisation'),
     url(r'^datavisualisation/d3_data/$', d3_data, name='d3_data'),
+    url(r'^datavisualisation/d3_gender/$', d3_gender, name='d3_gender'),
+    url(r'^datavisualisation/d3_occupation/$', d3_occupation, name='d3_occupation'),
+    url(r'^datavisualisation/d3_age/$', d3_age, name='d3_age'),
 ]
 
 # uuid: (?P<something>[^/]+)
