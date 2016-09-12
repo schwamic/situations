@@ -405,6 +405,9 @@ def detail_post(request):
             content_type="application/json"
         )
 
+class AudioView(generic.ListView):
+    model = Post
+    template_name = 'gallery/audio.html'
 
 class DataVisualisationView(generic.ListView):
     model = Publisher
@@ -423,7 +426,7 @@ def d3_gender(request):
 
         gender = []
         for i, val in choices.GENDER_CHOICES:
-            gender.append({"name": val, "value": Publisher.objects.all().filter(occupation=i).count()})
+            gender.append({"value": val, "publications": Publisher.objects.all().filter(occupation=i, is_active=False).count()})
 
         return HttpResponse(json.dumps(gender), content_type="application/json")
     else:
@@ -433,7 +436,7 @@ def d3_occupation(request):
     if request.method == 'GET':
         occupation = []
         for i, val in choices.OCCUPATION_CHOICES:
-            occupation.append({"name": val, "value": Publisher.objects.all().filter(occupation=i).count()})
+            occupation.append({"name": val, "value": Publisher.objects.all().filter(occupation=i, is_active=False).count()})
         return HttpResponse(json.dumps(occupation), content_type="application/json")
     else:
         return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}), content_type="application/json")
@@ -442,6 +445,7 @@ def d3_age(request):
     if request.method == 'GET':
 
         '''
+        z.B. publications: 50 , age: 18
         <18
         19-15
         26-35
@@ -449,7 +453,13 @@ def d3_age(request):
         >51
         '''
 
-        age = []
+        age = [
+            {"publications": 100, "age": "<18"},
+            {"publications": 50, "age": "19-15"},
+            {"publications": 50, "age": "26-36"},
+            {"publications": 50, "age": "36-50"},
+            {"publications": 50, "age": ">51"}
+        ]
 
         return HttpResponse(json.dumps(age), content_type="application/json")
     else:

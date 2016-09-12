@@ -1,14 +1,43 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Situations - Impressum{% endblock %}
+{% block title %}Situations - Datavisualisation{% endblock %}
 
 {% block content %}
 {% csrf_token %}
-<svg class="chart"></svg>
+
+<div class="row age_row">
+    <div class="col-md-12">
+        <div class="lable">Age</div>
+        <div class="center age">
+            <!-- here age_d3.js -->
+            <svg class="chart_age"></svg>
+        </div>
+    </div>
+</div>
+<div class="row gender_row">
+    <div class="col-md-12">
+        <div class="lable">Gender</div>
+        <div class="center gender">
+            <!-- here gender_d3.js -->
+            <svg class="chart_gender"></svg>
+        </div>
+    </div>
+</div>
+<div class="row occupation_row">
+    <div class="col-md-12">
+        <div class="lable">Occupation</div>
+        <div class="center occupation">
+            <!-- here occupation_d3.js -->
+            <svg class="chart_occupation"></svg>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 
 {% block scripts %}
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="{% static 'js/components/age_d3.js' %}"></script>
+<script src="{% static 'js/components/gender_d3.js' %}"></script>
+<script src="{% static 'js/components/occupation_d3.js' %}"></script>
 {% endblock %}

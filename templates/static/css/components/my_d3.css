@@ -1,1 +1,1 @@
-.chart rect{fill:steelblue}.chart text{fill:white;font:10px sans-serif;text-anchor:end}
+.age_row .bar{fill:black}.age_row .axis text{font:10px sans-serif}.age_row .axis path,.age_row .axis line{fill:none;stroke:#000;shape-rendering:crispEdges}.age_row .x.axis path{display:none}.gender_row .arc text{font:10px sans-serif;text-anchor:middle}.gender_row .arc path{stroke:black}.occupation_row .bar{fill:black}.occupation_row .axis text{font:10px sans-serif}.occupation_row .axis path,.occupation_row .axis line{fill:none;stroke:#000;shape-rendering:crispEdges}
