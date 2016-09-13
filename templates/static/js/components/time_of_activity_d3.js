@@ -1,6 +1,6 @@
 var margin_time = {top: 30, right: 40, bottom: 30, left: 50},
     width_time = 900 - margin_time.left - margin_time.right,
-    height_time = 400 - margin_time.top - margin_time.bottom;
+    height_time = 300 - margin_time.top - margin_time.bottom;
 
 
 //var formatHours = d3.time.format("%X");

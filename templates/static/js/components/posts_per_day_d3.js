@@ -2,7 +2,7 @@
 
 var margin_posts = {top: 30, right: 40, bottom: 30, left: 50},
     width_posts = 900 - margin_posts.left - margin_posts.right,
-    height_posts = 400 - margin_posts.top - margin_posts.bottom;
+    height_posts = 300 - margin_posts.top - margin_posts.bottom;
 
 var parseDate_post = d3.time.format("%d-%b-%y").parse;
 

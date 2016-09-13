@@ -253,7 +253,9 @@ def publish(request, publisher_id):
         if email_2 != email_1:
             invite_new_publisher(publisher, email_2)
         success = True
-    except:
+    except Exception as e:
+        print('++++++++++++++++++++++++++++++++ EMAIL EXEPTION')
+        print(e)
         success = False
 
     # push to db
