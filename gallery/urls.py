@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^visualisation/d3_gender/$', d3_gender, name='d3_gender'),
     url(r'^visualisation/d3_occupation/$', d3_occupation, name='d3_occupation'),
     url(r'^visualisation/d3_age/$', d3_age, name='d3_age'),
+    url(r'^visualisation/d3_time_of_activity/$', d3_time_of_activity, name='d3_time_of_activity'),
+    url(r'^visualisation/d3_posts_per_day/$', d3_posts_per_day, name='d3_posts_per_day'),
 
     url(r'^audio/$', AudioView.as_view(), name='audio'),
 ]

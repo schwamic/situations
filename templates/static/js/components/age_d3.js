@@ -1,9 +1,9 @@
 "use strict"
 
 // variables
-var margin = {top: 20, right: 30, bottom: 30, left: 40},
-    awidth = 900 - margin.left - margin.right,
-    aheight = 400 - margin.top - margin.bottom;
+var amargin = {top: 20, right: 30, bottom: 30, left: 40};
+var awidth = 900 - amargin.left - amargin.right;
+var aheight = 400 - amargin.top - amargin.bottom;
 
 var ya = d3.scale.ordinal()
     .rangeRoundBands([0,aheight], .1);
@@ -20,10 +20,10 @@ var yaAxis = d3.svg.axis()
     .orient("left");
 
 var chart_age = d3.select(".chart_age")
-    .attr("width", awidth + margin.left + margin.right)
-    .attr("height",aheight + margin.top + margin.bottom)
+    .attr("width", awidth + amargin.left + amargin.right)
+    .attr("height",aheight + amargin.top + amargin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + amargin.left + "," + amargin.top + ")");
 
 
 // get-request to endpoint d3_gender - hier muss nichts weiter gemacht werden. json-file passt!

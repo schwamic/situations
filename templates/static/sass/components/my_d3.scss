@@ -29,6 +29,7 @@
 
   .arc path {
     stroke: black;
+    stroke-width: 1.3;
   }
 }
 
@@ -54,4 +55,44 @@
   }
 }
 
+//TIME OF ACTIVITY
+.time_row{
+  .axis text {
+    font: 10px sans-serif;
+  }
 
+  path {
+      stroke: black;
+      stroke-width: 1.3;
+      fill: none;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: grey;
+      stroke-width: 1;
+      shape-rendering: crispEdges;
+  }
+}
+
+//POSTS PER DAY
+.posts_row{
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  path {
+      stroke: black;
+      stroke-width: 1.3;
+      fill: none;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: grey;
+      stroke-width: 1;
+      shape-rendering: crispEdges;
+  }
+}

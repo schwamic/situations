@@ -32,7 +32,24 @@
         </div>
     </div>
 </div>
-
+<div class="row time_row">
+    <div class="col-md-12">
+        <div class="lable">Time of activity</div>
+        <div class="center time">
+            <!-- here occupation_d3.js -->
+            <svg class="chart_time"></svg>
+        </div>
+    </div>
+</div>
+<div class="row posts_row">
+    <div class="col-md-12">
+        <div class="lable">Participants</div>
+        <div class="center posts">
+            <!-- here occupation_d3.js -->
+            <svg class="chart_posts"></svg>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -40,4 +57,6 @@
 <script src="{% static 'js/components/age_d3.js' %}"></script>
 <script src="{% static 'js/components/gender_d3.js' %}"></script>
 <script src="{% static 'js/components/occupation_d3.js' %}"></script>
+<script src="{% static 'js/components/time_of_activity_d3.js' %}"></script>
+<script src="{% static 'js/components/posts_per_day_d3.js' %}"></script>
 {% endblock %}
