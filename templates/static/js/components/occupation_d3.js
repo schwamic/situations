@@ -3,7 +3,7 @@
 // variables
 var margin_occupation = {top: 20, right: 30, bottom: 30, left: 40},
     width_occupation = 900 - margin_occupation.left - margin_occupation.right,
-    height_occupation = 600 - margin_occupation.top - margin_occupation.bottom;
+    height_occupation = 400 - margin_occupation.top - margin_occupation.bottom;
 
 var xo = d3.scale.ordinal()
     .rangeRoundBands([0, width_occupation], .1);
