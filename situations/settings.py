@@ -16,7 +16,7 @@ import os
 # this is the production/development and live switch
 DEV_MODES = [
     (0, 'LOCAL'),
-    (1, 'PROD'),
+    (1, 'DEV'),
     (2, 'LIVE'),
 ]
 DEV_MODE = 0
@@ -30,7 +30,7 @@ if DEV_MODE is 0:
 if DEV_MODE is 1:
     DOMAIN = 'http://dev.pixelkante.com/'
 if DEV_MODE is 2:
-    DOMAIN = 'http://live.pixelkante.com/'
+    DOMAIN = 'http://situations.dergreif-online.com/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -39,12 +39,19 @@ if DEV_MODE is 2:
 SECRET_KEY = '19dfmvd1b#a3hljytm_&1i_4ifg4#fx3x2qq@xfqun731!(l$8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if DEV_MODE is 0 or 1:
+    DEBUG = True
+if DEV_MODE is 2:
+    DEBUG = False
 
-ALLOWED_HOSTS = [
-    'dev.pixelkante.com',               # dev
-    'situations.dergreif-online.de',    # live
-]
+if DEV_MODE is 1:
+    ALLOWED_HOSTS = [
+        'dev.pixelkante.com',
+    ]
+if DEV_MODE is 2:
+    ALLOWED_HOSTS = [
+        'situations.dergreif-online.de',
+    ]
 
 # Application definition
 
@@ -75,8 +82,7 @@ ROOT_URLCONF = 'situations.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,7 +114,7 @@ if DEV_MODE is 1:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'situations_mysql',
+            'NAME': 'situations_dev_db',
             'USER': 'pixelkante',
             'PASSWORD': 'djangohelden',
             'HOST': 'web456.webfaction.com',
@@ -166,20 +172,27 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 if DEV_MODE is 0:
-    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR) + '/static/', 'static')
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 if DEV_MODE is 1:
-    STATIC_ROOT = '/home/soley/webapps/situations_static/'
+    STATIC_ROOT = '/home/soley/webapps/situations_dev_static/'
 if DEV_MODE is 2:
     STATIC_ROOT = '/home/soley/webapps/situations_live_static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'templates/static'),     # for future projects: this is not where the static folder should be
-    os.path.join(BASE_DIR, 'gallery/static/gallery/'),
+    # for future projects: this is not where the static folders should be
+    os.path.join(BASE_DIR, 'templates/static'),             # should be: os.path.join(BASE_DIR, 'static')
+                                                            # -> all global statics
+    os.path.join(BASE_DIR, 'gallery/static/gallery/'),      # should be: os.path.join(BASE_DIR, 'gallery/static')
+                                                            # -> all module (app) specific statics
 ]
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR) + '/situations/', 'media')
-# These are messed up settings, but for now they work - dont do this this in future projects
+if DEV_MODE is 0:
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+if DEV_MODE is 1:
+    STATIC_ROOT = '/home/soley/webapps/situations_dev_media/'
+if DEV_MODE is 2:
+    STATIC_ROOT = '/home/soley/webapps/situations_live_media/'
 
 # Mail
 """
