@@ -10,6 +10,7 @@ from gallery import choices
 from itertools import chain
 from .models import Publisher, Image, Post
 from django.utils import timezone
+import urllib
 import json
 from django.core import serializers
 
@@ -175,6 +176,8 @@ def publish(request, publisher_id):
 
     # get current publisher object
     publisher = get_object_or_404(Publisher, pk=publisher_id)
+    if publisher.is_active is False:
+        return HttpResponseRedirect(reverse('gallery:publisherror', args=(publisher_id,)))
 
     # add publisher attributes
     publisher.gender = int(request.POST['gender'])
@@ -192,33 +195,25 @@ def publish(request, publisher_id):
         publisher.latitude = float(request.POST['latitude'])
         publisher.longitude = float(request.POST['longitude'])
 
-        google_reverse_geo_code_url =\
+        google_reverse_geo_code_url = \
             'https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s' % (
                 publisher.latitude, publisher.longitude, settings.GOOGLE_API_KEY
             )
+        google_api_response = urllib.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
+        geo_data = json.loads(google_api_response)
 
-        try:
-            # idk whats broken here now, fixing it on sunday
-            google_api_response = request.urlopen(google_reverse_geo_code_url).read().decode(encoding='UTF-8')
-            geo_data = json.loads(google_api_response)
-            print(google_api_response)
-
-            for result in geo_data['results']:
-                for address_component in result['address_components']:
-                    if address_component['types'] == ['locality', 'political']:
-                        publisher.city = address_component['long_name']
-                        break
-                    if address_component['types'] == ['administrative_area_level_1', 'political']:
-                        publisher.region = address_component['short_name']
-                        break
-                    if address_component['types'] == ['country', 'political']:
-                        publisher.country = address_component['long_name']
-                        break
-            success = True
-        except:
-            success = False
-
-    if success is False:
+        for result in geo_data['results']:
+            for address_component in result['address_components']:
+                if address_component['types'] == ['locality', 'political']:
+                    publisher.city = address_component['long_name']
+                    break
+                if address_component['types'] == ['administrative_area_level_1', 'political']:
+                    publisher.region = address_component['short_name']
+                    break
+                if address_component['types'] == ['country', 'political']:
+                    publisher.country = address_component['long_name']
+                    break
+    else:
         # FALLBACK: geo locating via geoIP2
         user_ip = get_client_ip(request)
         g = GeoIP2()
@@ -341,7 +336,7 @@ def invite_new_publisher(parent, mail_address):
     msg = EmailMessage(
         subject,
         content,
-        'situations@dergreif-online.de',
+        settings.DEFAULT_FROM_EMAIL,
         [new_publisher.email],
     )
     msg.content_subtype = "html"

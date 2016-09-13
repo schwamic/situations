@@ -189,6 +189,13 @@ $(document).ready(function(){
 					$('#publish_image_title').html(""+json.image_title);
 					$('#publish_image_author').html(""+json.image_author);
 					$("#lightbox_img_pubview").css("display", "none").attr("src", ""+json.image_filename).one("load",function(){
+					document.getElementById("meta-url").setAttribute("content", "http://situations.dergreif-online.de/?id=" + my_id);
+					document.getElementById("meta-img").setAttribute("content", "http://situations.dergreif-online.de" + json.image_filename);
+					document.getElementById("fb-share").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsituations.dergreif-online.de%2F%3Fid&amp" + my_id);
+					document.getElementById("link-share").setAttribute("href", "http://situations.dergreif-online.de/?id=" + my_id);
+					document.getElementById("twitter-share").setAttribute("data-url", "http://situations.dergreif-online.de/?id=" + my_id);
+					// $("meta[name='meta-url']").attr("content", "http://situations.dergreif-online.de/?id=" + my_id);
+					// $("meta[name='meta-img']").attr("content", "http://situations.dergreif-online.de/static/" + json.image_filename);
 					//fires (only once) when loaded
 							$(this).css({"opacity": "1"})
 							$(this).fadeIn("slow");

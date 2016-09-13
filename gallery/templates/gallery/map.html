@@ -5,6 +5,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/components/map.css' %}"/>
 {% endblock %}
 
+{% block meta %}
+    <meta id="meta-url" property="og:url"           content="" />
+	<meta id="meta-img" property="og:image"         content="" />
+{% endblock %}
+
 {% block title %}Situations - Map{% endblock %}
 
 {% block content %}
@@ -121,9 +126,37 @@
                 </div>
                 <div class="row center_socials">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center_Socials">
-                        <a><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
-                        <a><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
-                        <a><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                        <a id="twitter-share" target="_blank" href="https://twitter.com/share" data-url="">
+                            <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a id="fb-share" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#url"><i class="fa fa-facebook"></i></a>
+                        <!-- <a><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a> -->
+                        <a id="link-share" href="" title="Permalink">
+		                    <i class="fa fa-link"></i>
+	                    </a>
+                        <script>
+                            // twitter
+                            !function(d,s,id){
+                                var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                                if(!d.getElementById(id)){
+                                    js=d.createElement(s);
+                                    js.id=id;
+                                    js.src=p+'://platform.twitter.com/widgets.js';
+                                    fjs.parentNode.insertBefore(js,fjs);
+                                }
+                            }(document, 'script', 'twitter-wjs');
+
+                            // facebook
+                            /*
+                            document.getElementById('shareBtn').onclick = function() {
+                              FB.ui({
+                                method: 'share',
+                                display: 'popup',
+                                href: 'https://developers.facebook.com/docs/',
+                              }, function(response){});
+                            }
+                            */
+                        </script>
                     </div>
                 </div>
             </div>
