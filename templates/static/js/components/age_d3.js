@@ -3,7 +3,7 @@
 // variables
 var amargin = {top: 20, right: 30, bottom: 30, left: 40};
 var awidth = 900 - amargin.left - amargin.right;
-var aheight = 400 - amargin.top - amargin.bottom;
+var aheight = 300 - amargin.top - amargin.bottom;
 
 var ya = d3.scale.ordinal()
     .rangeRoundBands([0,aheight], .1);

@@ -2,7 +2,7 @@
 
 // variables
 var width = 900,
-    height = 400,
+    height = 350,
     radius = Math.min(width, height) / 2;
 
 var color = d3.scale.ordinal()
