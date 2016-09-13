@@ -82,6 +82,7 @@ $(document).ready(function(){
 					POST_ID = 1;
 			}
 			$('#lightbox_img_pubview').css("opacity", "0");
+			console.log(POST_ID);
 			get_post_info(POST_ID);
 		}
 	});

@@ -1,57 +1,63 @@
 "use strict"
 
 // variables
-var data;
-var JSONData;
+var amargin = {top: 20, right: 30, bottom: 30, left: 40};
+var awidth = 900 - amargin.left - amargin.right;
+var aheight = 400 - amargin.top - amargin.bottom;
 
+var ya = d3.scale.ordinal()
+    .rangeRoundBands([0,aheight], .1);
 
-var width = 420,
-    barHeight = 20;
+var xa = d3.scale.linear()
+    .range([0,awidth]);
 
-var x = d3.scale.linear()
-    .range([0, width]);
+var xaAxis = d3.svg.axis()
+    .scale(xa)
+    .orient("bottom");
 
-var chart = d3.select(".chart")
-    .attr("width", width);
+var yaAxis = d3.svg.axis()
+    .scale(ya)
+    .orient("left");
+
+var chart_age = d3.select(".chart_age")
+    .attr("width", awidth + amargin.left + amargin.right)
+    .attr("height",aheight + amargin.top + amargin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + amargin.left + "," + amargin.top + ")");
+
 
 // get-request to endpoint d3_gender - hier muss nichts weiter gemacht werden. json-file passt!
-d3.json("d3_occupation/", function(error, JSONData) {
-    console.log(JSONData);
-  x.domain([0, d3.max(JSONData, function(d) { return d.value; })]);
+d3.json("d3_age/", function(error, data) {
+    console.log(data);
 
-  chart.attr("height", barHeight * JSONData.length);
+    xa.domain([0, d3.max(data, function(d) { return d.publications; })]);
+    ya.domain(data.map(function(d) { return d.age; }));
+/*
+    chart_age.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(10," + aheight +")")
+        .call(xaAxis)
+*/
+    chart_age.append("g")
+      .attr("class", "y axis")
+      .call(yaAxis)
+      .selectAll("text");
 
-  var bar = chart.selectAll("g")
-      .data(JSONData)
-    .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
-  bar.append("rect")
-      .attr("width", function(d) { return x(d.value); })
-      .attr("height", barHeight - 1);
-
-  bar.append("text")
-      .attr("x", function(d) { return x(d.value) - 3; })
-      .attr("y", barHeight / 2)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.value; });
+    chart_age.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("transform", "translate(0, 15)")
+      .attr("y", function(d) { return ya(d.age); })
+      .attr("height", 30)
+      .attr("width", function(d) { return xa(d.publications); })
 
 });
 
 function type(d) {
-  d.value = +d.value; // coerce to number
+  d.publications = +d.publications; // coerce to number
   return d;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -75,19 +81,19 @@ d3.json("d3_data/", function(error, d3_data) {
     data = JSON.parse(d3_data);
 
     // load just the fields in an array -> clean json
-    JSONData = [];
+    data_age = [];
     for (var i = 0; i < data.length; i++){
-       JSONData.push(data[i].fields);
+       data_age.push(data[i].fields);
     }
 
     // here you can use your data
-    console.log(JSONData);
-    x.domain([0, d3.max(JSONData, function(d) { return d.latitude; })]);
+    console.log(data_age);
+    x.domain([0, d3.max(data_age, function(d) { return d.latitude; })]);
 
-  chart.attr("height", barHeight * JSONData.length);
+  chart.attr("height", barHeight * data_age.length);
 
   var bar = chart.selectAll("g")
-      .data(JSONData)
+      .data(data_age)
     .enter().append("g")
       .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
 
@@ -112,10 +118,10 @@ function type(d) {
 
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// T3N - EXAMPLE 2
+// T3N - EXAMPLE 2 - GEHT NICHT ! ! ! ! ! !
 // variables
 var data;
-var JSONData;
+var data_age;
 
 //DIMENSIONEN DES DIAGRAMMS
 var width = 600, height = 300;
@@ -143,14 +149,14 @@ d3.json("d3_data/", function(error, d3_data) {
     data = JSON.parse(d3_data);
 
     // load just the fields in an array -> clean json
-    JSONData = [];
+    data_age = [];
     for (var i = 0; i < data.length; i++){
-       JSONData.push(data[i].fields);
+       data_age.push(data[i].fields);
     }
 
     // here you can use your data
 
-    console.log(JSONData);
+    console.log(data_age);
     //ZUWEISUNG DER DOMAINS
 
     var latitudeFn = function(d) { return d.latitude }
@@ -158,8 +164,8 @@ d3.json("d3_data/", function(error, d3_data) {
     var xNameFN = function(d) { return x(d.name); }
     var ylatitudeFN = function(d) { console.log((d.latitude)); return y(d.latitude); }
 
-    x.domain(JSONData.map(nameFN));
-    y.domain([0, d3.max(JSONData, latitudeFn)]);
+    x.domain(data_age.map(nameFN));
+    y.domain([0, d3.max(data_age, latitudeFn)]);
 
     //ZEICHNEN DER ACHSEN
     // Zeichnen der x-Achse
@@ -185,7 +191,7 @@ d3.json("d3_data/", function(error, d3_data) {
 
     //ZEICHNEN DES DIAGRAMMS
     var barChart = svg.selectAll("rect")
-        .data(JSONData)
+        .data(data_age)
         .enter();
 
     // Säulendiagramm zeichnen

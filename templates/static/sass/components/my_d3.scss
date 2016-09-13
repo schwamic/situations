@@ -1,9 +1,98 @@
-.chart rect {
-  fill: steelblue;
+// AGE
+.age_row{
+.bar {
+    fill: black;
+  }
+
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
 }
 
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+// GENDER
+.gender_row{
+  .arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+  }
+
+  .arc path {
+    stroke: black;
+    stroke-width: 1.3;
+  }
+}
+
+// OCCUPATION
+.occupation_row{
+  .bar {
+    fill: black;
+  }
+
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    //display: none;
+  }
+}
+
+//TIME OF ACTIVITY
+.time_row{
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  path {
+      stroke: black;
+      stroke-width: 1.3;
+      fill: none;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: grey;
+      stroke-width: 1;
+      shape-rendering: crispEdges;
+  }
+}
+
+//POSTS PER DAY
+.posts_row{
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  path {
+      stroke: black;
+      stroke-width: 1.3;
+      fill: none;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: grey;
+      stroke-width: 1;
+      shape-rendering: crispEdges;
+  }
 }

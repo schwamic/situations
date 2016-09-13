@@ -29,11 +29,15 @@ urlpatterns = [
     url(r'^imprint/$', TemplateView.as_view(template_name='gallery/imprint.html'), name="impressum"),
 
     #data visualisation
-    url(r'^datavisualisation/$', DataVisualisationView.as_view(), name='datavisualisation'),
-    url(r'^datavisualisation/d3_data/$', d3_data, name='d3_data'),
-    url(r'^datavisualisation/d3_gender/$', d3_gender, name='d3_gender'),
-    url(r'^datavisualisation/d3_occupation/$', d3_occupation, name='d3_occupation'),
-    url(r'^datavisualisation/d3_age/$', d3_age, name='d3_age'),
+    url(r'^visualisation/$', DataVisualisationView.as_view(), name='datavisualisation'),
+    url(r'^visualisation/d3_data/$', d3_data, name='d3_data'),
+    url(r'^visualisation/d3_gender/$', d3_gender, name='d3_gender'),
+    url(r'^visualisation/d3_occupation/$', d3_occupation, name='d3_occupation'),
+    url(r'^visualisation/d3_age/$', d3_age, name='d3_age'),
+    url(r'^visualisation/d3_time_of_activity/$', d3_time_of_activity, name='d3_time_of_activity'),
+    url(r'^visualisation/d3_posts_per_day/$', d3_posts_per_day, name='d3_posts_per_day'),
+
+    url(r'^audio/$', AudioView.as_view(), name='audio'),
 ]
 
 # uuid: (?P<something>[^/]+)
