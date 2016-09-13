@@ -125,7 +125,7 @@ if DEV_MODE is 2:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'situations_live_db',
+            'NAME': 'situations_live_db2',
             'USER': 'dergreif',
             'PASSWORD': 'ScbjG7R5tZYdGUpZ',
             'HOST': 'web456.webfaction.com',
