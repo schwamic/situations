@@ -1,98 +1,122 @@
 // AGE
-.age_row{
-.bar {
-    fill: black;
-  }
+.gallery{
 
-  .axis text {
-    font: 10px sans-serif;
-  }
+    button{
+        display: none;
+    }
+    .box{
+        position: relative;
+        display: table;
+        width: 100%;
+        height: 625px;
+    }
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+    .center{
+        display: table-cell;
+        margin: 0 auto;
+        vertical-align: middle;
+        text-align: center;
+    }
 
-  .x.axis path {
-    display: none;
-  }
-}
+    .lable{
+        margin-bottom: 30px;
+    }
 
-// GENDER
-.gender_row{
-  .arc text {
-    font: 10px sans-serif;
-    text-anchor: middle;
-  }
+    .age_row{
+    .bar {
+        fill: black;
+      }
 
-  .arc path {
-    stroke: black;
-    stroke-width: 1.3;
-  }
-}
+      .axis text {
+        font: 10px sans-serif;
+      }
 
-// OCCUPATION
-.occupation_row{
-  .bar {
-    fill: black;
-  }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
 
-  .axis text {
-    font: 10px sans-serif;
-  }
+      .x.axis path {
+        display: none;
+      }
+    }
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+    // GENDER
+    .gender_row{
+      .arc text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
 
-  .x.axis path {
-    //display: none;
-  }
-}
+      .arc path {
+        stroke: black;
+        stroke-width: 1.3;
+      }
+    }
 
-//TIME OF ACTIVITY
-.time_row{
-  .axis text {
-    font: 10px sans-serif;
-  }
+    // OCCUPATION
+    .occupation_row{
+      .bar {
+        fill: black;
+      }
 
-  path {
-      stroke: black;
-      stroke-width: 1.3;
-      fill: none;
-  }
+      .axis text {
+        font: 10px sans-serif;
+      }
 
-  .axis path,
-  .axis line {
-      fill: none;
-      stroke: grey;
-      stroke-width: 1;
-      shape-rendering: crispEdges;
-  }
-}
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
 
-//POSTS PER DAY
-.posts_row{
-  .axis text {
-    font: 10px sans-serif;
-  }
+      .x.axis path {
+        //display: none;
+      }
+    }
 
-  path {
-      stroke: black;
-      stroke-width: 1.3;
-      fill: none;
-  }
+    //TIME OF ACTIVITY
+    .time_row{
+      .axis text {
+        font: 10px sans-serif;
+      }
 
-  .axis path,
-  .axis line {
-      fill: none;
-      stroke: grey;
-      stroke-width: 1;
-      shape-rendering: crispEdges;
-  }
+      path {
+          stroke: black;
+          stroke-width: 1.3;
+          fill: none;
+      }
+
+      .axis path,
+      .axis line {
+          fill: none;
+          stroke: grey;
+          stroke-width: 1;
+          shape-rendering: crispEdges;
+      }
+    }
+
+    //POSTS PER DAY
+    .posts_row{
+      .axis text {
+        font: 10px sans-serif;
+      }
+
+      path {
+          stroke: black;
+          stroke-width: 1.3;
+          fill: none;
+      }
+
+      .axis path,
+      .axis line {
+          fill: none;
+          stroke: grey;
+          stroke-width: 1;
+          shape-rendering: crispEdges;
+      }
+    }
 }

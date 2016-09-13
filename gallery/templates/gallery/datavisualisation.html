@@ -2,58 +2,74 @@
 {% load staticfiles %}
 {% block title %}Situations - Datavisualisation{% endblock %}
 
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/flickity-docs.css' %}"/>
+{% endblock %}
 {% block content %}
 {% csrf_token %}
+<div class="row gallery js-flickity" data-flickity='{ "autoPlay": 600000, "pauseAutoPlayOnHover": false, "freeScroll": false, "wrapAround": true }'>
+    <div class="col-md-12 gallery-cell">
+        <div class="box">
+            <div class="age_row center">
+                <div class="lable">Age</div>
+                <div class="age">
+                    <!-- here age_d3.js -->
+                    <svg class="chart_age"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 gallery-cell">
+        <div class="box">
+            <div class="gender_row center">
+                <div class="lable">Gender</div>
+                <div class="gender">
+                    <!-- here gender_d3.js -->
+                    <svg class="chart_gender"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 gallery-cell">
+        <div class="box">
+            <div class="occupation_row center">
+                <div class="lable">Occupation</div>
+                <div class="occupation">
+                    <!-- here occupation_d3.js -->
+                    <svg class="chart_occupation"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 gallery-cell">
+        <div class="box">
+            <div class="time_row center">
+                <div class="lable">Time of activity</div>
+                <div class="time">
+                    <!-- here occupation_d3.js -->
+                    <svg class="chart_time"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 gallery-cell">
+        <div class="box">
+            <div class="posts_row center">
+                <div class="lable">Participants</div>
+                <div class="posts">
+                    <!-- here occupation_d3.js -->
+                    <svg class="chart_posts"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="row age_row">
-    <div class="col-md-12">
-        <div class="lable">Age</div>
-        <div class="center age">
-            <!-- here age_d3.js -->
-            <svg class="chart_age"></svg>
-        </div>
-    </div>
-</div>
-<div class="row gender_row">
-    <div class="col-md-12">
-        <div class="lable">Gender</div>
-        <div class="center gender">
-            <!-- here gender_d3.js -->
-            <svg class="chart_gender"></svg>
-        </div>
-    </div>
-</div>
-<div class="row occupation_row">
-    <div class="col-md-12">
-        <div class="lable">Occupation</div>
-        <div class="center occupation">
-            <!-- here occupation_d3.js -->
-            <svg class="chart_occupation"></svg>
-        </div>
-    </div>
-</div>
-<div class="row time_row">
-    <div class="col-md-12">
-        <div class="lable">Time of activity</div>
-        <div class="center time">
-            <!-- here occupation_d3.js -->
-            <svg class="chart_time"></svg>
-        </div>
-    </div>
-</div>
-<div class="row posts_row">
-    <div class="col-md-12">
-        <div class="lable">Participants</div>
-        <div class="center posts">
-            <!-- here occupation_d3.js -->
-            <svg class="chart_posts"></svg>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block scripts %}
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{% static 'js/components/flickity-docs.min.js' %}"></script>
 <script src="{% static 'js/components/age_d3.js' %}"></script>
 <script src="{% static 'js/components/gender_d3.js' %}"></script>
 <script src="{% static 'js/components/occupation_d3.js' %}"></script>
