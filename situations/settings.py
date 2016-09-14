@@ -226,3 +226,6 @@ COLORS = [
 # Map
 MAP_MODE = 0            # 0 = all, 1 = only markers, 2 = limited markers
 MAP_LIMIT = 100         # num of markers shown on map for mode != 0
+
+# Audio
+SHUFFLE = True
