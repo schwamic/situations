@@ -4,7 +4,7 @@ var margin_posts = {top: 30, right: 40, bottom: 30, left: 50},
     width_posts = 900 - margin_posts.left - margin_posts.right,
     height_posts = 300 - margin_posts.top - margin_posts.bottom;
 
-var parseDate_post = d3.time.format("%d-%b-%y").parse;
+var parseDate_post = d3.time.format("%Y-%m-%d").parse;
 
 var xp = d3.time.scale().range([0, width_posts]);
 var yp0 = d3.scale.linear().range([height_posts, 0]);
@@ -13,7 +13,7 @@ var xpAxis = d3.svg.axis().scale(xp)
     .orient("bottom").ticks(5);
 
 var ypAxisLeft = d3.svg.axis().scale(yp0)
-    .orient("left").ticks(5);
+    .orient("left").ticks(4);
 
 var valueline_post = d3.svg.line()
     .x(function(d) { return xp(d.date); })
@@ -32,7 +32,6 @@ d3.json("d3_posts_per_day/", function(error, data_posts) {
     data_posts.forEach(function(d) {
         d.date = parseDate_post(d.date);
         d.close = d.close;
-        d.open = +d.open;
     });
 
     // Scale the range of the data
