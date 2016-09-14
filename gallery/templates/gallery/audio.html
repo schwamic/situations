@@ -94,8 +94,9 @@
         var current_post;
         var post_contents;
         var post_position;
-        var shuffle = {{ shuffle|yesno:"true,false" }};
-        var colors = {{ colors|safe }};
+        var shuffle = true;
+        // var shuffle = {{ shuffle|yesno:"true,false" }};
+        // var colors = {{ colors|safe }};
         console.log('count: ' + post_count + ' shuffle: ' + shuffle);
 
         // api
@@ -136,7 +137,9 @@
         function select_new_post() {
             // call this method to init new
             current_post = document.getElementById(get_post_id());
-            current_post.style = 'color: ' + colors[0][1];
+            console.log(current_post);
+            current_post.style = 'color: #9036fe';
+            // current_post.style = 'color: ' + colors[0][1];
             current_post.scrollIntoView(true);
 
             set_post_contents();
@@ -144,12 +147,12 @@
         }
 
         function get_post_id() {
-            if (shuffle)   return Math.floor((Math.random() * post_count) + 1);
+            if (shuffle)   return Math.floor((Math.random() * post_count));
             else           return num_posts_read % post_count;
         }
 
         function set_post_contents() {
-            post_contents = current_post.getElementsByTagName('p')[0].innerHTML.split(/,|\.|\?|\!/) ;
+            post_contents = current_post.getElementsByTagName('p')[0].innerHTML.split(/,|\.|\?|!|\//) ;
             post_position = 0;
         }
 
