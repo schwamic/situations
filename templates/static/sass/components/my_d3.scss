@@ -2,6 +2,10 @@
 .gallery{
     .flickity-viewport{
         margin-bottom: 40px;
+        height: 90vh;
+    }
+    .flickity-page-dots{
+        top: 80vh;
     }
     button{
         display: none;
@@ -10,7 +14,7 @@
         position: relative;
         display: table;
         width: 100%;
-        height: 625px;
+        height: 75vh;
     }
 
     .center{
@@ -61,6 +65,14 @@
         stroke: black;
         stroke-width: 1.3;
         stroke-antialiasing:true;
+      }
+      .gender_text{
+        position: absolute;
+        top: 37vh;
+        left: 0;
+        height: 90vh;
+        width: 40vw;
+        display: table-cell;
       }
     }
 
