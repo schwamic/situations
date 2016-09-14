@@ -3,41 +3,54 @@
 
 {% block title %}Situations - Audio{% endblock %}
 
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/components/audio.css' %}"/>
+{% endblock %}
+
 {% block content %}
     {% for post in post_list %}
-        <div class="row " id="{{ forloop.counter0 }}">
+        <div class="row" id="{{ forloop.counter0 }}">
+            <p class="hidden">
+                {{ post.image.title }} by {{ post.image.author }}.
+                Published on: {{ post.publishing_date }}.
+                Selected by: {{ post.publisher.name }} hyphen {{ post.publisher.pk }}.
+                Gender: {{ post.publisher.get_gender_display }}.
+                From: {{ post.publisher.city }} in {{ post.publisher.country }}.
+                Year of birth: {{ post.publisher.year_of_birth }}.
+                Occupation: {{ post.publisher.get_occupation_display }}.
+
+                {% if post.publisher.get_gender_display == 'Male' %}HIS{% else %}HER{% endif %} DESCRIPTION:
+                {{ post.description }}.
+
+                {% if post.publisher.get_gender_display == 'Male' %}HIS{% else %}HER{% endif %} REASON:
+                {{ post.reason }}.
+            </p>
             <div class="col-md-8 col-md-offset-2 about">
                 <h4><strong>{{ post.image.title|upper }}</strong> BY <strong>{{ post.image.author|upper }}</strong></h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <p style="display: none">.</p>
                         <h4>Published on:</h4>
                         <h4>{{ post.publishing_date }}</h4>
                     </div>
                     <div class="col-md-4">
-                        <p style="display: none">.</p>
                         <h4>Selected by:</h4>
                         <h4>{{ post.publisher.name }}-{{ post.publisher.pk }}</h4>
                     </div>
                     <div class="col-md-4">
-                        <p style="display: none">.</p>
                         <h4>Gender:</h4>
                         <h4>{{ post.publisher.get_gender_display }}</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <p style="display: none">.</p>
                         <h4>From:</h4>
                         <h4>{{ post.publisher.city }} in {{ post.publisher.country }}</h4>
                     </div>
                     <div class="col-md-4">
-                        <p style="display: none">.</p>
                         <h4>Year of birth:</h4>
                         <h4>{{ post.publisher.year_of_birth }}</h4>
                     </div>
                     <div class="col-md-4">
-                        <p style="display: none">.</p>
                         <h4>Occupation:</h4>
                         <h4>{{ post.publisher.get_occupation_display }}</h4>
                     </div>
@@ -45,73 +58,114 @@
                 <br>
                 <p>
                     <strong>
-                        {% if post.publisher.get_gender_display == 'Male' %}His{% else %}Her{% endif %} description:
+                        {% if post.publisher.get_gender_display == 'Male' %}HIS{% else %}HER{% endif %} DESCRIPTION:
                     </strong>
-                    <br>
                     {{ post.description }}.
                 </p>
                 <p>
                     <strong>
-                    {% if post.publisher.get_gender_display == 'Male' %}His{% else %}Her{% endif %} reason:
+                    {% if post.publisher.get_gender_display == 'Male' %}HIS{% else %}HER{% endif %} REASON:
                     </strong>
-                    <br>
                     {{ post.reason }}.
                 </p>
                 <hr>
             </div>
         </div>
     {% endfor %}
-    <div style="position: fixed; right: 10px; bottom: 10px">
-    <a id="play" style="padding: 5px"><i class="fa fa-play" aria-hidden="true"></i></a>
-    <a id="pause" style="padding: 5px"><i class="fa fa-pause" aria-hidden="true"></i></a>
-    <a id="next" style="padding: 5px"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+    <div class="about controls">
+        <a id="play"><i class="fa fa-play" aria-hidden="true"></i></a>
+        &nbsp;|&nbsp;
+        <label for="voice">Voice</label>
+		<select name="voice" id="voice"></select>
     </div>
 {% endblock %}
 
 {% block scripts %}
     <script>
+        if (!('speechSynthesis' in window)) alert('Sorry your browser is not supported - try latest Chrome or Safari.');
+
+        // interfaces
+        var playbtn = document.getElementById('play');
+        var voiceSelect = document.getElementById('voice');
+
+        // settings
         var post_count = {{ post_list|length }};
         var num_posts_read = 0;
-        var current_paragraph;
+        var current_post;
+        var post_contents;
+        var post_position;
         var shuffle = {{ shuffle|yesno:"true,false" }};
         var colors = {{ colors|safe }};
         console.log('count: ' + post_count + ' shuffle: ' + shuffle);
 
+        // api
         var msg = new SpeechSynthesisUtterance();
-        var voices = window.speechSynthesis.getVoices();
-        console.log(voices);
-        msg.voice = voices[10];     // Note: some voices don't support altering params
-        msg.voiceURI = 'native';
-        msg.volume = 1;             // 0 to 1
-        msg.rate = 1;               // 0.1 to 10
-        msg.pitch = 1;              // 0 to 2
-        msg.lang = 'en-US';
 
-        msg.onend = function(e) {
-            num_posts_read++;
-            console.log('posts read: ' + num_posts_read);
-            current_paragraph.style = 'color: #000000';
-            select_new_paragraph();
+        function loadVoices() {
+            var voices = speechSynthesis.getVoices();
+
+            voices.forEach(function(voice, i) {
+                var option = document.createElement('option');
+
+                option.value = voice.name;
+                option.innerHTML = voice.name;
+
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        loadVoices();
+
+        window.speechSynthesis.onvoiceschanged = function(e) {
+            // google loads voices asyncronely
+            loadVoices();
         };
 
-        function get_paragraph_id() {
+        msg.onend = function(e) {
+            if (post_position + 1 < post_contents.length) {
+                post_position++;
+                speak();
+            } else {
+                num_posts_read++;
+                console.log('posts read: ' + num_posts_read);
+                current_post.style = 'color: #000000';
+                select_new_post();
+            }
+        };
+
+        function select_new_post() {
+            // call this method to init new
+            current_post = document.getElementById(get_post_id());
+            current_post.style = 'color: ' + colors[0][1];
+            current_post.scrollIntoView(true);
+
+            set_post_contents();
+            speak();
+        }
+
+        function get_post_id() {
             if (shuffle)   return Math.floor((Math.random() * post_count) + 1);
             else           return num_posts_read % post_count;
         }
 
-        function read() {
-            msg.text = current_paragraph.innerHTML;
-            speechSynthesis.speak(msg);
+        function set_post_contents() {
+            post_contents = current_post.getElementsByTagName('p')[0].innerHTML.split(/,|\.|\?|\!/) ;
+            post_position = 0;
         }
 
-        function select_new_paragraph() {
-            current_paragraph = document.getElementById(get_paragraph_id());
-            current_paragraph.style = 'color: ' + colors[0][1];
-            current_paragraph.scrollIntoView(true);
-            read();
+        function speak() {
+            if (voiceSelect.value) {
+                msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voiceSelect.value; })[0];
+            }
+            msg.volume = 1;
+            msg.rate = 1;
+            msg.pitch = 1;
+
+            msg.text = post_contents[post_position];
+            console.log(post_contents[post_position]);
+            window.speechSynthesis.speak(msg);
         }
 
-        // init
-        select_new_paragraph();
+        playbtn.addEventListener('click', select_new_post);
     </script>
 {% endblock %}
