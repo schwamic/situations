@@ -24,7 +24,7 @@ def d3_gender(request):
 
         gender = []
         for i, val in choices.GENDER_CHOICES:
-            gender.append({"value": val, "publications": Publisher.objects.all().filter(occupation=i, is_active=False).count()})
+            gender.append({"value": val, "publications": Publisher.objects.all().filter(gender=i, is_active=False).count()})
 
         return HttpResponse(json.dumps(gender), content_type="application/json")
     else:

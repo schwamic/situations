@@ -63,7 +63,5 @@ d3.json("d3_time_of_activity/", function(error, data_time) {
     svg_time.append("g")
         .attr("class", "y axis")
         .style("fill", "black")
-        .call(ytAxisLeft)
-        .append("text")
-        .text("hours");
+        .call(ytAxisLeft);
 });

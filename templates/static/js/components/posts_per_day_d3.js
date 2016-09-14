@@ -50,8 +50,6 @@ d3.json("d3_posts_per_day/", function(error, data_posts) {
     svg_posts.append("g")
         .attr("class", "y axis")
         .style("fill", "black")
-        .call(ypAxisLeft)
-        .append("text")
-        .text("people");
+        .call(ypAxisLeft);
 
 });
