@@ -187,9 +187,9 @@ MEDIA_URL = '/media/'
 if DEV_MODE is 0:
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 if DEV_MODE is 1:
-    STATIC_ROOT = '/home/soley/webapps/situations_dev_media/'
+    MEDIA_ROOT = '/home/soley/webapps/situations_dev_media/'
 if DEV_MODE is 2:
-    STATIC_ROOT = '/home/soley/webapps/situations_live_media/'
+    MEDIA_ROOT = '/home/soley/webapps/situations_live_media/'
 
 # Mail
 """
