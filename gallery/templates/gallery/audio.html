@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Situations - Audio{% endblock %}
+
+{% block content %}
+    {% for post in post_list %}
+        <div class="row " id="{{ forloop.counter0 }}">
+            <div class="col-md-8 col-md-offset-2 about">
+                <h4><strong>{{ post.image.title|upper }}</strong> BY <strong>{{ post.image.author|upper }}</strong></h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p style="display: none">.</p>
+                        <h4>Published on:</h4>
+                        <h4>{{ post.publishing_date }}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="display: none">.</p>
+                        <h4>Selected by:</h4>
+                        <h4>{{ post.publisher.name }}-{{ post.publisher.pk }}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="display: none">.</p>
+                        <h4>Gender:</h4>
+                        <h4>{{ post.publisher.get_gender_display }}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p style="display: none">.</p>
+                        <h4>From:</h4>
+                        <h4>{{ post.publisher.city }} in {{ post.publisher.country }}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="display: none">.</p>
+                        <h4>Year of birth:</h4>
+                        <h4>{{ post.publisher.year_of_birth }}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="display: none">.</p>
+                        <h4>Occupation:</h4>
+                        <h4>{{ post.publisher.get_occupation_display }}</h4>
+                    </div>
+                </div>
+                <br>
+                <p>
+                    <strong>
+                        {% if post.publisher.get_gender_display == 'Male' %}His{% else %}Her{% endif %} description:
+                    </strong>
+                    <br>
+                    {{ post.description }}.
+                </p>
+                <p>
+                    <strong>
+                    {% if post.publisher.get_gender_display == 'Male' %}His{% else %}Her{% endif %} reason:
+                    </strong>
+                    <br>
+                    {{ post.reason }}.
+                </p>
+                <hr>
+            </div>
+        </div>
+    {% endfor %}
+    <div style="position: fixed; right: 10px; bottom: 10px">
+    <a id="play" style="padding: 5px"><i class="fa fa-play" aria-hidden="true"></i></a>
+    <a id="pause" style="padding: 5px"><i class="fa fa-pause" aria-hidden="true"></i></a>
+    <a id="next" style="padding: 5px"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var post_count = {{ post_list|length }};
+        var num_posts_read = 0;
+        var current_paragraph;
+        var shuffle = {{ shuffle|yesno:"true,false" }};
+        var colors = {{ colors|safe }};
+        console.log('count: ' + post_count + ' shuffle: ' + shuffle);
+
+        var msg = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+        console.log(voices);
+        msg.voice = voices[10];     // Note: some voices don't support altering params
+        msg.voiceURI = 'native';
+        msg.volume = 1;             // 0 to 1
+        msg.rate = 1;               // 0.1 to 10
+        msg.pitch = 1;              // 0 to 2
+        msg.lang = 'en-US';
+
+        msg.onend = function(e) {
+            num_posts_read++;
+            console.log('posts read: ' + num_posts_read);
+            current_paragraph.style = 'color: #000000';
+            select_new_paragraph();
+        };
+
+        function get_paragraph_id() {
+            if (shuffle)   return Math.floor((Math.random() * post_count) + 1);
+            else           return num_posts_read % post_count;
+        }
+
+        function read() {
+            msg.text = current_paragraph.innerHTML;
+            speechSynthesis.speak(msg);
+        }
+
+        function select_new_paragraph() {
+            current_paragraph = document.getElementById(get_paragraph_id());
+            current_paragraph.style = 'color: ' + colors[0][1];
+            current_paragraph.scrollIntoView(true);
+            read();
+        }
+
+        // init
+        select_new_paragraph();
+    </script>
+{% endblock %}
