@@ -31,6 +31,7 @@ var svg = d3.select(".chart_gender")
 d3.json("d3_gender/", function(error, data_gender) {
     if (error) throw error;
     console.log(data_gender);
+    setTitle(data_gender[0].value, data_gender[1].value,data_gender[0].publications,data_gender[1].publications);
 
   var g = svg.selectAll(".arc")
       .data(pie(data_gender))
@@ -51,4 +52,12 @@ d3.json("d3_gender/", function(error, data_gender) {
 function type(d) {
   d.publications = +d.publications;
   return d;
+}
+
+function setTitle(f_value, m_value, f_public, m_public){
+    var all = f_public + m_public;
+    var f_percent = Math.round((f_public * 100)/all);
+    var m_percent = Math.round((m_public * 100)/all);
+    $('#female').html(""+f_value+" "+f_percent+"%");
+    $('#male').html(""+m_value+" "+m_percent+"%");
 }

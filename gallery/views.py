@@ -441,21 +441,38 @@ def d3_occupation(request):
 def d3_age(request):
     if request.method == 'GET':
 
-        '''
-        z.B. publications: 50 , age: 18
-        <18
-        19-15
-        26-35
-        36-50
-        >51
-        '''
+        group_one = 0
+        group_two = 0
+        group_three = 0
+        group_four = 0
+        group_five = 0
+
+        for obj in Publisher.objects.all().filter(is_active=False):
+            years = (int(timezone.now().year) - int(choices.YEAR_BORN[obj.year_of_birth][1]))
+            if years <= 17:
+                group_one += 1
+
+            elif (years >= 18) and (years <= 25):
+                group_two += 1
+
+            elif (years >= 26) and (years <= 35):
+                group_three += 1
+
+            elif (years >= 36) and (years <= 50):
+                group_four += 1
+
+            elif years >= 51:
+                group_five += group_five + 1
+
+            else:
+                return "no match found."
 
         age = [
-            {"publications": 100, "age": "<18"},
-            {"publications": 500, "age": "19-15"},
-            {"publications": 230, "age": "26-36"},
-            {"publications": 800, "age": "36-50"},
-            {"publications": 500, "age": ">51"}
+            {"publications": group_one, "age": "<18"},
+            {"publications": group_two, "age": "18-15"},
+            {"publications": group_three, "age": "26-36"},
+            {"publications": group_four, "age": "36-50"},
+            {"publications": group_five, "age": ">50"}
         ]
 
         return HttpResponse(json.dumps(age), content_type="application/json")

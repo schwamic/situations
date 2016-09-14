@@ -6,8 +6,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/flickity-docs.css' %}"/>
 {% endblock %}
 {% block content %}
-{% csrf_token %}
-<div class="row gallery js-flickity" data-flickity='{ "autoPlay": 20000, "pauseAutoPlayOnHover": false, "freeScroll": false, "wrapAround": true }'>
+{% csrf_token %} <!-- "autoPlay": 20000, -->
+<div class="row gallery js-flickity"
+     data-flickity='{ "pauseAutoPlayOnHover": false, "freeScroll": false, "wrapAround": true }'>
     <div class="col-md-12 gallery-cell">
         <div class="box">
             <div class="age_row center">
@@ -24,6 +25,10 @@
             <div class="gender_row center">
                 <div class="lable">Gender</div>
                 <div class="gender">
+                    <div class="gender_text">
+                        <p id="male"></p>
+                        <p id="female"></p>
+                    </div>
                     <!-- here gender_d3.js -->
                     <svg class="chart_gender"></svg>
                 </div>
