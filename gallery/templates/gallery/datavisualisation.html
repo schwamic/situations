@@ -7,12 +7,17 @@
 {% endblock %}
 {% block content %}
 {% csrf_token %} <!-- "autoPlay": 20000, -->
+<style>
+    .navbar{
+        opacity: 0 !important;
+    }
+</style>
 <div class="row gallery js-flickity"
      data-flickity='{ "autoPlay": 20000, "pauseAutoPlayOnHover": false, "freeScroll": false, "wrapAround": true }'>
     <div class="col-md-12 gallery-cell">
         <div class="box">
             <div class="age_row center">
-                <div class="lable">Age</div>
+                <div class="lable " style="position: relative; top: -50px;">Age</div>
                 <div class="age">
                     <!-- here age_d3.js -->
                     <svg class="chart_age"></svg>
@@ -23,7 +28,7 @@
     <div class="col-md-12 gallery-cell">
         <div class="box">
             <div class="gender_row center">
-                <div class="lable">Gender</div>
+                <div class="lable" style="position: relative; top: -24px;">Gender</div>
                 <div class="gender">
                     <div class="gender_text">
                         <p id="male"></p>
@@ -49,10 +54,15 @@
     <div class="col-md-12 gallery-cell">
         <div class="box">
             <div class="time_row center">
-                <div class="lable">Time of activity</div>
+                <div class="lable" style="margin-top: 30px;">Time of activity</div>
                 <div class="time">
                     <!-- here occupation_d3.js -->
                     <svg class="chart_time"></svg>
+                </div>
+                <div class="caption_time">
+                    <p>Average time of activity: {{ time_average }}</p>
+                    <p>Shortest time of activity: {{ time_small }} {{ name_small }}</p>
+                    <p>Longest time of activity: {{ time_big }} {{ name_big }}</p>
                 </div>
             </div>
         </div>
@@ -60,7 +70,7 @@
     <div class="col-md-12 gallery-cell">
         <div class="box">
             <div class="posts_row center">
-                <div class="lable">Participants</div>
+                <div class="lable" style="position: relative; top: -50px;">Participants</div>
                 <div class="posts">
                     <!-- here occupation_d3.js -->
                     <svg class="chart_posts"></svg>

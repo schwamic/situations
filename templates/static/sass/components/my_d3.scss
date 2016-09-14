@@ -1,5 +1,6 @@
 // AGE
 .gallery{
+    font-family: 'Inconsolata' !important;
     .flickity-viewport{
         margin-bottom: 40px;
         height: 90vh;
@@ -25,12 +26,12 @@
     }
 
     .lable{
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 
     .lable_occupation{
-        margin-top: 50px;
-        margin-bottom: 40px;
+        margin-top: 57px;
+        margin-bottom: 50px;
     }
 
     .age_row{
@@ -102,6 +103,13 @@
     .time_row{
       .axis text {
         font: 10px sans-serif;
+      }
+      .caption_time{
+        margin-top: 50px;
+
+        p{
+            font-size: 12px;
+        }
       }
 
       path {

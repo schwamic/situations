@@ -35,7 +35,7 @@ var svg_time = d3.select(".chart_time")
 
 // Get the data
 d3.json("d3_time_of_activity/", function(error, data_time) {
-    console.log(data_time)
+    console.log(data_time);
 
     var parseDate_time = d3.time.format("%Y-%m-%d");
     //var parseTime_time = d3.time.format("%X");

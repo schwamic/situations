@@ -12,6 +12,43 @@ class DataVisualisationView(generic.ListView):
     model = Publisher
     template_name = 'gallery/datavisualisation.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(DataVisualisationView, self).get_context_data(**kwargs)
+        pub_list = Publisher.objects.all().filter(is_active=False)
+
+        count = 0
+        state = True
+        for obj in pub_list:
+            if state:
+                small = obj.active_time
+                sname = obj.name
+                spk = obj.id
+                big = obj.active_time
+                bname = obj.name
+                bpk = obj.id
+                all_objs = obj.active_time
+                state = False
+            else:
+                if (obj.active_time - small) < timedelta(seconds=-1):
+                    small = obj.active_time
+                    sname = obj.name
+                    spk = obj.id
+                if (big - obj.active_time) < timedelta(seconds=-1):
+                    big = obj.active_time
+                    bname = obj.name
+                    bpk = obj.id
+                    all_objs += obj.active_time
+            count += 1
+        print(small)
+        print(big)
+        print(all_objs/count)
+        context['time_small'] = small
+        context['time_big'] = big
+        context['time_average'] = all_objs/count
+        context['name_small'] = '(ID#'+str(sname)+'-'+str(spk)+')'
+        context['name_big'] = '(ID#'+str(bname)+'-'+str(bpk)+')'
+        return context
+
 def d3_data(request):
     if request.method == 'GET':
         d3_data = serializers.serialize('json', Publisher.objects.all().filter(is_active=False)) #,fields('name', 'next attr')
@@ -85,7 +122,7 @@ def d3_time_of_activity(request):
 
         def time_to_int(time):
             seconds = time.total_seconds()
-            int_time = (int(seconds)/60/60)
+            int_time = (float(seconds)/60/60)
             return int_time
 
         # fill width empty days and posts
@@ -100,8 +137,6 @@ def d3_time_of_activity(request):
             return (d1 + timedelta(days=i) for i in range((d2 - d1).days + 1))
 
         for d in daterange(date1, date2):
-            print('TEST +++++++'+str(Post.objects.all().filter(publishing_date__range=date_range_filter(d))))
-
             try:
                 list_posts = Post.objects.all().filter(publishing_date__range=date_range_filter(d))
                 if len(list_posts) > 0:
@@ -137,8 +172,6 @@ def d3_posts_per_day(request):
             return (d1 + timedelta(days=i) for i in range((d2 - d1).days + 1))
 
         for d in daterange(date1, date2):
-            print('TEST +++++++'+str(Post.objects.all().filter(publishing_date__range=date_range_filter(d))))
-
             try:
                 list_posts = Post.objects.all().filter(publishing_date__range=date_range_filter(d))
                 if len(list_posts) > 0:
