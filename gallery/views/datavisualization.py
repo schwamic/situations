@@ -186,3 +186,5 @@ def d3_posts_per_day(request):
         return HttpResponse(json.dumps(list_participants), content_type="application/json")
     else:
         return HttpResponse(json.dumps({"nothing to see": "this isn't happening"}), content_type="application/json")
+
+#merge
