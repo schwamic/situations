@@ -18,6 +18,13 @@ class DataVisualisationView(generic.ListView):
 
         count = 0
         state = True
+        small = 0
+        sname = "empty"
+        spk = 0
+        big = 0
+        bname = "empty"
+        bpk = 0
+        all_objs = 0
         for obj in pub_list:
             if state:
                 small = obj.active_time
@@ -39,9 +46,10 @@ class DataVisualisationView(generic.ListView):
                     bpk = obj.id
                     all_objs += obj.active_time
             count += 1
-        print(small)
-        print(big)
-        print(all_objs/count)
+
+        if count == 0:
+            count = 1
+
         context['time_small'] = small
         context['time_big'] = big
         context['time_average'] = all_objs/count
