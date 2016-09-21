@@ -46,6 +46,23 @@ def post_detail(request):
 
         response_data = {}
 
+        response_data['publisher_id'] = u'%s-%s' % (post.publisher.name, post.publisher.id)
+        response_data['post_publishing_date'] = '%s.%s.%s' % (post.publishing_date.day, post.publishing_date.month,
+                                                              post.publishing_date.year)
+        response_data['publisher_gender'] = GENDER_CHOICES[int(post.publisher.gender)][1]
+        response_data['publisher_occupation'] = OCCUPATION_CHOICES[int(post.publisher.occupation)][1]
+        response_data['publisher_age'] = int(timezone.now().year) - int(YEAR_BORN[post.publisher.year_of_birth][1])
+        response_data['publisher_location'] = u'%s, %s' % (post.publisher.city, post.publisher.country)
+        response_data['publisher_active_time'] = str(post.publisher.active_time)
+        response_data['post_description'] = post.description
+        response_data['post_reason'] = post.reason
+
+        response_data['image_author'] = post.image.author
+        response_data['image_title'] = post.image.title
+        response_data['image_filename'] = '/media/'+post.image.filename
+        response_data['post_count'] = Post.objects.count()
+
+        '''
         response_data['publisher_id'] = post.publisher.name + '-' + str(post.publisher.id)
         response_data['post_publishing_date'] = '%s.%s.%s' % (post.publishing_date.day, post.publishing_date.month,
                                                               post.publishing_date.year)
@@ -61,6 +78,7 @@ def post_detail(request):
         response_data['image_title'] = post.image.title
         response_data['image_filename'] = '/media/'+post.image.filename
         response_data['post_count'] = Post.objects.count()
+        '''
 
         return HttpResponse(
             json.dumps(response_data),

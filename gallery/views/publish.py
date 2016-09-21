@@ -151,7 +151,7 @@ def invite_new_publisher(parent, mail_address):
     content += '<p><b>Participating is simple:</b></p>'
 
     content += '<p><b>1. Select your favourite image and write a brief explanation of why you chose that<br>' \
-               'specific picture.</b><br>'\
+               'specific picture. Please make your selection within 4 days!</b><br>'\
                'Access the database of images on the project-website using this link:<br>' \
                '<a href="'+settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) + '" style="color: black;">' + settings.DOMAIN + 'images/?id=' + str(new_publisher.verbose_id) +'</a></p>'
 

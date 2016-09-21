@@ -2,9 +2,17 @@ import datetime
 
 GENDER_MALE = 0
 GENDER_FEMALE = 1
+GENDER_TRANS = 2
+GENDER_INTER = 3
+GENDER_FLUID = 4
+NO_GENDER = 5
 GENDER_CHOICES = [
     (GENDER_MALE, 'Male'),
-    (GENDER_FEMALE, 'Female')
+    (GENDER_FEMALE, 'Female'),
+    (GENDER_TRANS, 'Trans'),
+    (GENDER_INTER, 'Inter'),
+    (GENDER_FLUID, 'Gender Fluid'),
+    (NO_GENDER, 'No Gender'),
 ]
 
 OCCUPATION_CHOICES = [

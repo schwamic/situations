@@ -47,8 +47,8 @@ class Post(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     publishing_date = models.DateTimeField(default=timezone.now)
-    description = models.CharField(max_length=200, default='Some description')
-    reason = models.CharField(max_length=200, default='Some Reason')
+    description = models.CharField(max_length=500, default='Some description')
+    reason = models.CharField(max_length=500, default='Some Reason')
 
     def __str__(self):
         return u'%s posted by %s' % (self.image, self.publisher)

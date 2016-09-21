@@ -8,22 +8,18 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        .navbar{
+            opacity: 0 !important;
+        }
+    </style>
     {% for post in post_list %}
         <div class="row" id="{{ forloop.counter0 }}">
             <p class="hidden">
-                {{ post.image.title }} by {{ post.image.author }}.
-                Published on: {{ post.publishing_date }}.
-                Selected by: {{ post.publisher.name }} hyphen {{ post.publisher.pk }}.
-                Gender: {{ post.publisher.get_gender_display }}.
-                From: {{ post.publisher.city }} in {{ post.publisher.country }}.
-                Year of birth: {{ post.publisher.year_of_birth }}.
-                Occupation: {{ post.publisher.get_occupation_display }}.
-
-                {% if post.publisher.get_gender_display == 'Male' %}HIS{% else %}HER{% endif %} DESCRIPTION:
-                {{ post.description }}.
-
-                {% if post.publisher.get_gender_display == 'Male' %}HIS{% else %}HER{% endif %} REASON:
-                {{ post.reason }}.
+                {{ post.image.title }}. by {{ post.image.author }}.
+                Published on:. {{ post.publishing_date }}.
+                THE PUBLISHERS DESCRIPTION:. {{ post.description }}.
+                THE PUBLISHERS REASON:. {{ post.reason }}.
             </p>
             <div class="col-md-8 col-md-offset-2 about">
                 <h4><strong>{{ post.image.title|upper }}</strong> BY <strong>{{ post.image.author|upper }}</strong></h4>
@@ -152,7 +148,7 @@
         }
 
         function set_post_contents() {
-            post_contents = current_post.getElementsByTagName('p')[0].innerHTML.split(/,|\.|\?|!|\//) ;
+            post_contents = current_post.getElementsByTagName('p')[0].innerHTML.split(/,|\.|\?|!|\/|p\.m\.|a\.m\./) ;
             post_position = 0;
         }
 
