@@ -27,7 +27,7 @@ if DEV_MODE is 0:
 if DEV_MODE is 1:
     DOMAIN = 'http://dev.pixelkante.com/'
 if DEV_MODE is 2:
-    DOMAIN = 'http://situations.dergreif-online.com/'
+    DOMAIN = 'http://situations.dergreif-online.de/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
