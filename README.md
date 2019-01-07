@@ -1,4 +1,4 @@
-# situations
+# Situations
 
 The project SITUATIONS is a cooperation between DERGREIF and the FOTOMUSEUM WINTERTHUR. The project addresses the topics metadata, photography and WordWideWeb.
 
